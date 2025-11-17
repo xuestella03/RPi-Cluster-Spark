@@ -9,6 +9,8 @@ Basic files:
 - Place all the boot-related files (including the kernel, DTB, and config files, etc.) into the `tank/project/tftpboot/<OS-JVM>/` directory. In particular, the `cmdline.txt` file will have to specify that the root filesystem will be NFS. Then, the root filesystem (so all directories aside from the boot partition) will be mounted in the NFS server once that's ready.
 - Run this: `vcgencmd otp_dump | grep 17:`, should equal `17:3020000a`.
 
+**NOTE: I set up the OS configurations to use wifi, will need to modify this.**
+
 ## Network File System Structure
 *With PXEBoot (i.e. TFTP + NFS)*
 
