@@ -30,7 +30,16 @@ console=tty1 root=/dev/nfs nfsroot=<server-ip>:<path-to-nfs-root>,vers=3,tcp rw 
 ```
 
 ### To Get Onto Dubliner
-I created a compressed `.img.gz` file, copied it to my Windows machine and copied it to Dubliner.
+Use `pishrink` to get a smaller image. 
+
+```bash
+sudo dd if=/dev/sda of=name.img bs=4M status=progress
+wget https://raw.githubusercontent.com/Drewsif/PiShrink/master/pishrink.sh
+chmod +x pishrink.sh
+sudo ./pishrink.sh -z name.img
+```
+
+<!-- I created a compressed `.img.gz` file, copied it to my Windows machine and copied it to Dubliner.
 
 1. Navigate to `home/dietpi/`. This creates the compressed file in that directory.
 2. Run the following (check what device it is with `lsblk`, returns something like `/dev/sda`):
@@ -42,7 +51,7 @@ sudo dd if=/dev/sda bs=4M status=progress | gzip -9 > file-name.img.gz
 
 ```bash
 gunzip -c file-name.img.gz | sudo dd of=/dev/sda bs=4M status=progress
-```
+``` -->
 ## JVMs
 
 ### Eclipse OpenJ9
