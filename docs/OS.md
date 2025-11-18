@@ -36,7 +36,7 @@ Use `pishrink` to get a smaller image.
 sudo dd if=/dev/sda of=name.img bs=4M status=progress
 wget https://raw.githubusercontent.com/Drewsif/PiShrink/master/pishrink.sh
 chmod +x pishrink.sh
-sudo ./pishrink.sh -z name.img
+sudo ./pishrink.sh -z name .img
 ```
 
 <!-- I created a compressed `.img.gz` file, copied it to my Windows machine and copied it to Dubliner.
