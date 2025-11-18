@@ -41,7 +41,7 @@ sudo dd if=/dev/sda bs=4M status=progress | gzip -9 > file-name.img.gz
 3. Run this to uncompress:
 
 ```bash
-gunzip -c raspbian-backup.img.gz | sudo dd of=/dev/sda bs=4M status=progress
+gunzip -c file-name.img.gz | sudo dd of=/dev/sda bs=4M status=progress
 ```
 ## JVMs
 
