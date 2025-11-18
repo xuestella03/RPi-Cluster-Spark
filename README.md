@@ -1,5 +1,8 @@
 # RPi-Cluster-Spark
 
+## OS Custom Images
+See [OS.md](/docs/OS.md)
+
 ## Setup Info
 Links:
 - [Blog Post](https://www.hamishmb.com/howto-pxe-network-booting)
@@ -17,7 +20,7 @@ Basic files:
 Temporarily assuming this, check once it's set up:
 ```
 /nfs/shared/
-├── tpch-data
+├── tpch-data/
 ├── scripts/
 │    └── tpch_benchmark.py
 └── spark-logs/
