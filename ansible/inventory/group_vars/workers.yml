@@ -1,2 +1,4 @@
 # vars specific to workers
 # things like memory limits, core counts
+
+java_home: /opt/semeru # fix this

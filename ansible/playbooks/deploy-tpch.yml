@@ -1,0 +1,10 @@
+- name: run tpc-h 
+  hosts: server 
+  tasks:
+    - name: execute python script
+      command: python3 ../../tpch/run_tpch.py
+      register: script_output
+      # ansible.builtin.shell: python3 hello.py
+    - name: display script output 
+      debug: 
+        msg: "{{ script_output.stdout_lines }}"

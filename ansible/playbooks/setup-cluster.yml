@@ -2,10 +2,50 @@
 # set up the cluster
 # note that everything should already have pyspark and jvm installed
 # so no need to install it here! 
-- name: Setup Master Node
-  hosts: server
-  become: yes # run tasks with sudo privileges
-  roles:
-    - common_setup
+
+# steps
+
+# - name: Setup Master Node
+#   hosts: server
+#   become: yes # run tasks with sudo privileges
+#   roles:
+#     - common_setup
 
     
+# for everyone:
+#   check that all dependencies are installed 
+#     (jvm and java home path, python, pyspark)
+
+- name: check dependencies for all
+  hosts: all 
+  tasks: 
+    # - name: get jvm version
+    #   command: java -version
+    #   register: java_version_output
+    #   ignore_errors: yes 
+
+    # - name: print jvm version output
+    #   debug:
+    #     msg: "{{ java_version_output.stderr }}"
+    #   when: java_version_output.rc == 0
+
+    - name: check java home path
+      shell: source ~/.bashrc && echo $JAVA_HOME # fix this 
+      # need to put in env
+      args:
+        executable: /bin/bash
+      register: java_home_output
+      ignore_errors: yes
+      
+    - name: print java home output 
+      debug:
+        msg: "{{ java_home_output.stdout }}"
+
+    # TODO: python check
+    # - name: check pyspark 
+    #   command: python3 -c "import pyspark" 
+    #   register: pyspark_check
+    #   ignore_errors: yes 
+    # - name: print pyspark output
+    #   debug:
+    #     msg: "{{pyspark_check.stderr}}"
