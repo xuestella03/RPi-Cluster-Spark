@@ -1,0 +1,5 @@
+# master setup
+# things like:
+#   install and config spark master
+#   set up spark env variables
+#   configure master to accept worker connections

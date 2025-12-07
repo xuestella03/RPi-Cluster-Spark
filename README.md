@@ -1,4 +1,10 @@
 # RPi-Cluster-Spark
+## Overall Goals and Plan
+### OS - JVM
+See what OS - JVM configurations are the most suitable for this situation. 
+- We can just test benchmarks using PySpark instead of building the custom Spark each time. 
+
+### Spark Scheduler
 
 ## OS Custom Images
 See [OS.md](/docs/OS.md)
