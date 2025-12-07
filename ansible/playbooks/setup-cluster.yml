@@ -1,0 +1,11 @@
+---
+# set up the cluster
+# note that everything should already have pyspark and jvm installed
+# so no need to install it here! 
+- name: Setup Master Node
+  hosts: server
+  become: yes # run tasks with sudo privileges
+  roles:
+    - common_setup
+
+    

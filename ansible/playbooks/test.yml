@@ -1,0 +1,20 @@
+---
+- name: testing server
+  hosts: server
+  tasks:
+    - name: ping server
+      ansible.builtin.ping:
+
+    - name: print msg
+      ansible.builtin.debug:
+        msg: hello
+
+- name: testing rpi
+  hosts: workers
+  tasks:
+    - name: ping worker
+      ansible.builtin.ping: 
+
+    - name: print msg
+      ansible.builtin.debug:
+        msg: hi
