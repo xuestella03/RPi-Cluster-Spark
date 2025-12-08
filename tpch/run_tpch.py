@@ -6,7 +6,28 @@ this is called by deploy-tpch.yml
   - save results
 '''
 
-import pyspark
+from pyspark.sql import SparkSession
+import config 
+import time 
+
+def create_spark_session():
+
+    spark = SparkSession.builder \
+        .appName("TPC-H Benchmark") \
+        .master(config.CLUSTER_MASTER_URL) \
+        .config("spark.driver.memory", config.SPARK_DRIVER_MEMORY) \
+        .config("spark.executor.memory", config.SPARK_EXECUTOR_MEMORY) \
+        .config("spark.sql.shuffle.partitions", "8") \
+        .getOrCreate()
+
+    print(f"Spark session started.")
+    print(f"Spark UI here: {spark.sparkContext.uiWebUrl}")
+    
+    return spark 
+
 if __name__ == "__main__":
-    print("testing...")
-    print(pyspark.__version__)
+    print("Running run_tpch.py...")
+    spark = create_spark_session()
+
+    # time.sleep(10)
+    spark.stop()
