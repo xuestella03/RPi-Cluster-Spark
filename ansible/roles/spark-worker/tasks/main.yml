@@ -1,5 +1,0 @@
-# worker setup
-# things like:
-#   install and config spark on workers
-#   connect worker to master
-#   config worker memory and core settings
