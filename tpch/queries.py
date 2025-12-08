@@ -1,10 +1,10 @@
-# tpc-h queries for pyspark
-# queries 1, 3, 5, and 6
+# TPC-H queries for PySpark
+# Queries 1, 3, 5, and 6
+# We assume that we've loaded data at this point
 
-def get_query_1(spark, lineitem_df):
+def get_query_1(spark):
 
-    from pyspark.sql import functions as F
-    
+    lineitem_df = spark.table("lineitem")
     query = """
     SELECT
         l_returnflag,
@@ -27,8 +27,12 @@ def get_query_1(spark, lineitem_df):
     return spark.sql(query)
 
 
-def get_query_3(spark, customer_df, orders_df, lineitem_df):
-    
+def get_query_3(spark):
+
+    customer_df = spark.table("customer")
+    orders_df = spark.table("orders")
+    lineitem_df = spark.table("lineitem")
+
     query = """
     SELECT
         l_orderkey,
@@ -52,8 +56,15 @@ def get_query_3(spark, customer_df, orders_df, lineitem_df):
     return spark.sql(query)
 
 
-def get_query_5(spark, customer_df, orders_df, lineitem_df, supplier_df, nation_df, region_df):
+def get_query_5(spark):
     
+    customer_df = spark.table("customer")
+    orders_df = spark.table("orders")
+    lineitem_df = spark.table("lineitem")
+    supplier_df = spark.table("supplier_df")
+    nation_df = spark.table("nation_df")
+    region_df = spark.table("region_df")
+
     query = """
     SELECT
         n_name,
@@ -82,6 +93,7 @@ def get_query_5(spark, customer_df, orders_df, lineitem_df, supplier_df, nation_
 
 
 def get_query_6(spark, lineitem_df):
+    lineitem_df = spark.table("lineitem")
     
     query = """
     SELECT
