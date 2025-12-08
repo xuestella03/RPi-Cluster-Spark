@@ -1,2 +1,3 @@
 *.tbl
 .venv
+tpch/data/*

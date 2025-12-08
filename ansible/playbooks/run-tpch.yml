@@ -23,13 +23,13 @@
         - queries.py
       when: item is file
       
-    # - name: Copy data files if they exist
-    #   synchronize:
-    #     src: data/
-    #     dest: "{{ app_dir }}/data/"
-    #     recursive: yes
-    #   when: lookup('fileglob', 'data/*') | length > 0
-    #   ignore_errors: yes
+    - name: Copy data files if they exist
+      synchronize:
+        src: ../../data/
+        dest: "{{ app_dir }}/data/"
+        recursive: yes
+      when: lookup('fileglob', '../../data/*') | length > 0
+      ignore_errors: yes
       
     - name: Run TPC-H benchmark script
       shell: |

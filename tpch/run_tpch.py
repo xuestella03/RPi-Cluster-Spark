@@ -1,7 +1,6 @@
 """
 Initialize the spark session
-This is called by deploy-tpch.yml
-  - load data using load_data.py
+This is called by run-tpch.yml
   - execute queries from queries.py
   - save results
 
@@ -21,7 +20,7 @@ import os
 import time 
 
 class TPCH:
-    def __init__(self, data_path="/data/", sf=0.1):
+    def __init__(self, data_path, sf=0.1):
         """
         :param data_path: relative path to .tbl files
         :param sf: scale factor
@@ -127,7 +126,10 @@ if __name__ == "__main__":
     print("Running run_tpch.py...")
 
     # Initialize 
-    benchmark = TPCH() # for now use default data path and sf
+    PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+    DATA_DIR = os.path.join(PROJECT_ROOT, "data")
+    print(f"Data directory: {DATA_DIR}")
+    benchmark = TPCH(data_path=DATA_DIR) # for now use default sf 0.1
 
     # Run queries
     benchmark.run_queries()
