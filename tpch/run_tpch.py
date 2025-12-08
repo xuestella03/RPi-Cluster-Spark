@@ -14,6 +14,7 @@ https://stackoverflow.com/questions/76218894/how-can-i-get-the-output-of-an-ansi
 """
 
 from pyspark.sql import SparkSession
+from pyspark.sql.types import StructType, StructField, IntegerType, StringType, DecimalType, DateType
 import config 
 import queries
 import os
@@ -43,37 +44,104 @@ class TPCH:
 
     def load_tables(self):
         print("Loading TPC-H tables to dataframe...")
+        
         schemas = {
-            'customer': ['c_custkey', 'c_name', 'c_address', 'c_nationkey', 
-                        'c_phone', 'c_acctbal', 'c_mktsegment', 'c_comment'],
-            'lineitem': ['l_orderkey', 'l_partkey', 'l_suppkey', 'l_linenumber',
-                        'l_quantity', 'l_extendedprice', 'l_discount', 'l_tax',
-                        'l_returnflag', 'l_linestatus', 'l_shipdate', 'l_commitdate',
-                        'l_receiptdate', 'l_shipinstruct', 'l_shipmode', 'l_comment'],
-            'nation': ['n_nationkey', 'n_name', 'n_regionkey', 'n_comment'],
-            'orders': ['o_orderkey', 'o_custkey', 'o_orderstatus', 'o_totalprice',
-                    'o_orderdate', 'o_orderpriority', 'o_clerk', 'o_shippriority', 'o_comment'],
-            'part': ['p_partkey', 'p_name', 'p_mfgr', 'p_brand', 'p_type',
-                    'p_size', 'p_container', 'p_retailprice', 'p_comment'],
-            'partsupp': ['ps_partkey', 'ps_suppkey', 'ps_availqty', 'ps_supplycost', 'ps_comment'],
-            'region': ['r_regionkey', 'r_name', 'r_comment'],
-            'supplier': ['s_suppkey', 's_name', 's_address', 's_nationkey',
-                        's_phone', 's_acctbal', 's_comment']
+            'customer': StructType([
+                StructField("c_custkey", IntegerType(), True),
+                StructField("c_name", StringType(), True),
+                StructField("c_address", StringType(), True),
+                StructField("c_nationkey", IntegerType(), True),
+                StructField("c_phone", StringType(), True),
+                StructField("c_acctbal", DecimalType(15, 2), True),
+                StructField("c_mktsegment", StringType(), True),
+                StructField("c_comment", StringType(), True)
+            ]),
+            
+            'lineitem': StructType([
+                StructField("l_orderkey", IntegerType(), True),
+                StructField("l_partkey", IntegerType(), True),
+                StructField("l_suppkey", IntegerType(), True),
+                StructField("l_linenumber", IntegerType(), True),
+                StructField("l_quantity", DecimalType(15, 2), True),
+                StructField("l_extendedprice", DecimalType(15, 2), True),
+                StructField("l_discount", DecimalType(15, 2), True),
+                StructField("l_tax", DecimalType(15, 2), True),
+                StructField("l_returnflag", StringType(), True),
+                StructField("l_linestatus", StringType(), True),
+                StructField("l_shipdate", DateType(), True),
+                StructField("l_commitdate", DateType(), True),
+                StructField("l_receiptdate", DateType(), True),
+                StructField("l_shipinstruct", StringType(), True),
+                StructField("l_shipmode", StringType(), True),
+                StructField("l_comment", StringType(), True)
+            ]),
+            
+            'nation': StructType([
+                StructField("n_nationkey", IntegerType(), True),
+                StructField("n_name", StringType(), True),
+                StructField("n_regionkey", IntegerType(), True),
+                StructField("n_comment", StringType(), True)
+            ]),
+            
+            'orders': StructType([
+                StructField("o_orderkey", IntegerType(), True),
+                StructField("o_custkey", IntegerType(), True),
+                StructField("o_orderstatus", StringType(), True),
+                StructField("o_totalprice", DecimalType(15, 2), True),
+                StructField("o_orderdate", DateType(), True),
+                StructField("o_orderpriority", StringType(), True),
+                StructField("o_clerk", StringType(), True),
+                StructField("o_shippriority", IntegerType(), True),
+                StructField("o_comment", StringType(), True)
+            ]),
+            
+            'part': StructType([
+                StructField("p_partkey", IntegerType(), True),
+                StructField("p_name", StringType(), True),
+                StructField("p_mfgr", StringType(), True),
+                StructField("p_brand", StringType(), True),
+                StructField("p_type", StringType(), True),
+                StructField("p_size", IntegerType(), True),
+                StructField("p_container", StringType(), True),
+                StructField("p_retailprice", DecimalType(15, 2), True),
+                StructField("p_comment", StringType(), True)
+            ]),
+            
+            'partsupp': StructType([
+                StructField("ps_partkey", IntegerType(), True),
+                StructField("ps_suppkey", IntegerType(), True),
+                StructField("ps_availqty", IntegerType(), True),
+                StructField("ps_supplycost", DecimalType(15, 2), True),
+                StructField("ps_comment", StringType(), True)
+            ]),
+            
+            'region': StructType([
+                StructField("r_regionkey", IntegerType(), True),
+                StructField("r_name", StringType(), True),
+                StructField("r_comment", StringType(), True)
+            ]),
+            
+            'supplier': StructType([
+                StructField("s_suppkey", IntegerType(), True),
+                StructField("s_name", StringType(), True),
+                StructField("s_address", StringType(), True),
+                StructField("s_nationkey", IntegerType(), True),
+                StructField("s_phone", StringType(), True),
+                StructField("s_acctbal", DecimalType(15, 2), True),
+                StructField("s_comment", StringType(), True)
+            ])
         }
 
         self.tables = {}
 
-        for table_name, columns in schemas.items():
+        for table_name, schema in schemas.items():
             file_path = os.path.join(self.data_path, f"{table_name}.tbl")
 
             df = self.spark.read \
                 .option("delimiter", "|") \
                 .option("header", "false") \
+                .schema(schema) \
                 .csv(file_path)
-            
-            for i, col in enumerate(columns):
-                # Rename the col names
-                df = df.withColumnRenamed(f"_c{i}", col)
             
             df.createOrReplaceTempView(table_name)
             self.tables[table_name] = df
@@ -88,7 +156,7 @@ class TPCH:
         result_df = query_function(self.spark)
 
         print("Sample Results:")
-        result_df.show(3, trucate=False)
+        result_df.show(3, truncate=False)
 
         elapsed = time.time() - start 
 
@@ -126,10 +194,10 @@ if __name__ == "__main__":
     print("Running run_tpch.py...")
 
     # Initialize 
-    PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-    DATA_DIR = os.path.join(PROJECT_ROOT, "data")
-    print(f"Data directory: {DATA_DIR}")
-    benchmark = TPCH(data_path=DATA_DIR) # for now use default sf 0.1
+    # PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+    # DATA_DIR = os.path.join(PROJECT_ROOT, "data")
+    # print(f"Data directory: {DATA_DIR}")
+    benchmark = TPCH(data_path="/mnt/tpch") # for now use default sf 0.1
 
     # Run queries
     benchmark.run_queries()
