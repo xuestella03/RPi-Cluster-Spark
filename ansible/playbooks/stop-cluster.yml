@@ -1,0 +1,16 @@
+---
+- name: Stop workers 
+  hosts: workers 
+  become: yes 
+  tasks:
+    - name: Kill Spark processes on workers 
+      shell: pkill -f org.apache.spark.deploy.worker
+      ignore_errors: yes 
+
+- name: Stop server 
+  hosts: server 
+  become: yes
+  tasks:
+    - name: Kill Spark processes on server 
+      shell: pkill -f org.apache.spark.deploy
+      ignore_errors: yes 
