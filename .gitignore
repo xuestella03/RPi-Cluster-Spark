@@ -1,3 +1,4 @@
 *.tbl
 .venv
 tpch/data/*
+ansible/inventory/hosts.yml
