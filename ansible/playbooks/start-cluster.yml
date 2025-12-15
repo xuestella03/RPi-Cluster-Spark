@@ -11,6 +11,7 @@
   become: yes
   tasks:
     - name: Update spark-env.sh with server JAVA_HOME  # change to not hardcoded
+    # just shell run echo $JAVA_HOME and save that?
       copy:
         dest: /opt/spark/conf/spark-env.sh
         content: |

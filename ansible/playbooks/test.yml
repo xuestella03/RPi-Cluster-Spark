@@ -7,7 +7,7 @@
 
     - name: print msg
       ansible.builtin.debug:
-        msg: hello
+        msg: hello from server 
 
 - name: testing rpi
   hosts: workers
@@ -17,4 +17,4 @@
 
     - name: print msg
       ansible.builtin.debug:
-        msg: hi
+        msg: hi from worker # {{ inventory_hostname }} # check that this works 
