@@ -1,4 +1,4 @@
 # vars specific to server
 # things like master node settings
 
-java_home: /usr/lib/jvm/java-1.21.0-openjdk-amd64 # fix this
+java_home: /usr/lib/jvm/java-1.21.0-openjdk-amd64 

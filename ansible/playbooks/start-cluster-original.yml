@@ -10,38 +10,13 @@
   hosts: server
   become: yes
   tasks:
-    # - name: Get JAVA_HOME and save 
-    #   # ansible.builtin.shell: |
-    #   #   source /etc/profile
-    #   #   echo $JAVA_HOME 
-    #   # args:
-    #   #   executable: /bin/bash
-    #   # register: master_java_home_output
-    #   include_vars:
-    #     file: ansible/inventory/group_vars/server.yml
-    #     name: server_vars
-    # - name: Display java home output 
-    #   ansible.builtin.debug:
-    #     # var: master_java_home_output
-    #     msg: "{{ server_vars.java_home }}"
-
-    - name: Get SPARK_HOME and save 
-      ansible.builtin.shell: |
-        source /etc/profile.d/spark.sh
-        echo $SPARK_HOME 
-      args:
-        executable: /bin/bash
-      register: master_spark_home_output
-    - name: Display spark home output 
-      ansible.builtin.debug:
-        var: master_spark_home_output.stdout 
-
-    - name: Update spark-env.sh with server JAVA_HOME 
+    - name: Update spark-env.sh with server JAVA_HOME  # change to not hardcoded
+    # just shell run echo $JAVA_HOME and save that?
       copy:
-        dest: "{{ master_spark_home_output.stdout }}/conf/spark-env.sh"
+        dest: /opt/spark/conf/spark-env.sh
         content: |
           #!/usr/bin/env bash
-          export JAVA_HOME=/usr/lib/jvm/java-1.21.0-openjdk-amd64
+          export JAVA_HOME=/usr/lib/jvm/java-1.21.0-openjdk-amd64 
           export SPARK_MASTER_HOST={{ ansible_default_ipv4.address }}
           export SPARK_MASTER_PORT=7077
           export SPARK_MASTER_WEBUI_PORT=8080
@@ -53,9 +28,9 @@
       
     - name: Start Spark master
       shell: |
-        export SPARK_HOME={{ master_spark_home_output.stdout }}
+        export SPARK_HOME=/opt/spark
         export JAVA_HOME=/usr/lib/jvm/java-1.21.0-openjdk-amd64
-        {{ master_spark_home_output.stdout }}/sbin/start-master.sh
+        /opt/spark/sbin/start-master.sh
         sleep 5
       register: master_start
       
@@ -84,34 +59,12 @@
   hosts: workers
   become: yes
   tasks:
-    - name: Get JAVA_HOME and save 
-      ansible.builtin.shell:  |
-        source /etc/profile.d/java.sh
-        echo $JAVA_HOME 
-      args:
-        executable: /bin/bash
-      register: worker_java_home_output
-    - name: Display java home output 
-      ansible.builtin.debug:
-        var: worker_java_home_output.stdout
-
-    - name: Get SPARK_HOME and save 
-      ansible.builtin.shell:  |
-        source /etc/profile.d/spark.sh
-        echo $SPARK_HOME 
-      args:
-        executable: /bin/bash
-      register: worker_spark_home_output
-    - name: Display spark home output 
-      ansible.builtin.debug:
-        var: worker_spark_home_output.stdout 
-
-    - name: Update spark-env.sh for workers
+    - name: Update spark-env.sh for workers with /opt/semeru # change to not hardcoded
       copy:
-        dest: "{{ worker_spark_home_output.stdout }}/conf/spark-env.sh"
+        dest: /opt/spark/conf/spark-env.sh
         content: |
           #!/usr/bin/env bash
-          export JAVA_HOME={{ worker_java_home_output.stdout }}
+          export JAVA_HOME=/opt/semeru
           export SPARK_WORKER_CORES=4
           export SPARK_WORKER_MEMORY=4g
         mode: '0755'
@@ -126,9 +79,9 @@
       
     - name: Start Spark worker
       shell: |
-        export SPARK_HOME={{ worker_spark_home_output.stdout }}
-        export JAVA_HOME={{ worker_java_home_output.stdout }}
-        {{ worker_spark_home_output.stdout}}/sbin/start-worker.sh spark://{{ master_ip }}:7077
+        export SPARK_HOME=/opt/spark
+        export JAVA_HOME=/opt/semeru
+        /opt/spark/sbin/start-worker.sh spark://{{ master_ip }}:7077
         sleep 3
       register: worker_start
       
@@ -142,7 +95,7 @@
       when: worker_check.rc == 0
         
     - name: Show worker log if failed
-      shell: tail -50 {{ worker_spark_home_output.stdout }}/logs/*Worker*.out
+      shell: tail -50 /opt/spark/logs/*Worker*.out
       register: worker_log
       when: worker_check.rc != 0
       ignore_errors: yes

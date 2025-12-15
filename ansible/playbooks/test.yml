@@ -5,9 +5,14 @@
     - name: ping server
       ansible.builtin.ping:
 
+    - name: import vars
+      include_vars:
+        file: ansible/inventory/group_vars/server.yml
+        
+
     - name: print msg
       ansible.builtin.debug:
-        msg: hello from server 
+        msg: "hello from server, java home is {{ }}"
 
 - name: testing rpi
   hosts: workers
