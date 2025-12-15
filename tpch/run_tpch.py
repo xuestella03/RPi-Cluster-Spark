@@ -19,6 +19,7 @@ import config
 import queries
 import os
 import time 
+import csv 
 
 class TPCH:
     def __init__(self, data_path, sf=0.1):
@@ -182,6 +183,13 @@ class TPCH:
 
         for query_num, time in times.items():
             print(f"{query_num}: {time:.2f}")
+
+        filename = "/home/xuestella03/Documents/Repositories/RPi-Cluster-Spark/tpch/results/dietpi-eclipse-j9.csv"
+        fieldnames = times.keys()
+
+        with open(filename, 'a', newline='') as f:
+            writer = csv.DictWriter(f, fieldnames)
+            writer.writerow(times)
 
 
     def cleanup(self):
