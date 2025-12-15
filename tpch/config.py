@@ -12,3 +12,6 @@ CLUSTER_MASTER_URL = f"spark://{CLUSTER_MASTER_IP}:7077"
 
 SPARK_DRIVER_MEMORY = "1g"
 SPARK_EXECUTOR_MEMORY = "1g"
+
+# Current OS-JVM configuration (file name for results)
+CUR_CONFIG = "dietpi-eclipse-j9"

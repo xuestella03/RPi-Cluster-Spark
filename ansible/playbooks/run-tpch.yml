@@ -3,6 +3,7 @@
   hosts: server
   become: no
   vars:
+    # fix this
     app_dir: "{{ ansible_env.HOME }}/Documents/Repositories/RPi-Cluster-Spark/tpch"
   tasks:
     - name: Create application directory
