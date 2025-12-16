@@ -8,7 +8,7 @@
 
 
 - name: Download Spark on all nodes
-  hosts: all
+  hosts: workers
   become: yes
   tasks:
     # - name: Install basic dependencies

@@ -184,7 +184,7 @@ class TPCH:
         for query_num, time in times.items():
             print(f"{query_num}: {time:.2f}")
 
-        filename = "/home/xuestella03/Documents/Repositories/RPi-Cluster-Spark/tpch/results/dietpi-eclipse-j9.csv"
+        filename = "/home/xuestella03/Documents/Repositories/RPi-Cluster-Spark/tpch/results/dietpi-openjdk-21.csv"
         fieldnames = times.keys()
 
         with open(filename, 'a', newline='') as f:
