@@ -30,7 +30,18 @@ console=tty1 root=/dev/nfs nfsroot=<server-ip>:<path-to-nfs-root>,vers=3,tcp rw 
 ```
 
 ### To Get Onto Dubliner
-Use `pishrink` to get a smaller image. 
+To get from the USB stick to a `.img` file, do the following:
+```bash
+lsblk
+
+# it should be something like /dev/sda
+sudo umount /dev/sda/*
+
+sudo dd if=/dev/sda of=/path/to/image.img bs=4M status=progress
+```
+
+
+Or, you can also use `pishrink` to get a smaller image. 
 
 ```bash
 sudo dd if=/dev/sda of=name.img bs=4M status=progress

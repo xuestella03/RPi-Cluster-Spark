@@ -83,35 +83,38 @@
 - name: Start Spark workers
   hosts: workers
   become: yes
+  vars:
+    worker_spark_home: /opt/spark/current
+    worker_java_home: /usr/lib/jvm/java-21-openjdk-armhf
   tasks:
-    - name: Get JAVA_HOME and save 
-      ansible.builtin.shell:  |
-        source /etc/profile.d/java.sh
-        echo $JAVA_HOME 
-      args:
-        executable: /bin/bash
-      register: worker_java_home_output
-    - name: Display java home output 
-      ansible.builtin.debug:
-        var: worker_java_home_output.stdout
+    # - name: Get JAVA_HOME and save 
+    #   ansible.builtin.shell:  |
+    #     source /etc/profile.d/java.sh
+    #     echo $JAVA_HOME 
+    #   args:
+    #     executable: /bin/bash
+    #   register: worker_java_home_output
+    # - name: Display java home output 
+    #   ansible.builtin.debug:
+    #     var: worker_java_home_output.stdout
 
-    - name: Get SPARK_HOME and save 
-      ansible.builtin.shell:  |
-        source /etc/profile.d/spark.sh
-        echo $SPARK_HOME 
-      args:
-        executable: /bin/bash
-      register: worker_spark_home_output
-    - name: Display spark home output 
-      ansible.builtin.debug:
-        var: worker_spark_home_output.stdout 
+    # - name: Get SPARK_HOME and save 
+    #   ansible.builtin.shell:  |
+    #     source /etc/profile.d/spark.sh
+    #     echo $SPARK_HOME 
+    #   args:
+    #     executable: /bin/bash
+    #   register: worker_spark_home_output
+    # - name: Display spark home output 
+    #   ansible.builtin.debug:
+    #     var: worker_spark_home_output.stdout 
 
     - name: Update spark-env.sh for workers
       copy:
-        dest: "{{ worker_spark_home_output.stdout }}/conf/spark-env.sh"
+        dest: "{{ worker_spark_home }}/conf/spark-env.sh"
         content: |
           #!/usr/bin/env bash
-          export JAVA_HOME={{ worker_java_home_output.stdout }}
+          export JAVA_HOME={{ worker_java_home }}
           export SPARK_WORKER_CORES=4
           export SPARK_WORKER_MEMORY=4g
         mode: '0755'
@@ -126,9 +129,9 @@
       
     - name: Start Spark worker
       shell: |
-        export SPARK_HOME={{ worker_spark_home_output.stdout }}
-        export JAVA_HOME={{ worker_java_home_output.stdout }}
-        {{ worker_spark_home_output.stdout}}/sbin/start-worker.sh spark://{{ master_ip }}:7077
+        export SPARK_HOME={{ worker_spark_home }}
+        export JAVA_HOME={{ worker_java_home }}
+        {{ worker_spark_home }}/sbin/start-worker.sh spark://{{ master_ip }}:7077
         sleep 3
       register: worker_start
       
@@ -142,7 +145,7 @@
       when: worker_check.rc == 0
         
     - name: Show worker log if failed
-      shell: tail -50 {{ worker_spark_home_output.stdout }}/logs/*Worker*.out
+      shell: tail -50 {{ worker_spark_home }}/logs/*Worker*.out
       register: worker_log
       when: worker_check.rc != 0
       ignore_errors: yes

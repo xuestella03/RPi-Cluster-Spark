@@ -36,7 +36,18 @@ class TPCH:
             .config("spark.driver.memory", config.SPARK_DRIVER_MEMORY) \
             .config("spark.executor.memory", config.SPARK_EXECUTOR_MEMORY) \
             .config("spark.sql.shuffle.partitions", "8") \
+            .config("spark.eventLog.enabled", True) \
+            .config("spark.eventLog.dir", "/home/xuestella03/Documents/Repositories/RPi-Cluster-Spark/tpch/memory") \
+            .config("spark.log.structuredLogging.enabled", True) \
             .getOrCreate()
+        
+        # self.spark = SparkSession.builder \
+        #     .appName("TPC-H Benchmark") \
+        #     .master(config.CLUSTER_MASTER_URL) \
+        #     .config("spark.driver.memory", config.SPARK_DRIVER_MEMORY) \
+        #     .config("spark.executor.memory", config.SPARK_EXECUTOR_MEMORY) \
+        #     .config("spark.sql.shuffle.partitions", "8") \
+        #     .getOrCreate()
 
         print(f"Spark session started.")
         print(f"Spark UI here: {self.spark.sparkContext.uiWebUrl}")
@@ -184,7 +195,8 @@ class TPCH:
         for query_num, time in times.items():
             print(f"{query_num}: {time:.2f}")
 
-        filename = "/home/xuestella03/Documents/Repositories/RPi-Cluster-Spark/tpch/results/dietpi-openjdk-21.csv"
+         # change this to use config
+        filename = "/home/xuestella03/Documents/Repositories/RPi-Cluster-Spark/tpch/results/raspios-openjdk-21.csv"
         fieldnames = times.keys()
 
         with open(filename, 'a', newline='') as f:

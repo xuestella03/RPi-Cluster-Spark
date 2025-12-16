@@ -1,0 +1,172 @@
+---
+- name: Test data file access on server
+  hosts: server
+  tasks:
+    - name: Ping server
+      ansible.builtin.ping:
+    
+    - name: Check if /mnt/tpch directory exists
+      stat:
+        path: /mnt/tpch
+      register: tpch_dir
+    
+    - name: Display /mnt/tpch status
+      debug:
+        msg: "{{ '/mnt/tpch exists' if tpch_dir.stat.exists else '/mnt/tpch does NOT exist' }}"
+    
+    - name: List files in /mnt/tpch
+      command: ls -lh /mnt/tpch
+      register: tpch_files
+      when: tpch_dir.stat.exists
+      ignore_errors: yes
+    
+    - name: Display files in /mnt/tpch
+      debug:
+        msg: "{{ tpch_files.stdout_lines }}"
+      when: tpch_dir.stat.exists and tpch_files is succeeded
+    
+    - name: Check if specific .tbl files exist
+      stat:
+        path: "/mnt/tpch/{{ item }}.tbl"
+      register: tbl_files
+      loop:
+        - customer
+        - lineitem
+        - nation
+        - orders
+        - part
+        - partsupp
+        - region
+        - supplier
+      when: tpch_dir.stat.exists
+    
+    - name: Display .tbl file status
+      debug:
+        msg: "{{ item.item }}.tbl: {{ 'EXISTS' if item.stat.exists else 'MISSING' }} (size: {{ item.stat.size | default(0) | human_readable }})"
+      loop: "{{ tbl_files.results }}"
+      when: tpch_dir.stat.exists and tbl_files is defined
+    
+    - name: Test reading first line of customer.tbl
+      shell: head -n 1 /mnt/tpch/customer.tbl
+      register: customer_sample
+      when: tpch_dir.stat.exists
+      ignore_errors: yes
+    
+    - name: Display sample data
+      debug:
+        msg: "Sample from customer.tbl: {{ customer_sample.stdout }}"
+      when: customer_sample is succeeded
+    
+    - name: Check permissions on /mnt/tpch
+      command: ls -ld /mnt/tpch
+      register: tpch_permissions
+      when: tpch_dir.stat.exists
+      ignore_errors: yes
+    
+    - name: Display permissions
+      debug:
+        msg: "{{ tpch_permissions.stdout }}"
+      when: tpch_permissions is succeeded
+
+- name: Test data file access on workers
+  hosts: workers
+  tasks:
+    - name: Ping worker
+      ansible.builtin.ping:
+    
+    - name: Print worker info
+      debug:
+        msg: "Testing data access on {{ inventory_hostname }}"
+    
+    - name: Check if /mnt/tpch directory exists
+      stat:
+        path: /mnt/tpch
+      register: tpch_dir
+    
+    - name: Display /mnt/tpch status
+      debug:
+        msg: "{{ '/mnt/tpch exists' if tpch_dir.stat.exists else '/mnt/tpch does NOT exist - THIS IS THE PROBLEM!' }}"
+    
+    - name: List files in /mnt/tpch
+      command: ls -lh /mnt/tpch
+      register: tpch_files
+      when: tpch_dir.stat.exists
+      ignore_errors: yes
+    
+    - name: Display files in /mnt/tpch
+      debug:
+        msg: "{{ tpch_files.stdout_lines }}"
+      when: tpch_dir.stat.exists and tpch_files is succeeded
+    
+    - name: Check if NFS mount is working
+      command: mount | grep tpch
+      register: nfs_mount
+      ignore_errors: yes
+    
+    - name: Display NFS mount info
+      debug:
+        msg: "{{ nfs_mount.stdout if nfs_mount.rc == 0 else 'NFS not mounted!' }}"
+    
+    - name: Check if specific .tbl files exist
+      stat:
+        path: "/mnt/tpch/{{ item }}.tbl"
+      register: tbl_files
+      loop:
+        - customer
+        - lineitem
+        - nation
+        - orders
+        - part
+        - partsupp
+        - region
+        - supplier
+      when: tpch_dir.stat.exists
+    
+    - name: Display .tbl file status
+      debug:
+        msg: "{{ item.item }}.tbl: {{ 'EXISTS' if item.stat.exists else 'MISSING' }} (size: {{ item.stat.size | default(0) | human_readable }})"
+      loop: "{{ tbl_files.results }}"
+      when: tpch_dir.stat.exists and tbl_files is defined
+    
+    - name: Test reading first line of customer.tbl
+      shell: head -n 1 /mnt/tpch/customer.tbl
+      register: customer_sample
+      when: tpch_dir.stat.exists
+      ignore_errors: yes
+    
+    - name: Display sample data
+      debug:
+        msg: "Sample from customer.tbl: {{ customer_sample.stdout }}"
+      when: customer_sample is succeeded
+    
+    - name: Check permissions on /mnt/tpch
+      command: ls -ld /mnt/tpch
+      register: tpch_permissions
+      when: tpch_dir.stat.exists
+      ignore_errors: yes
+    
+    - name: Display permissions
+      debug:
+        msg: "{{ tpch_permissions.stdout }}"
+      when: tpch_permissions is succeeded
+    
+    - name: Test Python can read the file
+      shell: |
+        python3 -c "
+        import os
+        path = '/mnt/tpch/customer.tbl'
+        if os.path.exists(path):
+            with open(path, 'r') as f:
+                print('Python can read file!')
+                print('First line:', f.readline().strip())
+        else:
+            print('File does not exist for Python!')
+        "
+      register: python_test
+      when: tpch_dir.stat.exists
+      ignore_errors: yes
+    
+    - name: Display Python test result
+      debug:
+        msg: "{{ python_test.stdout_lines }}"
+      when: python_test is succeeded

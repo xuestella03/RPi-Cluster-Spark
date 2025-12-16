@@ -44,6 +44,9 @@
         remote_src: yes
         extra_opts: [--strip-components=1]
         creates: /opt/spark/bin/spark-submit
+
+    # Next two tasks set spark home globally.
+    # TODO: change this to just set in ~/.bashrc
         
     - name: Set SPARK_HOME environment variable
       lineinfile:
