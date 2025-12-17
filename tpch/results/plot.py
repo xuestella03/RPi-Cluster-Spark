@@ -57,7 +57,7 @@ for os_name, jvms in os_groups.items():
     
     ax.set_xlabel('Query')
     ax.set_ylabel('Time (ms)')
-    ax.set_title(f'Performance Comparison on {os_name.upper()} - Different JVMs')
+    ax.set_title(f'Runtime: {os_name.upper()} - Different JVMs')
     ax.set_xticks(x + width)
     ax.set_xticklabels(queries)
     ax.legend(loc='upper right')
@@ -83,7 +83,7 @@ for jvm, oses in jvm_groups.items():
     
     ax.set_xlabel('Query')
     ax.set_ylabel('Time (ms)')
-    ax.set_title(f'Performance Comparison of {jvm.upper()} - Different OSes')
+    ax.set_title(f'Runtime: {jvm.upper()} - Different OSes')
     ax.set_xticks(x + width / 2)
     ax.set_xticklabels(queries)
     ax.legend(loc='upper right')
@@ -112,7 +112,7 @@ for config, info in sorted_configs:
 
 ax.set_xlabel('Query')
 ax.set_ylabel('Time (ms)')
-ax.set_title('Performance Comparison - All Configurations')
+ax.set_title('Runtime: All Configurations')
 ax.set_xticks(x + width * (len(data) - 1) / 2)
 ax.set_xticklabels(queries)
 ax.legend(loc='upper right', ncol=2)
