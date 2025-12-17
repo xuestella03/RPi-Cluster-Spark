@@ -2,3 +2,4 @@
 .venv
 tpch/data/*
 ansible/inventory/hosts.yml
+tpch/__pycache__/*
