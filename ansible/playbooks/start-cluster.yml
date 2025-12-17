@@ -84,8 +84,9 @@
   hosts: workers
   become: yes
   vars:
-    worker_spark_home: /opt/spark/current
-    worker_java_home: /usr/lib/jvm/java-21-openjdk-armhf
+    worker_spark_home: /opt/spark
+    # worker_java_home: /usr/lib/jvm/java-21-openjdk-armhf
+    worker_java_home: /opt/liberica-jdk21
   tasks:
     # - name: Get JAVA_HOME and save 
     #   ansible.builtin.shell:  |

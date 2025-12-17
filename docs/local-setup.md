@@ -24,11 +24,33 @@
 
     # then exit and 
     source ~/.bashrc
+
+    # https://download.bell-sw.com/java/21.0.9+15/bellsoft-jdk21.0.9+15-linux-arm32-vfp-hflt-lite.deb
+    ```
+
+    ```bash
+    # Download tarball version
+    wget https://download.bell-sw.com/java/21.0.9+15/bellsoft-jdk21.0.9+15-linux-arm32-vfp-hflt-lite.tar.gz
+
+    # https://download.bell-sw.com/java/21.0.9+15/bellsoft-jdk21.0.9+15-linux-aarch64-lite.deb
+
+    # Extract to /opt
+    sudo mkdir -p /opt/liberica-jdk21
+    sudo tar -xzf bellsoft-jdk21.0.9+15-linux-arm32-vfp-hflt-lite.tar.gz -C /opt/liberica-jdk21 --strip-components=1
+
+    # Set JAVA_HOME
+    echo 'JAVA_HOME=/opt/liberica-jdk21' >> ~/.bashrc
+    echo 'export JAVA_HOME' >> ~/.bashrc
+    echo 'export PATH=$JAVA_HOME/bin:$PATH' >> ~/.bashrc
+
+    source ~/.bashrc
+    java -version
     ```
 
 3. Install Python
     ```bash
-    sudo apt install python3
+    sudo apt update && sudo apt upgrade -y
+    sudo apt install python3 -y
     ```
 4. Set up NFS
     ```bash

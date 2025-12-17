@@ -10,6 +10,9 @@
 - name: Download Spark on all nodes
   hosts: workers
   become: yes
+
+  environment:
+    ANSIBLE_REMOTE_TEMP: /mnt/usb/.ansible/tmp
   tasks:
     # - name: Install basic dependencies
     #   apt:
@@ -17,6 +20,12 @@
     #       - tar
     #       - gzip
     #     update_cache: yes
+    # - name: Ensure Ansible temp directory exists
+    #   file:
+    #     path: /mnt/usb/.ansible/tmp
+    #     state: directory
+    #     mode: '0700'
+    #     owner: xuest
     - name: Remove any existing tarball
       file:
         path: /tmp/spark.tar.gz

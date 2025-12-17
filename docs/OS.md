@@ -35,7 +35,7 @@ To get from the USB stick to a `.img` file, do the following:
 lsblk
 
 # it should be something like /dev/sda
-sudo umount /dev/sda/*
+sudo umount /dev/sda*
 
 sudo dd if=/dev/sda of=/path/to/image.img bs=4M status=progress
 ```
