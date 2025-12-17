@@ -87,6 +87,8 @@
     worker_spark_home: /opt/spark
     # worker_java_home: /usr/lib/jvm/java-21-openjdk-armhf
     worker_java_home: /opt/liberica-jdk21
+    ansible_become_timeout: 60
+    ansible_timeout: 60  # Add this
   tasks:
     # - name: Get JAVA_HOME and save 
     #   ansible.builtin.shell:  |

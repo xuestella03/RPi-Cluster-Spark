@@ -196,7 +196,7 @@ class TPCH:
             print(f"{query_num}: {time:.2f}")
 
          # change this to use config
-        filename = "/home/xuestella03/Documents/Repositories/RPi-Cluster-Spark/tpch/results/dietpi-liberica.csv"
+        filename = "/home/xuestella03/Documents/Repositories/RPi-Cluster-Spark/tpch/results/raspios-liberica.csv"
         fieldnames = times.keys()
 
         with open(filename, 'a', newline='') as f:

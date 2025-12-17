@@ -104,7 +104,39 @@ The error is something like this:
 [Errno 28] No space left on device: b<file path> ... spark.tar.gz
 ```
 
-So, we can instead install Spark on the USB and mount that. Instructions:
+Easiest way is to manually install Spark on each node. (Or do this in sda for more space)
+
+```bash
+# first clear tmp
+
+# then do this
+# Download Spark
+wget -O /tmp/spark.tar.gz https://dlcdn.apache.org/spark/spark-4.0.1/spark-4.0.1-bin-hadoop3.tgz
+
+# Create installation directory
+sudo mkdir -p /opt/spark
+
+# Extract Spark
+sudo tar -xzf /tmp/spark.tar.gz -C /opt/spark --strip-components=1
+
+# Set environment variables
+echo 'export SPARK_HOME=/opt/spark' | sudo tee /etc/profile.d/spark.sh
+echo 'export PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin' | sudo tee -a /etc/profile.d/spark.sh
+sudo chmod 644 /etc/profile.d/spark.sh
+
+# Add to your bashrc
+echo 'export SPARK_HOME=/opt/spark' >> ~/.bashrc
+echo 'export PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin' >> ~/.bashrc
+
+# Clean up
+rm /tmp/spark.tar.gz
+
+# Verify installation
+source ~/.bashrc
+spark-submit --version
+```
+
+Another way: we can instead install Spark on the USB and mount that. Instructions:
 
 ```bash
 # On Pi
@@ -121,3 +153,21 @@ sudo chmod 777 /mnt/usb
 ```
 
 Now, run the `install-spark-with-mount.yml` playbook. 
+
+### Timeout
+The error looks like this:
+
+```
+fatal: [raspberry-pi]: FAILED! => {"msg": "Timeout (12s) waiting for privilege escalation prompt: "}
+```
+
+Configure passwordless sudo. On the Raspberry Pi, run:
+
+```
+sudo visudo
+
+# add this to the end
+<user> ALL=(ALL) NOPASSWD: ALL
+```
+
+### No cores running
