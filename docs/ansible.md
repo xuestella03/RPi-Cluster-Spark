@@ -16,6 +16,9 @@ After setting up, run the following:
 # start cluster (this will display the link to the Spark dashboard)
 ansible-playbook -i ansible/inventory/hosts.yml ansible/playbooks/start-cluster.yml --ask-become-pass
 
+# if ssh password is enabled, add 
+--ask-pass 
+
 # begin benchmark
 ansible-playbook -i ansible/inventory/hosts.yml ansible/playbooks/run-tpch.yml 
 

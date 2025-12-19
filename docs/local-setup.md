@@ -32,7 +32,7 @@
     # Download tarball version
     wget https://download.bell-sw.com/java/21.0.9+15/bellsoft-jdk21.0.9+15-linux-arm32-vfp-hflt-lite.tar.gz
 
-    # https://download.bell-sw.com/java/21.0.9+15/bellsoft-jdk21.0.9+15-linux-aarch64-lite.deb
+    # https://download.bell-sw.com/java/21.0.9+15/bellsoft-jdk21.0.9+15-linux-aarch64-lite.tar.gz
 
     # Extract to /opt
     sudo mkdir -p /opt/liberica-jdk21

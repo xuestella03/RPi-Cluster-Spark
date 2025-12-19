@@ -158,6 +158,119 @@ class TPCH:
             df.createOrReplaceTempView(table_name)
             self.tables[table_name] = df
 
+    def get_spark_configs(self):
+        """Extract relevant Spark and JVM configurations"""
+        conf = self.spark.sparkContext.getConf()
+        
+        configs = {
+            'driver.memory': conf.get('spark.driver.memory', 'default'),
+            'executor.memory': conf.get('spark.executor.memory', 'default'),
+            'driver.extraJavaOptions': conf.get('spark.driver.extraJavaOptions', 'none'),
+            'executor.extraJavaOptions': conf.get('spark.executor.extraJavaOptions', 'none'),
+            'sql.shuffle.partitions': conf.get('spark.sql.shuffle.partitions', 'default'),
+            'master': conf.get('spark.master', 'unknown'),
+        }
+        
+        return configs
+
+    def get_jvm_runtime_info(self):
+        """Get actual JVM runtime configuration using Java Management API"""
+        try:
+            from py4j.java_gateway import java_import
+            
+            jvm = self.spark._jvm
+            java_import(jvm, "java.lang.management.*")
+            
+            runtime_bean = jvm.java.lang.management.ManagementFactory.getRuntimeMXBean()
+            memory_bean = jvm.java.lang.management.ManagementFactory.getMemoryMXBean()
+            gc_beans = jvm.java.lang.management.ManagementFactory.getGarbageCollectorMXBeans()
+            
+            info = {}
+            
+            # Heap Memory
+            heap_memory = memory_bean.getHeapMemoryUsage()
+            info['heap_init_mb'] = heap_memory.getInit() / (1024**2)
+            info['heap_max_mb'] = heap_memory.getMax() / (1024**2)
+            info['heap_used_mb'] = heap_memory.getUsed() / (1024**2)
+            info['heap_committed_mb'] = heap_memory.getCommitted() / (1024**2)
+            
+            # Non-Heap Memory
+            non_heap = memory_bean.getNonHeapMemoryUsage()
+            info['non_heap_init_mb'] = non_heap.getInit() / (1024**2)
+            info['non_heap_max_mb'] = non_heap.getMax() / (1024**2)
+            info['non_heap_used_mb'] = non_heap.getUsed() / (1024**2)
+            
+            # Garbage Collectors
+            gc_info = []
+            for i in range(gc_beans.size()):
+                gc = gc_beans.get(i)
+                gc_info.append({
+                    'name': gc.getName(),
+                    'count': gc.getCollectionCount(),
+                    'time_ms': gc.getCollectionTime()
+                })
+            info['gc_collectors'] = gc_info
+            
+            # JVM Arguments - filter for relevant ones
+            input_args = runtime_bean.getInputArguments()
+            relevant_args = []
+            for i in range(input_args.size()):
+                arg = input_args.get(i)
+                if any(x in arg for x in ['Xms', 'Xmx', 'XX:', 'MaxMetaspace', 'GC', 'NewSize', 'NewRatio', 'Survivor']):
+                    relevant_args.append(arg)
+            info['jvm_args'] = relevant_args
+            
+            return info
+        except Exception as e:
+            print(f"Warning: Could not retrieve JVM runtime info: {e}")
+            return None
+
+    def print_config_summary(self):
+        """Print current Spark and JVM configuration"""
+        print("\n" + "="*60)
+        print("SPARK & JVM CONFIGURATION")
+        print("="*60)
+        
+        configs = self.get_spark_configs()
+        
+        print(f"Master:                    {configs['master']}")
+        print(f"Driver Memory:             {configs['driver.memory']}")
+        print(f"Executor Memory:           {configs['executor.memory']}")
+        print(f"Shuffle Partitions:        {configs['sql.shuffle.partitions']}")
+        print(f"\nDriver JVM Options:        {configs['driver.extraJavaOptions']}")
+        print(f"Executor JVM Options:      {configs['executor.extraJavaOptions']}")
+        print("="*60 + "\n")
+        
+        # Get actual JVM runtime info
+        jvm_info = self.get_jvm_runtime_info()
+        if jvm_info:
+            print("\n" + "="*60)
+            print("ACTUAL JVM RUNTIME CONFIGURATION")
+            print("="*60)
+            
+            print(f"\nHeap Memory:")
+            print(f"  Initial (Xms):     {jvm_info['heap_init_mb']:.0f} MB")
+            print(f"  Maximum (Xmx):     {jvm_info['heap_max_mb']:.0f} MB")
+            print(f"  Currently Used:    {jvm_info['heap_used_mb']:.0f} MB")
+            print(f"  Currently Committed: {jvm_info['heap_committed_mb']:.0f} MB")
+            
+            print(f"\nNon-Heap Memory (Metaspace, Code Cache):")
+            print(f"  Maximum:           {jvm_info['non_heap_max_mb']:.0f} MB")
+            print(f"  Currently Used:    {jvm_info['non_heap_used_mb']:.0f} MB")
+            
+            print(f"\nGarbage Collectors in Use:")
+            for gc in jvm_info['gc_collectors']:
+                print(f"  {gc['name']}")
+                if gc['count'] > 0:
+                    print(f"    Collections: {gc['count']}, Total Time: {gc['time_ms']} ms")
+            
+            if jvm_info['jvm_args']:
+                print(f"\nRelevant JVM Arguments:")
+                for arg in jvm_info['jvm_args']:
+                    print(f"  {arg}")
+            
+            print("="*60 + "\n")
+
     def run_query(self, query_num, query_function):
         """Run a single query and return timing and result snippet"""
         
@@ -188,12 +301,21 @@ class TPCH:
             elapsed, _ = self.run_query(query_num, query_function) # temporarily don't store results df
             times[query_num] = elapsed
         
-        print("\n-----")
-        print("SUMMARY")
-        print("Query Number: Elapsed Time")
-
-        for query_num, time in times.items():
-            print(f"{query_num}: {time:.2f}")
+        print("\n" + "="*60)
+        print("BENCHMARK SUMMARY")
+        print("="*60)
+        
+        # Print configuration
+        self.print_config_summary()
+        
+        # Print query times
+        print("Query Execution Times:")
+        print("-"*60)
+        for query_num, elapsed in times.items():
+            print(f"  {query_num}: {elapsed:.2f}s")
+        print("-"*60)
+        print(f"  Total Time: {sum(times.values()):.2f}s")
+        print("="*60 + "\n")
 
          # change this to use config
         filename = "/home/xuestella03/Documents/Repositories/RPi-Cluster-Spark/tpch/results/raspios-liberica.csv"

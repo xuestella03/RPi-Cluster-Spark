@@ -54,86 +54,86 @@
         msg: "{{ tpch_output.stderr_lines }}"
       when: tpch_output.stderr_lines | length > 0
   
-    - name: Run TPC-H benchmark script again
-      shell: |
-        source /etc/profile.d/spark.sh
-        python3 run_tpch.py
-      args:
-        chdir: "{{ app_dir }}"
-        executable: /bin/bash
-      environment:
-        SPARK_HOME: /opt/spark
-        PYTHONPATH: "{{ app_dir }}"
-      register: tpch_output
+    # - name: Run TPC-H benchmark script again
+    #   shell: |
+    #     source /etc/profile.d/spark.sh
+    #     python3 run_tpch.py
+    #   args:
+    #     chdir: "{{ app_dir }}"
+    #     executable: /bin/bash
+    #   environment:
+    #     SPARK_HOME: /opt/spark
+    #     PYTHONPATH: "{{ app_dir }}"
+    #   register: tpch_output
       
-    - name: Display TPC-H output
-      debug:
-        msg: "{{ tpch_output.stdout_lines }}"
+    # - name: Display TPC-H output
+    #   debug:
+    #     msg: "{{ tpch_output.stdout_lines }}"
         
-    - name: Display any errors
-      debug:
-        msg: "{{ tpch_output.stderr_lines }}"
-      when: tpch_output.stderr_lines | length > 0
+    # - name: Display any errors
+    #   debug:
+    #     msg: "{{ tpch_output.stderr_lines }}"
+    #   when: tpch_output.stderr_lines | length > 0
 
-    - name: Run TPC-H benchmark script again
-      shell: |
-        source /etc/profile.d/spark.sh
-        python3 run_tpch.py
-      args:
-        chdir: "{{ app_dir }}"
-        executable: /bin/bash
-      environment:
-        SPARK_HOME: /opt/spark
-        PYTHONPATH: "{{ app_dir }}"
-      register: tpch_output
+    # - name: Run TPC-H benchmark script again
+    #   shell: |
+    #     source /etc/profile.d/spark.sh
+    #     python3 run_tpch.py
+    #   args:
+    #     chdir: "{{ app_dir }}"
+    #     executable: /bin/bash
+    #   environment:
+    #     SPARK_HOME: /opt/spark
+    #     PYTHONPATH: "{{ app_dir }}"
+    #   register: tpch_output
       
-    - name: Display TPC-H output
-      debug:
-        msg: "{{ tpch_output.stdout_lines }}"
+    # - name: Display TPC-H output
+    #   debug:
+    #     msg: "{{ tpch_output.stdout_lines }}"
         
-    - name: Display any errors
-      debug:
-        msg: "{{ tpch_output.stderr_lines }}"
-      when: tpch_output.stderr_lines | length > 0
+    # - name: Display any errors
+    #   debug:
+    #     msg: "{{ tpch_output.stderr_lines }}"
+    #   when: tpch_output.stderr_lines | length > 0
     
-    - name: Run TPC-H benchmark script again
-      shell: |
-        source /etc/profile.d/spark.sh
-        python3 run_tpch.py
-      args:
-        chdir: "{{ app_dir }}"
-        executable: /bin/bash
-      environment:
-        SPARK_HOME: /opt/spark
-        PYTHONPATH: "{{ app_dir }}"
-      register: tpch_output
+    # - name: Run TPC-H benchmark script again
+    #   shell: |
+    #     source /etc/profile.d/spark.sh
+    #     python3 run_tpch.py
+    #   args:
+    #     chdir: "{{ app_dir }}"
+    #     executable: /bin/bash
+    #   environment:
+    #     SPARK_HOME: /opt/spark
+    #     PYTHONPATH: "{{ app_dir }}"
+    #   register: tpch_output
       
-    - name: Display TPC-H output
-      debug:
-        msg: "{{ tpch_output.stdout_lines }}"
+    # - name: Display TPC-H output
+    #   debug:
+    #     msg: "{{ tpch_output.stdout_lines }}"
         
-    - name: Display any errors
-      debug:
-        msg: "{{ tpch_output.stderr_lines }}"
-      when: tpch_output.stderr_lines | length > 0
+    # - name: Display any errors
+    #   debug:
+    #     msg: "{{ tpch_output.stderr_lines }}"
+    #   when: tpch_output.stderr_lines | length > 0
 
-    - name: Run TPC-H benchmark script again
-      shell: |
-        source /etc/profile.d/spark.sh
-        python3 run_tpch.py
-      args:
-        chdir: "{{ app_dir }}"
-        executable: /bin/bash
-      environment:
-        SPARK_HOME: /opt/spark
-        PYTHONPATH: "{{ app_dir }}"
-      register: tpch_output
+    # - name: Run TPC-H benchmark script again
+    #   shell: |
+    #     source /etc/profile.d/spark.sh
+    #     python3 run_tpch.py
+    #   args:
+    #     chdir: "{{ app_dir }}"
+    #     executable: /bin/bash
+    #   environment:
+    #     SPARK_HOME: /opt/spark
+    #     PYTHONPATH: "{{ app_dir }}"
+    #   register: tpch_output
       
-    - name: Display TPC-H output
-      debug:
-        msg: "{{ tpch_output.stdout_lines }}"
+    # - name: Display TPC-H output
+    #   debug:
+    #     msg: "{{ tpch_output.stdout_lines }}"
         
-    - name: Display any errors
-      debug:
-        msg: "{{ tpch_output.stderr_lines }}"
-      when: tpch_output.stderr_lines | length > 0
+    # - name: Display any errors
+    #   debug:
+    #     msg: "{{ tpch_output.stderr_lines }}"
+    #   when: tpch_output.stderr_lines | length > 0
