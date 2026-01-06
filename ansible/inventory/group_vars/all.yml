@@ -1,2 +1,10 @@
-# vars for all hosts
-# things like spark version, java version, paths, etc. 
+# Variables (for all hosts)
+# Things like spark version, java version, paths, etc. 
+
+# In the Ansible playbooks, we'll check that these are indeed correct
+
+master_spark_home: /opt/spark
+master_java_home: /usr/lib/jvm/java-1.21.0-openjdk-amd64
+
+worker_spark_home: /opt/spark 
+worker_java_home: /opt/liberica-jdk21 

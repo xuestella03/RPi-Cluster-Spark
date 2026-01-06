@@ -1,6 +1,0 @@
-# vars specific to workers
-# things like memory limits, core counts
-
-java_home: /opt/semeru # fix this
-# potentially read JAVA_HOME from the nodes
-# individually since they should already be set. 
