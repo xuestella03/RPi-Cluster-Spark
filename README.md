@@ -45,3 +45,16 @@ $SPARK_HOME/sbin/start-worker.sh spark://<master-hostname>:7077 --cores 2 --memo
 
 # back on master, run the script
 spark-submit --master spark://<master-hostname>:7077 /nfs/shared/scripts/tpch_benchmark.py
+```
+
+## Turning off swap space
+### For dietpi
+
+```bash
+dietpi-drive_manager
+# go to root partition and select swap file
+# enter 0 
+
+# to check
+free -m
+```
