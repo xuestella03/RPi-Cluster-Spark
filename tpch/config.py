@@ -17,3 +17,20 @@ SPARK_EXECUTOR_MEMORY = "500m"
 
 # Current OS-JVM configuration (file name for results)
 CUR_CONFIG = "dietpi-eclipse-j9"
+
+JVM_HEAP_MIN = "1g"
+JVM_HEAP_MAX = "1g"
+
+# JVM_GC_ALGORITHM = "SerialGC"
+JVM_GC_ALGORITHM = "ParallelGC"
+
+def build_jvm_options_string():
+    # Fix later for more parameters
+    
+    options = []
+    # options.append(f"-Xms{JVM_HEAP_MIN}")
+    # options.append(f"-Xmx{JVM_HEAP_MAX}")
+    options.append(f"-XX:+Use{JVM_GC_ALGORITHM}")
+    print(options)
+
+    return " ".join(options)

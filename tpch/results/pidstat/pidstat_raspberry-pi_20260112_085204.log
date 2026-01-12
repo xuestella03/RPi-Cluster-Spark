@@ -1,0 +1,729 @@
+Linux 6.12.47+rpt-rpi-v8 (DietPi) 	01/12/26 	_aarch64_	(4 CPU)
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:52:08        0       819    1.00    0.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190012  19.41      0.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:52:12        0       819    1.00    0.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190012  19.41      0.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:52:13        0       819    0.00    1.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190012  19.41      0.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:52:24        0       819    0.00    1.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190012  19.41      0.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:52:29        0       819   54.00    1.00    0.00    0.00   55.00     2     31.00      0.00 4627516  190140  19.42      0.00     28.00      0.00       0  java
+14:52:29        0      4009    0.00    0.00    0.00    0.00    0.00     2    126.00      0.00    2864    1500   0.15      4.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:52:31        0       819    1.00    0.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:52:33        0      4009   10.00    3.00    0.00    0.00   13.00     2   1223.00      0.00 2094184   18364   1.88      0.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:52:34        0      4009  128.00    8.00    0.00    0.00  136.00     2   2477.00      0.00 2635324   34484   3.52      0.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:52:35        0      4009   54.00    2.00    0.00    0.00   56.00     2   1002.00      0.00 2770804   39836   4.07     16.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:52:36        0      4009    1.00    1.00    0.00    0.00    2.00     2      5.00      0.00 2770804   39836   4.07     16.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:52:38        0       819    1.00    0.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:52:38        0      4009   92.00    9.00    0.00    0.00  101.00     2   1739.00      0.00 2770804   47064   4.81   5572.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:52:39        0      4009  101.00   12.00    0.00    0.00  113.00     2   3503.00      0.00 2770804   61200   6.25   8512.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:52:40        0      4009  176.00   17.00    0.00    0.00  193.00     2   4221.00      0.00 2770804   75944   7.76   6872.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:52:41        0      4009   67.00    2.00    0.00    0.00   69.00     2    906.00      0.00 2770804   77712   7.94    616.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:52:42        0      4009    1.00    0.00    0.00    0.00    1.00     2      0.00      0.00 2770804   77712   7.94      0.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:52:43        0      4009  127.00    2.00    0.00    0.00  129.00     2    447.00      0.00 2770804   79248   8.10    668.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:52:44        0       819    1.00    0.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:52:44        0      4009  186.00    8.00    0.00    0.00  194.00     2   1750.00      0.00 2770804   86416   8.83    912.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:52:45        0      4009  148.00    6.00    0.00    0.00  154.00     2    760.00      0.00 2770804   89676   9.16   1108.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:52:46        0       819    1.00    0.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:52:46        0      4009  171.00    4.00    0.00    0.00  175.00     2    901.00      0.00 2770804   93388   9.54    700.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:52:47        0      4009  177.00    6.00    0.00    0.00  183.00     2    728.00      0.00 2770804   96460   9.85    264.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:52:48        0      4009  170.00    5.00    0.00    0.00  175.00     2    580.00      0.00 2770804   98764  10.09    568.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:52:49        0      4009  135.00    6.00    0.00    0.00  141.00     2    809.00      0.00 2771068  102980  10.52    336.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:52:50        0       819    1.00    0.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:52:50        0      4009  220.00    5.00    0.00    0.00  225.00     2    558.00      0.00 2771068  105784  10.81    248.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:52:51        0      4009  161.00    8.00    0.00    0.00  169.00     2   1094.00      0.00 2771068  110188  11.26    788.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:52:52        0      4009  208.00    7.00    0.00    0.00  215.00     2   1351.00      0.00 2771068  115748  11.82     56.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:52:53        0       819    1.00    0.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      4.00      0.00       0  java
+14:52:53        0      4009  196.00    4.00    0.00    0.00  200.00     2   1095.00      0.00 2771068  120272  12.29     88.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:52:54        0       819    0.00    1.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:52:54        0      4009  142.00    3.00    0.00    0.00  145.00     2    574.00      0.00 2771068  122704  12.54    384.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:52:55        0      4009  181.00    6.00    0.00    0.00  187.00     2   1455.00      0.00 2771200  128648  13.14    892.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:52:56        0      4009  230.00    4.00    0.00    0.00  234.00     2   1019.00      0.00 2771200  131916  13.48    520.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:52:57        0      4009  208.00    6.00    0.00    0.00  214.00     2    454.00      0.00 2904480  133580  13.65    524.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:52:58        0       819    1.00    0.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:52:58        0      4009  186.00    4.00    0.00    0.00  190.00     2    755.00      0.00 2904612  136836  13.98    528.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:52:59        0       819    0.00    1.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:52:59        0      4009  193.00    7.00    0.00    0.00  200.00     2    671.00      0.00 2904612  139688  14.27    300.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:00        0      4009  134.00    5.00    0.00    0.00  139.00     2    739.00      0.00 2904612  143068  14.62    268.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:01        0       819    1.00    0.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:53:01        0      4009  150.00    8.00    0.00    0.00  158.00     2   1261.00      0.00 3039896  148116  15.13    296.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:02        0      4009   98.00    2.00    0.00    0.00  100.00     2   3159.00      0.00 3039896  156008  15.94      0.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:03        0      4009  117.00    2.00    0.00    0.00  119.00     2    954.00      0.00 3039896  157944  16.14     68.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:04        0       819    0.00    1.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      4.00      0.00       0  java
+14:53:04        0      4009  174.00    7.00    0.00    0.00  181.00     2   1079.00      0.00 3179148  162304  16.58    104.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:05        0      4009  166.00    7.00    0.00    0.00  173.00     2    685.00      0.00 3318400  165120  16.87    860.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:06        0       819    0.00    1.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      4.00      0.00       0  java
+14:53:06        0      4009  184.00   10.00    0.00    0.00  194.00     2    532.00      0.00 3453552  162396  16.59    640.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:07        0      4009    1.00    0.00    0.00    0.00    1.00     2      6.00      0.00 3453552  162396  16.59      0.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:08        0      4009    1.00    0.00    0.00    0.00    1.00     2     11.00      0.00 3453552  162396  16.59     44.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:11        0      4009    0.00    0.00    0.00    0.00    0.00     2      0.00      0.00 3453552  162396  16.59     40.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:12        0      4009    1.00    0.00    0.00    0.00    1.00     2      0.00      0.00 3453552  162396  16.59      0.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:13        0      4009    3.00    0.00    0.00    0.00    3.00     2     18.00      0.00 3453552  162396  16.59      8.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:14        0       819    0.00    1.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:17        0      4009    1.98    0.99    0.00    0.00    2.97     2      9.90      0.00 3453552  162524  16.60      3.96      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:19        0      4009    0.00    0.00    0.00    0.00    0.00     2      0.00      0.00 3453552  162524  16.60      4.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:21        0      4009    9.00    0.00    0.00    0.00    9.00     2     43.00      0.00 3453552  162652  16.62      0.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:22        0      4009   14.00    1.00    0.00    0.00   15.00     2     41.00      0.00 3453552  162780  16.63      8.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:24        0      4009  102.00    4.00    0.00    0.00  106.00     2    903.00      0.00 3453552  166364  17.00    628.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:25        0       819    3.00    1.00    0.00    0.00    4.00     2      1.00      0.00 4627516  190140  19.42      0.00      4.00      0.00       0  java
+14:53:25        0      4009  213.00   13.00    0.00    0.00  226.00     2   1455.00      0.00 3656280  172508  17.62    692.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:26        0       819    1.00    0.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:53:26        0      4009  247.00    3.00    0.00    0.00  250.00     2    657.00      0.00 3656280  175620  17.94     80.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:27        0      4009  217.00    6.00    0.00    0.00  223.00     2   1005.00      0.00 3723856  179588  18.35    228.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:28        0       819    1.00    0.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:53:28        0      4009  242.00    8.00    0.00    0.00  250.00     2    794.00      0.00 4063776  182788  18.67    596.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:29        0       819    0.00    1.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:53:29        0      4009  287.00   10.00    0.00    0.00  297.00     2    748.00      0.00 4064040  185732  18.97    764.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:30        0       819    1.00    0.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      4.00      0.00       0  java
+14:53:30        0      4009  178.00    5.00    0.00    0.00  183.00     2    833.00      0.00 4070456  188932  19.30    308.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:31        0      4009  181.00    7.00    0.00    0.00  188.00     2   1580.00      0.00 4071384  192328  19.65    536.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:32        0      4009  237.00    9.00    0.00    0.00  246.00     2    516.00      0.00 4071656  194376  19.86   1796.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:33        0      4009  271.29   12.87    0.00    0.00  284.16     2    534.65      0.00 4072064  196424  20.07    958.42      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:34        0      4009  245.00   10.00    0.00    0.00  255.00     2   1478.00      0.00 4072672  202440  20.68   1752.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:35        0       819    0.00    1.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:53:35        0      4009  310.00   12.00    0.00    0.00  322.00     2    782.00      0.00 4073356  205384  20.98    548.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:36        0      4009  210.00    2.00    0.00    0.00  212.00     2    568.00      0.00 4073356  207688  21.22     40.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:37        0       819    1.00    0.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:53:37        0      4009  248.00    7.00    0.00    0.00  255.00     2    516.00      0.00 4073356  210028  21.46    408.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:38        0       819    0.00    1.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:53:38        0      4009  192.00    4.00    0.00    0.00  196.00     2    398.00      0.00 4073756  211808  21.64    576.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:39        0      4009  216.00    5.00    0.00    0.00  221.00     2    496.00      0.00 4073888  213856  21.85    320.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:40        0      4009  184.00    5.00    0.00    0.00  189.00     2    566.00      0.00 4074396  216160  22.08    344.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:41        0       819    0.00    0.00    0.00    0.00    0.00     2      0.00      0.00 4627516  190140  19.42      0.00      4.00      0.00       0  java
+14:53:41        0      4009  230.00   11.00    0.00    0.00  241.00     2    750.00      0.00 4074684  219104  22.38    628.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:42        0       819    1.00    0.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:53:42        0      4009  306.00   18.00    0.00    0.00  324.00     2   1483.00      0.00 4078916  224736  22.96    432.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:43        0      4009  267.00    5.00    0.00    0.00  272.00     2    491.00      0.00 4078916  226656  23.15     36.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:44        0       819    1.00    0.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:53:44        0      4009  258.00   11.00    0.00    0.00  269.00     2    508.00      0.00 4079048  228576  23.35    804.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:45        0       819    0.00    1.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:53:45        0      4009  270.00    8.00    0.00    0.00  278.00     2    604.00      0.00 4079048  230880  23.59    368.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:46        0      4009  191.00    7.00    0.00    0.00  198.00     2    839.00      0.00 4079048  234208  23.93    148.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:47        0       819    1.00    0.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:53:47        0      4009  222.00    4.00    0.00    0.00  226.00     2    445.00      0.00 4079048  236000  24.11     68.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:48        0      4009  261.00    8.00    0.00    0.00  269.00     2    331.00      0.00 4079048  237280  24.24    464.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:49        0      4009  171.00    9.00    0.00    0.00  180.00     2   1069.00      0.00 4079224  241632  24.68    856.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:50        0      4009    1.00    0.00    0.00    0.00    1.00     2      0.00      0.00 4079224  241632  24.68      0.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:51        0      4009    4.00    1.00    0.00    0.00    5.00     2      5.00      0.00 4079224  241632  24.68      4.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:52        0      4009    7.00    1.00    0.00    0.00    8.00     2     12.00      0.00 4079224  241760  24.70      0.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:55        0       819    1.00    0.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:56        0      4009   26.00    0.00    0.00    0.00   26.00     2     29.00      0.00 4079224  241760  24.70      4.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:58        0      4009  201.00    5.00    0.00    0.00  206.00     2    225.00      0.00 4079224  242528  24.78    256.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:53:59        0       819    1.00    1.00    0.00    0.00    2.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:53:59        0      4009  356.00    6.00    0.00    0.00  362.00     2   2258.00      0.00 4079224  251928  25.74    640.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:00        0      4009  379.00    2.00    0.00    0.00  381.00     2    668.00      0.00 4079224  254488  26.00   1408.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:01        0      4009  374.26    2.97    0.00    0.00  377.23     2    101.98      0.00 4079224  254744  26.02   1394.06      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:02        0      4009  379.00    6.00    0.00    0.00  385.00     2     41.00      0.00 4079224  254872  26.04   2304.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:03        0       819    1.00    0.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:54:03        0      4009  375.00    4.00    0.00    0.00  379.00     2      6.00      0.00 4079224  255000  26.05   2304.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:04        0      4009  372.00    5.00    0.00    0.00  377.00     2    235.00      0.00 4079224  255896  26.14   2432.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:05        0      4009  373.00    6.00    0.00    0.00  379.00     2    482.00      0.00 4079224  257816  26.34   2304.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:06        0       819    1.00    0.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:54:06        0      4009  373.00    5.00    0.00    0.00  378.00     2    383.00      0.00 4079224  259352  26.49   2176.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:07        0      4009  367.00    5.00    0.00    0.00  372.00     2     44.00      0.00 4079224  259480  26.51   3712.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:08        0       819    1.00    0.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:54:08        0      4009  370.00    7.00    0.00    0.00  377.00     2     12.00      0.00 4079224  259480  26.51   4480.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:09        0       819    0.00    1.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:54:09        0      4009  366.00    8.00    0.00    0.00  374.00     2     35.00      0.00 4079224  259608  26.52   5248.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:10        0       819    0.99    0.00    0.00    0.00    0.99     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:54:10        0      4009  356.44    7.92    0.00    0.00  364.36     2     47.52      0.00 4079224  259864  26.55   5196.04      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:11        0      4009  360.00    9.00    0.00    0.00  369.00     2     18.00      0.00 4079224  259992  26.56   5504.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:12        0      4009  356.00   11.00    0.00    0.00  367.00     2     22.00      0.00 4079224  259992  26.56   6784.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:13        0       819    0.00    1.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:54:13        0      4009  352.00   11.00    0.00    0.00  363.00     2     11.00      0.00 4079224  259992  26.56   7936.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:14        0       819    0.00    1.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:54:14        0      4009  352.00   12.00    0.00    0.00  364.00     2     13.00      0.00 4079224  259992  26.56   8064.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:15        0      4009  351.49   14.85    0.00    0.00  366.34     2      4.95      0.00 4079224  259992  26.56   8110.89      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:16        0       819    0.00    1.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:54:16        0      4009  348.00   17.00    0.00    0.00  365.00     2     16.00      0.00 4079224  259992  26.56   7936.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:17        0      4009  347.00   16.00    0.00    0.00  363.00     2      6.00      0.00 4079224  260120  26.57   9472.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:18        0      4009  345.00   13.00    0.00    0.00  358.00     2      6.00      0.00 4079224  260120  26.57   8704.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:19        0       819    1.00    0.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:54:19        0      4009  341.00   16.00    0.00    0.00  357.00     2     11.00      0.00 4079224  260120  26.57   9472.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:20        0      4009  342.00   15.00    0.00    0.00  357.00     2     11.00      0.00 4079224  260120  26.57   9472.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:21        0      4009  330.00   22.00    0.00    0.00  352.00     2      6.00      0.00 4079224  260248  26.59  10112.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:22        0       819    0.00    1.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:54:22        0      4009  333.00   20.00    0.00    0.00  353.00     2     28.00      0.00 4079224  260376  26.60   9472.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:23        0      4009  331.00   18.00    0.00    0.00  349.00     2      6.00      0.00 4079224  260376  26.60  12032.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:24        0       819    0.00    1.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:54:24        0      4009  325.00   21.00    0.00    0.00  346.00     2      0.00      0.00 4079224  260376  26.60  12288.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:25        0      4009  329.00   21.00    0.00    0.00  350.00     2      0.00      0.00 4079224  260376  26.60  12544.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:26        0       819    1.00    0.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:54:26        0      4009  286.00   15.00    0.00    0.00  301.00     2      0.00      0.00 4079224  260376  26.60  11136.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:27        0      4009    1.00    0.00    0.00    0.00    1.00     2      1.00      0.00 4079224  260376  26.60      0.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:29        0      4009   13.00    1.00    0.00    0.00   14.00     2      0.00      0.00 4079224  260376  26.60    512.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:31        0      4009    3.00    0.00    0.00    0.00    3.00     2      0.00      0.00 4079224  260376  26.60    128.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:32        0       819    1.00    0.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:54:32        0      4009    9.00    1.00    0.00    0.00   10.00     2     12.00      0.00 4079224  260504  26.61      0.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:33        0      4009  191.09    7.92    0.00    0.00  199.01     2      0.99      0.00 4079224  260504  26.61   6843.56      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:34        0      4009  333.00   16.00    0.00    0.00  349.00     2      0.00      0.00 4079224  260504  26.61  12672.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:35        0       819    1.00    0.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:54:35        0      4009  322.00   19.00    0.00    0.00  341.00     2      0.00      0.00 4079224  260504  26.61  12288.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:36        0      4009  333.00   19.00    0.00    0.00  352.00     2      0.00      0.00 4079224  260504  26.61  12544.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:37        0       819    1.00    0.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:54:37        0      4009  319.00   19.00    0.00    0.00  338.00     2      0.00      0.00 4079224  260504  26.61  12160.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:38        0      4009  324.00   12.00    0.00    0.00  336.00     2      1.00      0.00 4079224  260504  26.61  12160.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:39        0       819    0.00    1.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:54:39        0      4009  330.00   17.00    0.00    0.00  347.00     2      0.00      0.00 4079224  260504  26.61  12288.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:40        0      4009  326.00   15.00    0.00    0.00  341.00     2      0.00      0.00 4079224  260504  26.61  12544.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:41        0      4009  320.00   17.00    0.00    0.00  337.00     2      0.00      0.00 4079224  260504  26.61  11712.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:42        0       819    1.00    0.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:54:42        0      4009  323.00   16.00    0.00    0.00  339.00     2     16.00      0.00 4079224  260504  26.61  11840.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:43        0      4009  328.00   16.00    0.00    0.00  344.00     2      0.00      0.00 4079224  260504  26.61  12336.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:44        0       819    6.93    0.00    0.00    0.00    6.93     2      0.99      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:54:44        0      4009  320.79   14.85    0.00    0.00  335.64     2      0.99      0.00 4079224  260504  26.61  11992.08      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:45        0      4009  324.00   18.00    0.00    0.00  342.00     2      0.00      0.00 4079224  260504  26.61  12416.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:46        0       819    1.00    0.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:54:46        0      4009  325.00   15.00    0.00    0.00  340.00     2      0.00      0.00 4079224  260504  26.61  12288.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:47        0      4009  325.00   20.00    0.00    0.00  345.00     2      0.00      0.00 4079224  260504  26.61  12416.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:48        0       819    0.00    1.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:54:48        0      4009  323.00   20.00    0.00    0.00  343.00     2      0.00      0.00 4079224  260504  26.61  12288.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:49        0       819    1.00    0.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:54:49        0      4009  319.00   17.00    0.00    0.00  336.00     2      0.00      0.00 4079224  260504  26.61  11904.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:50        0      4009  325.00   17.00    0.00    0.00  342.00     2      3.00      0.00 4079224  260504  26.61  12288.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:51        0      4009  330.00   20.00    0.00    0.00  350.00     2      3.00      0.00 4079224  260504  26.61  12416.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:52        0       819    0.00    1.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:54:52        0      4009  326.00   19.00    0.00    0.00  345.00     2      5.00      0.00 4079224  260504  26.61  12160.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:53        0      4009  317.00   19.00    0.00    0.00  336.00     2      3.00      0.00 4079224  260504  26.61  12032.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:54        0       819    1.00    0.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:54:54        0      4009  325.00   16.00    0.00    0.00  341.00     2      0.00      0.00 4079224  260504  26.61  12160.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:55        0      4009  331.00   18.00    0.00    0.00  349.00     2      1.00      0.00 4079224  260504  26.61  12288.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:56        0      4009  320.00   19.00    0.00    0.00  339.00     2      1.00      0.00 4079224  260504  26.61  12160.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:57        0       819    1.00    0.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:54:57        0      4009  320.00   20.00    0.00    0.00  340.00     2      1.00      0.00 4079224  260504  26.61  12288.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:58        0      4009  326.00   15.00    0.00    0.00  341.00     2      0.00      0.00 4079224  260504  26.61  12544.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:54:59        0       819    1.00    0.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:54:59        0      4009  323.00   23.00    0.00    0.00  346.00     2      0.00      0.00 4079224  260504  26.61  12544.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:00        0      4009  323.00   20.00    0.00    0.00  343.00     2    110.00      0.00 4144760  261016  26.66   9036.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:01        0       819    1.00    0.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      4.00      8.00      0.00       0  java
+14:55:01        0      4009  338.00   12.00    0.00    0.00  350.00     2    117.00      0.00 4144760  261528  26.72   4792.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:02        0       819    0.00    0.00    0.00    0.00    0.00     2      0.00      0.00 4627516  190140  19.42      0.00      4.00      0.00       0  java
+14:55:02        0      4009  208.00    2.00    0.00    0.00  210.00     2    441.00      0.00 4144760  263192  26.89    384.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:03        0       819    1.00    0.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:55:03        0      4009  100.00    0.00    0.00    0.00  100.00     2     13.00      0.00 4144760  263320  26.90      0.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:04        0      4009  176.24    2.97    0.00    0.00  179.21     2   1042.57      0.00 4144760  267416  27.32    760.40      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:05        0       819    1.00    0.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:55:05        0      4009  328.00    7.00    0.00    0.00  335.00     2   1423.00      0.00 4144760  273176  27.91   4928.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:06        0      4009  287.00    7.00    0.00    0.00  294.00     2      7.00      0.00 4144760  273304  27.92   5376.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:07        0       819    0.00    1.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:55:07        0      4009  280.00   12.00    0.00    0.00  292.00     2      0.00      0.00 4144760  273304  27.92   7296.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:08        0      4009  241.00    8.00    0.00    0.00  249.00     2      3.00      0.00 4144760  273304  27.92   7808.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:09        0       819    1.00    0.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:55:09        0      4009  189.00    5.00    0.00    0.00  194.00     2      0.00      0.00 4144760  273304  27.92   7936.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:10        0      4009  236.00    8.00    0.00    0.00  244.00     2      3.00      0.00 4144760  273304  27.92   7936.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:11        0       819    0.00    1.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:55:11        0      4009  192.00    8.00    0.00    0.00  200.00     2      2.00      0.00 4144760  273304  27.92   8192.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:12        0      4009   40.00    2.00    0.00    0.00   42.00     2      0.00      0.00 4144760  273304  27.92   1536.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:16        0      4009    5.00    0.00    0.00    0.00    5.00     2      0.00      0.00 4144760  273304  27.92    256.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:20        0       819    1.00    0.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:55:20        0      4009    3.00    1.00    0.00    0.00    4.00     2      0.00      0.00 4144760  273304  27.92    128.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:22        0      4009    5.00    0.00    0.00    0.00    5.00     2      0.00      0.00 4144760  273304  27.92      0.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:23        0      4009  189.00    7.00    0.00    0.00  196.00     2      0.00      0.00 4144760  273304  27.92   7936.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:24        0       819    0.00    1.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:55:24        0      4009  209.00    9.00    0.00    0.00  218.00     2      2.00      0.00 4144760  273304  27.92   8192.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:25        0      4009  192.00    8.00    0.00    0.00  200.00     2      4.00      0.00 4144760  273304  27.92   8092.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:26        0       819    1.00    0.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:55:26        0      4009  189.00    7.00    0.00    0.00  196.00     2      0.00      0.00 4144760  273304  27.92   9088.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:27        0      4009  191.00    9.00    0.00    0.00  200.00     2      0.00      0.00 4144760  273304  27.92   8064.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:28        0      4009  184.00    8.00    0.00    0.00  192.00     2      0.00      0.00 4144760  273304  27.92   8064.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:29        0       819    1.00    0.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:55:29        0      4009  191.00    7.00    0.00    0.00  198.00     2      0.00      0.00 4144760  273304  27.92   8192.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:30        0      4009  189.00    9.00    0.00    0.00  198.00     2      0.00      0.00 4144760  273304  27.92   9088.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:31        0       819    0.00    1.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:55:31        0      4009  192.00    6.00    0.00    0.00  198.00     2      0.00      0.00 4144760  273304  27.92   8192.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:32        0      4009  213.00    9.00    0.00    0.00  222.00     2      5.00      0.00 4144760  273304  27.92   8192.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:33        0       819    1.00    0.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:55:33        0      4009  272.00    9.00    0.00    0.00  281.00     2      0.00      0.00 4144760  273304  27.92   7936.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:34        0      4009  226.00    7.00    0.00    0.00  233.00     2      5.00      0.00 4144760  273304  27.92   7808.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:35        0      4009  189.00    8.00    0.00    0.00  197.00     2      0.00      0.00 4144760  273304  27.92   8192.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:36        0      4009  189.00    7.00    0.00    0.00  196.00     2      0.00      0.00 4144760  273304  27.92   8064.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:37        0       819    1.00    0.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      8.00      0.00       0  java
+14:55:37        0      4009  182.00    8.00    0.00    0.00  190.00     2      2.00      0.00 4144760  273304  27.92   8040.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:38        0      4009   95.00    6.00    0.00    0.00  101.00     2      0.00      0.00 4144760  273304  27.92   4224.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:39        0       819    0.00    1.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:55:39        0      4009   82.00    1.00    0.00    0.00   83.00     2      0.00      0.00 4144760  273304  27.92   3584.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:40        0      4009    1.00    0.00    0.00    0.00    1.00     2      0.00      0.00 4144760  273304  27.92      0.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:41        0      4009    2.00    0.00    0.00    0.00    2.00     2      0.00      0.00 4144760  273304  27.92      0.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:42        0      4009   98.02    4.95    0.00    0.00  102.97     2      1.98      0.00 4144760  273304  27.92   4182.18      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:43        0      4009  169.00    2.00    0.00    0.00  171.00     2      0.00      0.00 4144760  273304  27.92   4096.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:44        0       819    1.00    0.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:55:44        0      4009  145.00    3.00    0.00    0.00  148.00     2      6.00      0.00 4144760  273304  27.92   4096.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:45        0       819    0.00    1.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:55:45        0      4009   98.00    2.00    0.00    0.00  100.00     2      0.00      0.00 4144760  273304  27.92   4352.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:46        0      4009   98.00    3.00    0.00    0.00  101.00     2      0.00      0.00 4144760  273304  27.92   4864.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:47        0       819    1.00    0.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:55:47        0      4009   95.00    3.00    0.00    0.00   98.00     2      0.00      0.00 4144760  273304  27.92   4224.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:48        0      4009   99.00    3.00    0.00    0.00  102.00     2      0.00      0.00 4144760  273304  27.92   4224.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:49        0      4009   97.00    2.00    0.00    0.00   99.00     2      0.00      0.00 4144760  273304  27.92   4224.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:50        0       819    0.00    0.00    0.00    0.00    0.00     2      0.00      0.00 4627516  190140  19.42      0.00     12.00      0.00       0  java
+14:55:50        0      4009  148.00    5.00    0.00    0.00  153.00     2    153.00      0.00 4144760  273944  27.99   2164.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:51        0       819    0.00    1.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190140  19.42      0.00      0.00      0.00       0  java
+14:55:51        0      4009  199.00    6.00    0.00    0.00  205.00     2    256.00      0.00 4145532  275096  28.10   1284.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:52        0       819   23.00    1.00    0.00    0.00   24.00     2      4.00      0.00 4627516  190140  19.42      4.00      8.00      0.00       0  java
+14:55:52        0      4009  163.00    8.00    0.00    0.00  171.00     2    387.00      0.00 4153692  276760  28.27    368.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:53        0      4009   11.00    0.00    0.00    0.00   11.00     2     17.00      0.00 4153692  276888  28.29      0.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:54        0      4009   23.00   15.00    0.00    0.00   38.00     3     30.00      0.00       0       0   0.00      0.00      0.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:55        0       819    4.00    1.00    0.00    0.00    5.00     2      2.00      0.00 4627516  190268  19.44 792112.00      8.00      0.00       0  java
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+
+# Time        UID       PID    %usr %system  %guest   %wait    %CPU   CPU  minflt/s  majflt/s     VSZ     RSS   %MEM   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command
+14:55:59        0       819    0.00    1.00    0.00    0.00    1.00     2      0.00      0.00 4627516  190268  19.44      0.00      0.00      0.00       0  java

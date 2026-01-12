@@ -30,16 +30,41 @@ class TPCH:
         self.data_path = data_path
         self.sf = sf 
 
+        jvm_options = config.build_jvm_options_string()
+
+        # self.spark = SparkSession.builder \
+        #     .appName("TPC-H Benchmark") \
+        #     .master(config.CLUSTER_MASTER_URL) \
+        #     .config("spark.driver.memory", config.SPARK_DRIVER_MEMORY) \
+        #     .config("spark.executor.memory", config.SPARK_EXECUTOR_MEMORY) \
+        #     .config("spark.sql.shuffle.partitions", "8") \
+        #     .config("spark.eventLog.enabled", True) \
+        #     .config("spark.eventLog.dir", "/home/xuestella03/Documents/Repositories/RPi-Cluster-Spark/tpch/memory") \
+        #     .config("spark.log.structuredLogging.enabled", True) \
+        #     .getOrCreate()
+        
         self.spark = SparkSession.builder \
             .appName("TPC-H Benchmark") \
             .master(config.CLUSTER_MASTER_URL) \
             .config("spark.driver.memory", config.SPARK_DRIVER_MEMORY) \
             .config("spark.executor.memory", config.SPARK_EXECUTOR_MEMORY) \
             .config("spark.sql.shuffle.partitions", "8") \
-            .config("spark.eventLog.enabled", True) \
-            .config("spark.eventLog.dir", "/home/xuestella03/Documents/Repositories/RPi-Cluster-Spark/tpch/memory") \
-            .config("spark.log.structuredLogging.enabled", True) \
+            .config("spark.driver.extraJavaOptions", jvm_options) \
+            .config("spark.executor.extraJavaOptions", jvm_options) \
             .getOrCreate()
+        
+
+        # Can't do below because you can't set Xmx and Xms through java options 
+        # need to use spark.driver.memory
+        # self.spark = SparkSession.builder \
+        #     .appName("TPC-H Benchmark") \
+        #     .master(config.CLUSTER_MASTER_URL) \
+        #     .config("spark.driver.memory", config.SPARK_DRIVER_MEMORY) \
+        #     .config("spark.executor.memory", config.SPARK_EXECUTOR_MEMORY) \
+        #     .config("spark.driver.extraJavaOptions", jvm_options) \
+        #     .config("spark.executor.extraJavaOptions", jvm_options) \
+        #     .config("spark.sql.shuffle.partitions", "8") \
+        #     .getOrCreate()
         
         # self.spark = SparkSession.builder \
         #     .appName("TPC-H Benchmark") \
@@ -318,7 +343,7 @@ class TPCH:
         print("="*60 + "\n")
 
          # change this to use config
-        filename = "/home/xuestella03/Documents/Repositories/RPi-Cluster-Spark/tpch/results/dietpi-jvm/liberica-default-sf1.csv"
+        filename = "/home/xuestella03/Documents/Repositories/RPi-Cluster-Spark/tpch/results/dietpi-jvm/liberica-SerialGC-sf1.csv"
         fieldnames = times.keys()
 
         with open(filename, 'a', newline='') as f:

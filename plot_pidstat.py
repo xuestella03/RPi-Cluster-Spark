@@ -8,6 +8,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from datetime import datetime
 import sys
+# import tpch.config 
 
 def parse_pidstat_log(filepath):
     """Parse pidstat log file and extract metrics"""
