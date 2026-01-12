@@ -339,7 +339,8 @@ if __name__ == "__main__":
     # PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
     # DATA_DIR = os.path.join(PROJECT_ROOT, "data")
     # print(f"Data directory: {DATA_DIR}")
-    benchmark = TPCH(data_path="/mnt/tpch/sf1") # change to path to correct sf
+    # benchmark = TPCH(data_path="/mnt/tpch/sf1") # change to path to correct sf
+    benchmark = TPCH(data_path="/home/dietpi/Documents/Repositories/RPi-Cluster-Spark/tpch/data/sf1")
 
     # Run queries
     benchmark.run_queries()

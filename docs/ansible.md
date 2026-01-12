@@ -14,14 +14,14 @@ After setting up, run the following:
 
 ```bash
 # start cluster (this will display the link to the Spark dashboard)
-ansible-playbook -i ansible/inventory/hosts.yml ansible/playbooks/start-cluster.yml --ask-become-pass
+ansible-playbook -i ansible/inventory/hosts.yml ansible/playbooks/start-cluster.yml --ask-become-pass --ask-pass 
 
 # if ssh password is enabled, add 
 --ask-pass 
 
 # begin benchmark
-ansible-playbook -i ansible/inventory/hosts.yml ansible/playbooks/run-tpch.yml 
+ansible-playbook -i ansible/inventory/hosts.yml ansible/playbooks/run-tpch.yml --ask-become-pass --ask-pass 
 
 # stop cluster
-ansible-playbook -i ansible/inventory/hosts.yml ansible/playbooks/stop-cluster.yml --ask-become-pass
+ansible-playbook -i ansible/inventory/hosts.yml ansible/playbooks/stop-cluster.yml --ask-become-pass --ask-pass 
 ```

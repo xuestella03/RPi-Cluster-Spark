@@ -1,0 +1,54 @@
+---
+- name: Collect pidstat logs
+  hosts: workers
+  become: no
+  vars:
+    results_dir: "/home/dietpi/Documents/Repositories/RPi-Cluster-Spark/tpch/results/pidstat"
+    local_results: "/home/xuestella03/Documents/Repositories/RPi-Cluster-Spark/tpch/results/pidstat"
+  
+  tasks:
+    - name: Create local results directory
+      local_action:
+        module: file
+        path: "{{ local_results }}"
+        state: directory
+        mode: '0755'
+      run_once: true
+    
+    - name: Find pidstat log files on remote nodes
+      find:
+        paths: "{{ results_dir }}"
+        patterns: "pidstat_{{ inventory_hostname }}_*.log"
+      register: log_files
+    
+    - name: Display found files for debugging
+      debug:
+        msg: 
+          - "Node: {{ inventory_hostname }}"
+          - "Search path: {{ results_dir }}"
+          - "Files found: {{ log_files.files | length }}"
+          - "File paths: {{ log_files.files | map(attribute='path') | list }}"
+    
+    - name: Fetch pidstat logs from all nodes
+      fetch:
+        src: "{{ item.path }}"
+        dest: "{{ local_results }}/"
+        flat: yes
+      loop: "{{ log_files.files }}"
+      when: log_files.files | length > 0
+    
+    - name: Show warning if no files found
+      debug:
+        msg: "WARNING: No pidstat log files found on {{ inventory_hostname }} in {{ results_dir }}"
+      when: log_files.files | length == 0
+
+    - name: Delete all pidstat logs from remote nodes
+      shell: rm -f {{ results_dir }}/pidstat_*.log
+      args:
+        executable: /bin/bash
+      register: cleanup
+      ignore_errors: yes
+    
+    - name: Confirm cleanup
+      debug:
+        msg: "Cleaned up pidstat logs on {{ inventory_hostname }}"
