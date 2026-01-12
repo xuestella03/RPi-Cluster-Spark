@@ -99,8 +99,8 @@ def get_query_6(spark):
     return spark.sql(query)
 
 QUERIES = {
-    1: get_query_1,
-    3: get_query_3,
-    5: get_query_5,
+    # 1: get_query_1,
+    # 3: get_query_3,
+    # 5: get_query_5,
     6: get_query_6
 }

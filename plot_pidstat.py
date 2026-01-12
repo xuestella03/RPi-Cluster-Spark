@@ -118,7 +118,7 @@ def plot_metrics(df, output_prefix='pidstat'):
     ax4.set_xlabel('Time (seconds)', fontsize=10)
     ax4.legend(loc='upper right')
     ax4.grid(True, alpha=0.3)
-    ax4.set_title('Page Faults (Memory Pressure Indicator)')
+    ax4.set_title('Page Faults')
     ax4.set_yscale('log')  # Log scale since major faults are usually much lower
     
     plt.tight_layout()

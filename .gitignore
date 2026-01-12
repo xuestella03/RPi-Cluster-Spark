@@ -3,3 +3,4 @@
 tpch/data/*
 ansible/inventory/hosts.yml
 tpch/__pycache__/*
+tpch/memory/*
