@@ -83,6 +83,8 @@
 - name: Start Spark workers
   hosts: workers
   become: yes
+  # vars_files:
+  #   - /home/xuestella03/Documents/Repositories/RPi-Cluster-Spark/ansible/inventory/group_vars/all.yml
   vars:
     worker_spark_home: /opt/spark
     # worker_java_home: /usr/lib/jvm/java-21-openjdk-armhf

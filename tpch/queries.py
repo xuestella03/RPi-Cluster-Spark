@@ -101,6 +101,6 @@ def get_query_6(spark):
 QUERIES = {
     # 1: get_query_1,
     # 3: get_query_3,
-    # 5: get_query_5,
-    6: get_query_6
+    5: get_query_5,
+    # 6: get_query_6
 }

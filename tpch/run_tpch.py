@@ -20,6 +20,7 @@ import queries
 import os
 import time 
 import csv 
+import socket
 
 class TPCH:
     def __init__(self, data_path, sf=0.1):
@@ -48,7 +49,7 @@ class TPCH:
             .master(config.CLUSTER_MASTER_URL) \
             .config("spark.driver.memory", config.SPARK_DRIVER_MEMORY) \
             .config("spark.executor.memory", config.SPARK_EXECUTOR_MEMORY) \
-            .config("spark.sql.shuffle.partitions", "8") \
+            .config("spark.sql.shuffle.partitions", "4") \
             .config("spark.driver.extraJavaOptions", jvm_options) \
             .config("spark.executor.extraJavaOptions", jvm_options) \
             .getOrCreate()
@@ -342,8 +343,7 @@ class TPCH:
         print(f"  Total Time: {sum(times.values()):.2f}s")
         print("="*60 + "\n")
 
-         # change this to use config
-        filename = "/home/xuestella03/Documents/Repositories/RPi-Cluster-Spark/tpch/results/dietpi-jvm/liberica-SerialGC-sf1.csv"
+        filename = f"/home/xuestella03/Documents/Repositories/RPi-Cluster-Spark/tpch/results/{config.CUR_OS}-jvm/{config.CUR_JVM}-{config.JVM_GC_ALGORITHM}-sf{config.SF}.csv"
         fieldnames = times.keys()
 
         with open(filename, 'a', newline='') as f:
@@ -365,8 +365,15 @@ if __name__ == "__main__":
     # DATA_DIR = os.path.join(PROJECT_ROOT, "data")
     # print(f"Data directory: {DATA_DIR}")
     # benchmark = TPCH(data_path="/mnt/tpch/sf1") # change to path to correct sf
-    benchmark = TPCH(data_path="/home/dietpi/Documents/Repositories/RPi-Cluster-Spark/tpch/data/sf1")
+    benchmark = TPCH(data_path=f"/home/dietpi/Documents/Repositories/RPi-Cluster-Spark/tpch/data/sf{config.SF}")
 
+    # hostname = socket.gethostname()
+    # if 'dietpi' in hostname or 'raspberrypi' in hostname:
+    #     data_path = "/home/dietpi/Documents/Repositories/RPi-Cluster-Spark/tpch/data/sf10"
+    # else:
+    #     data_path = "/home/xuestella03/Documents/Repositories/RPi-Cluster-Spark/tpch/data/sf10"
+
+    # benchmark = TPCH(data_path=data_path)
     # Run queries
     benchmark.run_queries()
 
