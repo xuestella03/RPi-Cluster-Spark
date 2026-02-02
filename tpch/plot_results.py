@@ -22,6 +22,6 @@ plt.ylabel("Average Value")
 plt.title("Average per Column")
 plt.tight_layout()
 
-plt.savefig("tpch/graphs/dietpi-eclipse-j9.png", dpi=300)
+plt.savefig("tpch/graphs/dietpi-liberica.png", dpi=300)
 
 plt.close()

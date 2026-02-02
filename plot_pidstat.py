@@ -8,7 +8,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from datetime import datetime
 import sys
-# import tpch.config 
+import tpch.config 
 
 def parse_pidstat_log(filepath):
     """Parse pidstat log file and extract metrics"""
@@ -67,7 +67,7 @@ def plot_metrics(df, output_prefix='pidstat'):
     
     # Create figure with subplots
     fig, axes = plt.subplots(4, 1, figsize=(14, 12))
-    fig.suptitle(f'Spark Executor Performance (PID {executor_pid})', fontsize=16, fontweight='bold')
+    fig.suptitle(f'Query 5 {tpch.config.CUR_CONFIG} SF{tpch.config.SF} heap{tpch.config.SPARK_EXECUTOR_MEMORY} {tpch.config.ACTIVE_CONFIG} (PID {executor_pid})', fontsize=16, fontweight='bold')
     
     # 1. CPU Usage
     ax1 = axes[0]
