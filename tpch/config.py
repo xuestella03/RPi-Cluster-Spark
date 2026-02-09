@@ -105,6 +105,17 @@ JVM_CONFIGS = {
     # ========================================
     # Initial heap size
     # ========================================
+    "heap-min-100": {
+        "name": "heap-min-100",
+        "options": [
+            "-XX:+UseG1GC",
+            "-Xms100m",  # Start at 256MB
+            # Max is 600MB (set by spark.executor.memory)
+        ],
+        "description": "Heap grows from 256m to 600m",
+        "expected": "Lower initial memory, GC overhead during growth"
+    },
+    
     "heap-min-256": {
         "name": "heap-min-256",
         "options": [
@@ -285,7 +296,7 @@ JVM_CONFIGS = {
 # ACTIVE CONFIGURATION
 # ============================================
 # Change this variable to switch between test configurations
-ACTIVE_CONFIG = "xmx-400"
+ACTIVE_CONFIG = "heap-min-100"
 
 # For automated testing, you can override this programmatically
 
