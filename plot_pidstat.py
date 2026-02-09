@@ -67,7 +67,7 @@ def plot_metrics(df, output_prefix='pidstat'):
     
     # Create figure with subplots
     fig, axes = plt.subplots(4, 1, figsize=(14, 12))
-    fig.suptitle(f'Query 5 {tpch.config.CUR_CONFIG} SF{tpch.config.SF} heap{tpch.config.SPARK_EXECUTOR_MEMORY} {tpch.config.ACTIVE_CONFIG} (PID {executor_pid})', fontsize=16, fontweight='bold')
+    fig.suptitle(f'Query 1 {tpch.config.CUR_CONFIG} SF{tpch.config.SF} exec mem{tpch.config.SPARK_EXECUTOR_MEMORY} {tpch.config.ACTIVE_CONFIG} (PID {executor_pid})', fontsize=16, fontweight='bold')
     
     # 1. CPU Usage
     ax1 = axes[0]

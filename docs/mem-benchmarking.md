@@ -22,8 +22,6 @@ What I did:
 
 Now, we look at how to monitor while a task is running. We set up pidstat to monitor on each node and save the stats. 
 
-We'll update the Ansible to include starting pidstat monitoring, ending monitoring, and sending over the log files. 
-
 ### Flags
 ```bash
 -h # human readable
@@ -32,6 +30,11 @@ We'll update the Ansible to include starting pidstat monitoring, ending monitori
 -d # disk I/O stats
 1 # sample interval
 -C # get process with name
+```
+
+To copy a file over manually from pi:
+```bash
+scp root@192.168.50.196:/home/dietpi/Documents/Repositories/RPi-Cluster-Spark/tpch/results/pidstat/<file> /home/xuestella03/Documents/Repositories/RPi-Cluster-Spark/tpch/results/pidstat/
 ```
 
 ## Troubleshooting

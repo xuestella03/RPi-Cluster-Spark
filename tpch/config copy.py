@@ -33,7 +33,7 @@ SF = "1"
 
 JVM_CONFIGS = {
     # ========================================
-    # Default
+    # BASELINE
     # ========================================
     "default": {
         "name": "default",
@@ -43,30 +43,8 @@ JVM_CONFIGS = {
     },
     
     # ========================================
-    # Max heap size
+    # GARBAGE COLLECTORS
     # ========================================
-    "xmx-400": {
-        "name": "xmx-400",
-        "options": [
-            "-Xmx400m"
-        ],
-        "description": "Max heap size 400",
-        "expected": "Default is ~252"
-    },
-
-
-    # ========================================
-    # GC
-    # ========================================
-    "reg-g1gc": {
-        "name": "reg-g1gc",
-        "options": [
-            "-XX:+UseG1GC",
-        ],
-        "description": "G1GC optimized for 500MB heap",
-        "expected": "Good balance of throughput and pause times"
-    },
-    
     "g1gc": {
         "name": "g1gc",
         "options": [
@@ -79,6 +57,22 @@ JVM_CONFIGS = {
         ],
         "description": "G1GC optimized for 600MB heap",
         "expected": "Good balance of throughput and pause times"
+    },
+    
+    "g1gc-frequent": {
+        "name": "g1gc-frequent",
+        "options": [
+            "-XX:+UseG1GC",
+            "-XX:MaxGCPauseMillis=100",  # More aggressive
+            "-XX:G1HeapRegionSize=1m",
+            "-XX:InitiatingHeapOccupancyPercent=35",  # Start GC earlier
+            "-XX:ParallelGCThreads=4",
+            "-XX:ConcGCThreads=2",  # More concurrent threads
+            # "-XX:G1NewSizePercent=30",
+            # "-XX:G1MaxNewSizePercent=40",
+        ],
+        "description": "G1GC with aggressive low-latency tuning",
+        "expected": "Lower pause times, possibly lower throughput"
     },
     
     "parallel": {
@@ -103,7 +97,7 @@ JVM_CONFIGS = {
     },
     
     # ========================================
-    # Initial heap size
+    # HEAP PRE-ALLOCATION
     # ========================================
     "heap-min-256": {
         "name": "heap-min-256",
@@ -126,6 +120,16 @@ JVM_CONFIGS = {
         "expected": "Less growth overhead"
     },
 
+    # "heap-large": {
+    #     "name": "heap-large",
+    #     "options": [
+    #         "-XX:+UseG1GC",
+    #         "-Xms500m",  # Start at maximum
+    #     ],
+    #     "description": "Pre-allocate full 600m heap at startup",
+    #     "expected": "No growth overhead, uses memory immediately"
+    # },
+
     "heap-min-max": {
         "name": "heap-max",
         "options": [
@@ -136,8 +140,19 @@ JVM_CONFIGS = {
         "expected": "No growth overhead, uses memory immediately"
     },
     
+    "heap-aggressive-preallocate": {
+        "name": "heap-aggressive-preallocate",
+        "options": [
+            "-XX:+UseG1GC",
+            "-Xms600m",
+            "-XX:+AlwaysPreTouch",  # Touch all pages at startup
+        ],
+        "description": "Pre-allocate and touch all memory pages",
+        "expected": "Slower startup, best runtime performance"
+    },
+    
     # ========================================
-    # Metaspace
+    # METASPACE TUNING
     # ========================================
     "metaspace-unlimited": {
         "name": "metaspace-unlimited",
@@ -145,7 +160,7 @@ JVM_CONFIGS = {
             "-XX:+UseG1GC",
             # No metaspace limits
         ],
-        "description": "Unlimited metaspace (can grow unbounded), this is just G1GC with no extra configs",
+        "description": "Unlimited metaspace (can grow unbounded)",
         "expected": "Risk of metaspace OOM, but no artificial limits"
     },
     
@@ -183,7 +198,55 @@ JVM_CONFIGS = {
     },
     
     # ========================================
-    # Compilation
+    # YOUNG GENERATION TUNING
+    # ========================================
+    "young-gen-small": {
+        "name": "young-gen-small",
+        "options": [
+            "-XX:+UseG1GC",
+            "-XX:NewRatio=3",  # Old:Young = 3:1 (25% young)
+        ],
+        "description": "Small young generation (25%)",
+        "expected": "Fewer young GCs, longer pauses"
+    },
+    
+    "young-gen-large": {
+        "name": "young-gen-large",
+        "options": [
+            "-XX:+UseG1GC",
+            "-XX:NewRatio=1",  # Old:Young = 1:1 (50% young)
+        ],
+        "description": "Large young generation (50%)",
+        "expected": "More frequent but shorter young GCs"
+    },
+    
+    # ========================================
+    # CODE CACHE TUNING
+    # ========================================
+    "code-cache-small": {
+        "name": "code-cache-small",
+        "options": [
+            "-XX:+UseG1GC",
+            "-XX:ReservedCodeCacheSize=96m",
+            "-XX:InitialCodeCacheSize=32m",
+        ],
+        "description": "Small code cache (96MB)",
+        "expected": "May limit JIT compilation"
+    },
+    
+    "code-cache-large": {
+        "name": "code-cache-large",
+        "options": [
+            "-XX:+UseG1GC",
+            "-XX:ReservedCodeCacheSize=192m",
+            "-XX:InitialCodeCacheSize=64m",
+        ],
+        "description": "Large code cache (192MB)",
+        "expected": "More room for JIT compiled code"
+    },
+    
+    # ========================================
+    # COMPILATION STRATEGIES
     # ========================================
     "tiered-c1-only": {
         "name": "tiered-c1-only",
@@ -219,8 +282,18 @@ JVM_CONFIGS = {
     },
     
     # ========================================
-    # Memory optimizations
+    # MEMORY OPTIMIZATIONS
     # ========================================
+    "string-dedup": {
+        "name": "string-dedup",
+        "options": [
+            "-XX:+UseG1GC",
+            "-XX:+UseStringDeduplication",
+        ],
+        "description": "Enable string deduplication (G1GC only)",
+        "expected": "Lower memory for duplicate strings"
+    },
+    
     "compressed-oops": {
         "name": "compressed-oops",
         "options": [
@@ -233,7 +306,7 @@ JVM_CONFIGS = {
     },
     
     # ========================================
-    # Combined
+    # COMBINED OPTIMIZATIONS
     # ========================================
     "optimized-throughput": {
         "name": "optimized-throughput",
@@ -279,13 +352,64 @@ JVM_CONFIGS = {
         "expected": "Lowest memory usage"
     },
     
+    # ========================================
+    # OPENJ9 SPECIFIC (if using Eclipse OpenJ9)
+    # ========================================
+    "openj9-gencon": {
+        "name": "openj9-gencon",
+        "options": [
+            "-Xgcpolicy:gencon",
+        ],
+        "description": "OpenJ9 generational concurrent GC (default)",
+        "expected": "Good general-purpose GC for OpenJ9"
+    },
+    
+    "openj9-balanced": {
+        "name": "openj9-balanced",
+        "options": [
+            "-Xgcpolicy:balanced",
+        ],
+        "description": "OpenJ9 balanced GC",
+        "expected": "Best for heaps <2GB"
+    },
+    
+    "openj9-optthruput": {
+        "name": "openj9-optthruput",
+        "options": [
+            "-Xgcpolicy:optthruput",
+        ],
+        "description": "OpenJ9 optimize for throughput",
+        "expected": "Maximum throughput on OpenJ9"
+    },
+    
+    "openj9-optavgpause": {
+        "name": "openj9-optavgpause",
+        "options": [
+            "-Xgcpolicy:optavgpause",
+        ],
+        "description": "OpenJ9 optimize for low pause times",
+        "expected": "Lowest pauses on OpenJ9"
+    },
+    
+    "openj9-optimized": {
+        "name": "openj9-optimized",
+        "options": [
+            "-Xgcpolicy:balanced",
+            "-Xmn256m",  # Young generation
+            "-Xtune:virtualized",
+            "-Xshareclasses:cacheDir=/tmp",
+            "-Xquickstart",
+        ],
+        "description": "OpenJ9 fully optimized",
+        "expected": "Best overall for OpenJ9"
+    },
 }
 
 # ============================================
 # ACTIVE CONFIGURATION
 # ============================================
 # Change this variable to switch between test configurations
-ACTIVE_CONFIG = "xmx-400"
+ACTIVE_CONFIG = "g1gc"
 
 # For automated testing, you can override this programmatically
 
