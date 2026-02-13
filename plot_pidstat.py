@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 import sys
 import tpch.config 
+import os
 
 def parse_pidstat_log(filepath):
     """Parse pidstat log file and extract metrics"""
@@ -48,7 +49,7 @@ def parse_pidstat_log(filepath):
 
 def plot_metrics(df, output_prefix='pidstat'):
     """Create plots for key metrics"""
-    
+
     # Filter for executor process (high CPU usage indicates executor)
     # Usually the process with varying high CPU
     df['timestamp'] = pd.to_datetime(df['time'], format='%H:%M:%S')
@@ -125,7 +126,7 @@ def plot_metrics(df, output_prefix='pidstat'):
     plt.tight_layout()
     
     # Save figure
-    output_file = f'{output_prefix}_analysis.png'
+    output_file = f'{os.getcwd()}/tpch/results/pidstatplot/{output_prefix}_pidstat.png'
     plt.savefig(output_file, dpi=300, bbox_inches='tight')
     print(f"\nPlot saved to: {output_file}")
     
@@ -160,7 +161,12 @@ def main():
         sys.exit(1)
     
     log_file = sys.argv[1]
-    output_prefix = sys.argv[2] if len(sys.argv) > 2 else 'pidstat'
+
+    ts = "_".join(log_file.split("_")[-2:]).split(".")[0]
+    configs = f"Query{tpch.config.CUR_QUERY}-{tpch.config.CUR_CONFIG}-mem{tpch.config.SPARK_EXECUTOR_MEMORY}-{tpch.config.ACTIVE_CONFIG}"
+    print(configs)
+
+    output_prefix = sys.argv[2] if len(sys.argv) > 2 else configs 
     
     print(f"Parsing {log_file}...")
     df = parse_pidstat_log(log_file)

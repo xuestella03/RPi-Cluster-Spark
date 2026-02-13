@@ -21,6 +21,7 @@ SPARK_EXECUTOR_MEMORY = "500m"
 CUR_CONFIG = "dietpi-liberica"
 CUR_OS = "dietpi"
 CUR_JVM = "liberica"
+CUR_QUERY = "1"
 
 JVM_HEAP_MIN = "1g"
 JVM_HEAP_MAX = "1g"
@@ -296,7 +297,7 @@ JVM_CONFIGS = {
 # ACTIVE CONFIGURATION
 # ============================================
 # Change this variable to switch between test configurations
-ACTIVE_CONFIG = "heap-min-100"
+ACTIVE_CONFIG = "reg-g1gc"
 
 # For automated testing, you can override this programmatically
 
