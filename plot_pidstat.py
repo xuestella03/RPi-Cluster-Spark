@@ -166,7 +166,7 @@ def main():
     configs = f"Query{tpch.config.CUR_QUERY}-{tpch.config.CUR_CONFIG}-mem{tpch.config.SPARK_EXECUTOR_MEMORY}-{tpch.config.ACTIVE_CONFIG}"
     print(configs)
 
-    output_prefix = sys.argv[2] if len(sys.argv) > 2 else configs 
+    output_prefix = sys.argv[2] if len(sys.argv) > 2 else configs + ts
     
     print(f"Parsing {log_file}...")
     df = parse_pidstat_log(log_file)
