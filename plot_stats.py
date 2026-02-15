@@ -72,7 +72,7 @@ if __name__ == "__main__":
     
     if sys.argv[1] == "y":
         for filename in sys.argv[2:]:
-            header = filename.split("/")[-1].split(".")[0]
+            header = " ".join(filename.split("/")[-1].split(".")[0].split("-")[2:])
             print(header)
             header, max_rss, runtime = write_csv(filename, header)
             with open(

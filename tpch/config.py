@@ -297,7 +297,7 @@ JVM_CONFIGS = {
 # ACTIVE CONFIGURATION
 # ============================================
 # Change this variable to switch between test configurations
-ACTIVE_CONFIG = "reg-g1gc"
+ACTIVE_CONFIG = "xmx-400"
 
 # For automated testing, you can override this programmatically
 

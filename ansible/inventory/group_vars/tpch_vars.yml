@@ -1,0 +1,4 @@
+active_config: xmx-400
+executor_memory: 500m
+tpch_config: dietpi-liberica
+tpch_query: '1'
