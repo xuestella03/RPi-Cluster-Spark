@@ -13,7 +13,7 @@ CLUSTER_MASTER_URL = f"spark://{CLUSTER_MASTER_IP}:7077"
 SPARK_DRIVER_MEMORY = "2g"
 # SPARK_EXECUTOR_MEMORY = "1g"
 # SPARK_DRIVER_MEMORY = "500m"
-SPARK_EXECUTOR_MEMORY = "500m"
+SPARK_EXECUTOR_MEMORY = "640m"
 
 # SPARK_MEMORY_OVERHEAD = "100m"
 
@@ -21,14 +21,14 @@ SPARK_EXECUTOR_MEMORY = "500m"
 CUR_CONFIG = "dietpi-liberica"
 CUR_OS = "dietpi"
 CUR_JVM = "liberica"
-CUR_QUERY = "1"
+CUR_QUERY = "5"
 
-JVM_HEAP_MIN = "1g"
-JVM_HEAP_MAX = "1g"
+# JVM_HEAP_MIN = "1g"
+# JVM_HEAP_MAX = "1g"
 
 # JVM_GC_ALGORITHM = "SerialGC"
 # JVM_GC_ALGORITHM = "ParallelGC"
-JVM_GC_ALGORITHM = "Default"
+# JVM_GC_ALGORITHM = "Default"
 
 SF = "1"
 
@@ -55,7 +55,49 @@ JVM_CONFIGS = {
         "expected": "Default is ~252"
     },
 
+    # ========================================
+    # RAM
+    # ========================================
+    "ram-95": {
+        "name": "ram-95",
+        "options": [
+            "-XX:MaxRAM=640m",
+            "-XX:MaxRAMPercentage=90.0"
+        ],
+        "description": "",
+        "expected": ""
+    },
+    
+    "ram-90": {
+        "name": "ram-90",
+        "options": [
+            "-XX:MaxRAM=640m",
+            "-XX:MaxRAMPercentage=90.0"
+        ],
+        "description": "",
+        "expected": ""
+    },
 
+    "ram-70": {
+        "name": "ram-70",
+        "options": [
+            "-XX:MaxRAM=640m",
+            "-XX:MaxRAMPercentage=70.0"
+        ],
+        "description": "",
+        "expected": ""
+    },
+
+    "ram-50": {
+        "name": "ram-50",
+        "options": [
+            "-XX:MaxRAM=640m",
+            "-XX:MaxRAMPercentage=50.0"
+        ],
+        "description": "",
+        "expected": ""
+    },
+    
     # ========================================
     # GC
     # ========================================
@@ -297,7 +339,7 @@ JVM_CONFIGS = {
 # ACTIVE CONFIGURATION
 # ============================================
 # Change this variable to switch between test configurations
-ACTIVE_CONFIG = "xmx-400"
+ACTIVE_CONFIG = "default"
 
 # For automated testing, you can override this programmatically
 
@@ -316,8 +358,7 @@ def build_jvm_options_string():
     config = JVM_CONFIGS[ACTIVE_CONFIG]
     options = config["options"].copy()
     
-    # Always add GC logging for analysis
-    # Note: Adjust for Java 9+ if needed
+    # Add GC Logging
     gc_logging = [
         "-XX:+PrintGCDetails",
         "-XX:+PrintGCDateStamps",

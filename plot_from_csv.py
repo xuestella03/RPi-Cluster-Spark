@@ -6,23 +6,6 @@ import sys
 import tpch.config
 import numpy as np
 
-def write_csv(filename, header):
-    max_rss = 0
-    start = None
-    end = None
-    with open(filename) as f:
-        for line in f:
-            if line and line[0].isdigit():
-                parts = line.split()
-                time = parts[0]
-                rss = int(parts[12])
-                if start is None:
-                    start = datetime.strptime(time, "%H:%M:%S")
-                end = datetime.strptime(time, "%H:%M:%S")
-                max_rss = max(max_rss, rss)
-    runtime = int((end - start).total_seconds())
-    return header, max_rss, runtime
-
 def plot_from_csv(filename):
     df = pd.read_csv(filename)
     
@@ -60,28 +43,15 @@ def plot_from_csv(filename):
     ax2.legend(loc='upper right')
     
     fig.tight_layout()
-    plt.savefig(f"query{tpch.config.CUR_QUERY}.png", dpi=300, bbox_inches='tight')
+    plot_name = filename.split(".")[0]
+    plt.savefig(f"{plot_name}.png", dpi=300, bbox_inches='tight')
     plt.close(fig)
     
-    print(f"Plot saved as query{tpch.config.CUR_QUERY}.png")
+    print(f"Plot saved as {plot_name}.png")
 
 if __name__ == "__main__":
     if len(sys.argv) < 3:
-        print("Usage: python plot_stats.py <name> <input_files> ")
-        # should make this flag
-    
+        print("Usage: python plot_from_csv.py <input_csv>")
 
-    for filename in sys.argv[2:]:
-        header = " ".join(filename.split("/")[-1].split(".")[0].split("-")[2:])
-        print(header)
-        header, max_rss, runtime = write_csv(filename, header)
-        with open(
-            f"tpch/results/pidstat-results/query{tpch.config.CUR_QUERY}-{sys.argv[1]}.csv",
-            "a",
-            newline=""
-        ) as f:
-            writer = csv.writer(f)
-            writer.writerow([header, max_rss, runtime])
-    
-    # Plot after all data is written
-    # plot_from_csv(f"tpch/results/pidstat-results/query{tpch.config.CUR_QUERY}.csv")
+    input_csv = sys.argv[1]
+    plot_from_csv(input_csv)

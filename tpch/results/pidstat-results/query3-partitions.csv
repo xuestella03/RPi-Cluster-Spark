@@ -1,0 +1,5 @@
+header,maxmem,runtime
+Query3 dietpi liberica mem640m default part1,333592,230
+Query3 dietpi liberica mem640m default part2,338208,227
+Query3 dietpi liberica mem640m default part4,355340,222
+Query3 dietpi liberica mem640m default part8,331996,223

@@ -98,9 +98,60 @@ def get_query_6(spark):
     lineitem_df.createOrReplaceTempView("lineitem")
     return spark.sql(query)
 
+def get_query_18(spark):
+    customer_df = spark.table("customer")
+    orders_df = spark.table("orders")
+    lineitem_df = spark.table("lineitem")
+
+    customer_df.createOrReplaceTempView("customer")
+    orders_df.createOrReplaceTempView("orders")
+    lineitem_df.createOrReplaceTempView("lineitem")
+
+    query = """
+        WITH large_orders AS (
+            SELECT
+                l_orderkey
+            FROM
+                lineitem
+            GROUP BY
+                l_orderkey
+            HAVING
+                SUM(l_quantity) > 300
+        )
+        SELECT
+            c_name,
+            c_custkey,
+            o_orderkey,
+            o_orderdate,
+            o_totalprice,
+            SUM(l_quantity) AS sum_qty
+        FROM
+            customer
+        JOIN orders
+            ON c_custkey = o_custkey
+        JOIN lineitem
+            ON o_orderkey = l_orderkey
+        JOIN large_orders
+            ON o_orderkey = large_orders.l_orderkey
+        GROUP BY
+            c_name,
+            c_custkey,
+            o_orderkey,
+            o_orderdate,
+            o_totalprice
+        ORDER BY
+            o_totalprice DESC,
+            o_orderdate
+        LIMIT 100
+    """
+
+    return spark.sql(query)
+
+
 QUERIES = {
-    1: get_query_1,
+    # 1: get_query_1,
     # 3: get_query_3,
-    # 5: get_query_5,
-    # 6: get_query_6
+    5: get_query_5,
+    # 6: get_query_6,
+    # 18: get_query_18
 }

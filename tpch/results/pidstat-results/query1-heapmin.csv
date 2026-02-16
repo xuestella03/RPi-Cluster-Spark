@@ -1,0 +1,6 @@
+header,maxmem,runtime
+Query1 dietpi liberica mem500m default,299100,305
+Query1 dietpi liberica mem500m heap min 100,451228,316
+Query1 dietpi liberica mem500m heap min 256,438584,317
+Query1 dietpi liberica mem500m heap min 400,525312,317
+Query1 dietpi liberica mem500m heap min max,595668,310

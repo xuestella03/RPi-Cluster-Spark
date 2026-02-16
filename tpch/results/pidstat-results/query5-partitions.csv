@@ -1,0 +1,5 @@
+header,maxmem,runtime
+Query5 dietpi liberica mem640m default 2 partitions,341076,216
+Query5 dietpi liberica mem640m default 4 partitions,353928,219
+Query5 dietpi liberica mem640m default 8 partitions,351688,210
+Query5 dietpi liberica mem640m default 32 partitions,375792,214

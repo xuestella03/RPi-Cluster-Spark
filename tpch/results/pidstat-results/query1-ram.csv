@@ -1,0 +1,6 @@
+header,maxmem,runtime
+Query1 dietpi liberica mem640m ram 95,304268,307
+Query1 dietpi liberica mem640m ram 90,303700,310
+Query1 dietpi liberica mem640m ram 70,304120,308
+Query1 dietpi liberica mem640m ram 50,305556,307
+

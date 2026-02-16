@@ -13,6 +13,8 @@ mv *.tbl ../sf1
 # fix later...
 sudo cp -r /home/xuestella03/Documents/Repositories/RPi-Cluster-Spark/tpch/data/sf1 /home/dietpi/Documents/Repositories/RPi-Cluster-Spark/tpch/data/
 
+# check that the nation table is ok. 
+
 # then copy entire folder to rpi
 scp -r /home/dietpi/Documents/Repositories/RPi-Cluster-Spark/tpch/data/sf1/ root@192.168.50.196:/home/dietpi/Documents/Repositories/RPi-Cluster-Spark/tpch/data/
 ```

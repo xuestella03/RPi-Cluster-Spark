@@ -343,12 +343,12 @@ class TPCH:
         print(f"  Total Time: {sum(times.values()):.2f}s")
         print("="*60 + "\n")
 
-        filename = f"/home/xuestella03/Documents/Repositories/RPi-Cluster-Spark/tpch/results/{config.CUR_OS}-jvm/{config.CUR_JVM}-{config.JVM_GC_ALGORITHM}-sf{config.SF}.csv"
-        fieldnames = times.keys()
+        # filename = f"/home/xuestella03/Documents/Repositories/RPi-Cluster-Spark/tpch/results/{config.CUR_OS}-jvm/{config.CUR_JVM}-{config.JVM_GC_ALGORITHM}-sf{config.SF}.csv"
+        # fieldnames = times.keys()
 
-        with open(filename, 'a', newline='') as f:
-            writer = csv.DictWriter(f, fieldnames)
-            writer.writerow(times)
+        # with open(filename, 'a', newline='') as f:
+        #     writer = csv.DictWriter(f, fieldnames)
+        #     writer.writerow(times)
 
 
     def cleanup(self):
