@@ -21,6 +21,8 @@ import os
 import time 
 import csv 
 import socket
+import requests
+import json
 
 class TPCH:
     def __init__(self, data_path, sf=0.1):
@@ -44,12 +46,26 @@ class TPCH:
         #     .config("spark.log.structuredLogging.enabled", True) \
         #     .getOrCreate()
         
+        # self.spark = SparkSession.builder \
+        #     .appName("TPC-H Benchmark") \
+        #     .master(config.CLUSTER_MASTER_URL) \
+        #     .config("spark.driver.memory", config.SPARK_DRIVER_MEMORY) \
+        #     .config("spark.executor.memory", config.SPARK_EXECUTOR_MEMORY) \
+        #     .config("spark.sql.shuffle.partitions", "4") \
+        #     .config("spark.driver.extraJavaOptions", jvm_options) \
+        #     .config("spark.executor.extraJavaOptions", jvm_options) \
+        #     .getOrCreate()
+
         self.spark = SparkSession.builder \
             .appName("TPC-H Benchmark") \
             .master(config.CLUSTER_MASTER_URL) \
             .config("spark.driver.memory", config.SPARK_DRIVER_MEMORY) \
             .config("spark.executor.memory", config.SPARK_EXECUTOR_MEMORY) \
             .config("spark.sql.shuffle.partitions", "4") \
+            .config("spark.executor.processTreeMetrics.enabled", "true")  \
+            .config("spark.executor.metrics.pollingInterval", "1s") \
+            .config("spark.eventLog.enabled", "true") \
+            .config("spark.eventLog.dir", "/home/xuestella03/Documents/Repositories/RPi-Cluster-Spark/tpch/memory") \
             .config("spark.driver.extraJavaOptions", jvm_options) \
             .config("spark.executor.extraJavaOptions", jvm_options) \
             .getOrCreate()
@@ -297,6 +313,45 @@ class TPCH:
             
             print("="*60 + "\n")
 
+    def get_executor_peak_metrics(self):
+        """
+        Pull peak executor memory metrics from Spark REST API.
+        Returns dict of {executor_id: peakMemoryMetrics}.
+        """
+        try:
+            app_id = self.spark.sparkContext.applicationId
+            ui_url = self.spark.sparkContext.uiWebUrl
+            
+            url = f"{ui_url}/api/v1/applications/{app_id}/executors"
+            response = requests.get(url, timeout=10)
+            executors = response.json()
+            
+            results = {}
+            for ex in executors:
+                ex_id = ex.get("id", "unknown")
+                peak = ex.get("peakMemoryMetrics", {})
+                if peak:
+                    results[ex_id] = {
+                        # Unified memory
+                        "OnHeapExecutionMemory_MB":  peak.get("OnHeapExecutionMemory", 0) / 1e6,
+                        "OnHeapStorageMemory_MB":    peak.get("OnHeapStorageMemory", 0) / 1e6,
+                        "OnHeapUnifiedMemory_MB":    peak.get("OnHeapUnifiedMemory", 0) / 1e6,
+                        # Total JVM heap
+                        "JVMHeapMemory_MB":          peak.get("JVMHeapMemory", 0) / 1e6,
+                        "JVMOffHeapMemory_MB":       peak.get("JVMOffHeapMemory", 0) / 1e6,
+                        # Process-level (RSS = actual physical RAM used), should match pidstat
+                        "ProcessTreeJVMRSS_MB":      peak.get("ProcessTreeJVMRSSMemory", 0) / 1e6,
+                        # GC
+                        "MinorGCCount":  peak.get("MinorGCCount", 0),
+                        "MinorGCTime_ms": peak.get("MinorGCTime", 0),
+                        "MajorGCCount":  peak.get("MajorGCCount", 0),
+                        "MajorGCTime_ms": peak.get("MajorGCTime", 0),
+                    }
+            return results
+        except Exception as e:
+            print(f"Warning: could not fetch executor metrics: {e}")
+            return {}
+    
     def run_query(self, query_num, query_function):
         """Run a single query and return timing and result snippet"""
         
@@ -312,8 +367,13 @@ class TPCH:
         elapsed = time.time() - start 
 
         print(f"Time Elapsed: {elapsed:.02f}")
+        
+        # Note: if running multiple queries in one app, 
+        # will need to take delta of before that query to after 
+        metrics = self.get_executor_peak_metrics()
+        print(f"Peak Metrics: {json.dumps(metrics, indent=2)}")
 
-        return elapsed, result_df
+        return elapsed, result_df, metrics
 
     def run_queries(self):
 
@@ -323,8 +383,9 @@ class TPCH:
 
         times = {}
 
+        # Honestly change this because I only every run one at a time now
         for query_num, query_function in queries.QUERIES.items():
-            elapsed, _ = self.run_query(query_num, query_function) # temporarily don't store results df
+            elapsed, _, peaks = self.run_query(query_num, query_function) # temporarily don't store results df
             times[query_num] = elapsed
         
         print("\n" + "="*60)
