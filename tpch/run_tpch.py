@@ -23,6 +23,7 @@ import csv
 import socket
 import requests
 import json
+from datetime import datetime
 
 class TPCH:
     def __init__(self, data_path, sf=0.1):
@@ -68,6 +69,8 @@ class TPCH:
             .config("spark.eventLog.dir", "/home/xuestella03/Documents/Repositories/RPi-Cluster-Spark/tpch/memory") \
             .config("spark.driver.extraJavaOptions", jvm_options) \
             .config("spark.executor.extraJavaOptions", jvm_options) \
+            .config("spark.memory.storageFraction", config.STORAGE_FRACTION) \
+            .config("spark.memory.fraction", config.MEMORY_FRACTION) \
             .getOrCreate()
         
 
@@ -211,6 +214,8 @@ class TPCH:
             'executor.extraJavaOptions': conf.get('spark.executor.extraJavaOptions', 'none'),
             'sql.shuffle.partitions': conf.get('spark.sql.shuffle.partitions', 'default'),
             'master': conf.get('spark.master', 'unknown'),
+            'memory.storageFraction': conf.get('spark.memory.storageFraction', 'not working'),
+            'memory.fraction': conf.get('spark.memory.fraction', 'not working')
         }
         
         return configs
@@ -381,16 +386,56 @@ class TPCH:
         print("The queries to run:")
         print(list(queries.QUERIES.keys()))
 
+        results_dir = "/home/xuestella03/Documents/Repositories/RPi-Cluster-Spark/tpch/results/memory"
+        os.makedirs(results_dir, exist_ok=True)
+    
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        query_num = config.CUR_QUERY
+        csv_path = os.path.join(
+            results_dir,
+            f"query{query_num}-{config.ACTIVE_CONFIG}-sf{config.SF}.csv"
+        )
+
+        spark_cfg = self.get_spark_configs()
+
+        # These are things we want in the csv 
+        # including the things from the spark api
+        fieldnames = [
+            "timestamp", "query", "elapsed_s", "jvm_config", "executor_memory", "memory_fraction",
+            "storage_fraction", "shuffle_partitions","OnHeapExecutionMemory_MB", "OnHeapStorageMemory_MB", "OnHeapUnifiedMemory_MB",
+            "JVMHeapMemory_MB", "ProcessTreeJVMRSS_MB",
+            "MinorGCCount", "MinorGCTime_ms", "MajorGCCount", "MajorGCTime_ms"
+        ]
+
         times = {}
 
-        # Honestly change this because I only every run one at a time now
-        for query_num, query_function in queries.QUERIES.items():
-            elapsed, _, peaks = self.run_query(query_num, query_function) # temporarily don't store results df
-            times[query_num] = elapsed
-        
-        print("\n" + "="*60)
-        print("BENCHMARK SUMMARY")
-        print("="*60)
+        with open(csv_path, 'a', newline='') as f:
+
+            writer = csv.DictWriter(f, fieldnames=fieldnames)
+            writer.writeheader()
+
+            # Honestly change this because I only every run one at a time now
+            for query_num, query_function in queries.QUERIES.items():
+                elapsed, _, peaks = self.run_query(query_num, query_function) # temporarily don't store results df
+                times[query_num] = elapsed
+                row = {
+                    "timestamp": timestamp,
+                    "query": query_num,
+                    "elapsed_s": round(elapsed, 3),
+                    "jvm_config": config.ACTIVE_CONFIG,
+                    "executor_memory": config.SPARK_EXECUTOR_MEMORY,
+                    "memory_fraction": spark_cfg.get("memory.fraction", "0.6"),
+                    "storage_fraction": spark_cfg.get("memory.storageFraction", "0.5"), # add later
+                    "shuffle_partitions": spark_cfg.get("sql.shuffle.partitions", "4"),
+                    **{k: round(peaks.get("0", "1").get(k, 0), 2) for k in fieldnames 
+                    if k in peaks.get("0", "1")}
+                }
+                writer.writerow(row)
+                f.flush()  # write after each query in case of crash
+            
+            print("\n" + "="*60)
+            print("BENCHMARK SUMMARY")
+            print("="*60)
         
         # Print configuration
         self.print_config_summary()
@@ -403,6 +448,8 @@ class TPCH:
         print("-"*60)
         print(f"  Total Time: {sum(times.values()):.2f}s")
         print("="*60 + "\n")
+
+        print(f"\nResults saved to: {csv_path}")
 
         # filename = f"/home/xuestella03/Documents/Repositories/RPi-Cluster-Spark/tpch/results/{config.CUR_OS}-jvm/{config.CUR_JVM}-{config.JVM_GC_ALGORITHM}-sf{config.SF}.csv"
         # fieldnames = times.keys()

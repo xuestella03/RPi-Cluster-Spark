@@ -1,0 +1,1 @@
+timestamp,query,elapsed_s,jvm_config,executor_memory,storage_fraction,shuffle_partitions,OnHeapExecutionMemory_MB,OnHeapStorageMemory_MB,OnHeapUnifiedMemory_MB,JVMHeapMemory_MB,ProcessTreeJVMRSS_MB,MinorGCCount,MinorGCTime_ms,MajorGCCount,MajorGCTime_ms

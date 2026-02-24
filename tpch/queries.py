@@ -98,6 +98,58 @@ def get_query_6(spark):
     lineitem_df.createOrReplaceTempView("lineitem")
     return spark.sql(query)
 
+def get_query_9(spark):
+    part_df = spark.table("part")
+    supplier_df = spark.table("supplier")
+    lineitem_df = spark.table("lineitem")
+    partsupp_df = spark.table("partsupp")
+    orders_df = spark.table("orders")
+    nation_df = spark.table("nation")
+
+    part_df.createOrReplaceTempView("part")
+    supplier_df.createOrReplaceTempView("supplier")
+    lineitem_df.createOrReplaceTempView("lineitem")
+    partsupp_df.createOrReplaceTempView("partsupp")
+    orders_df.createOrReplaceTempView("orders")
+    nation_df.createOrReplaceTempView("nation")
+
+    query = """
+        SELECT
+            nation,
+            o_year,
+            SUM(amount) AS sum_profit
+        FROM (
+            SELECT
+                n_name AS nation,
+                YEAR(o_orderdate) AS o_year,
+                l_extendedprice * (1 - l_discount)
+                    - ps_supplycost * l_quantity AS amount
+            FROM
+                part,
+                supplier,
+                lineitem,
+                partsupp,
+                orders,
+                nation
+            WHERE
+                s_suppkey = l_suppkey
+                AND ps_suppkey = l_suppkey
+                AND ps_partkey = l_partkey
+                AND p_partkey = l_partkey
+                AND o_orderkey = l_orderkey
+                AND s_nationkey = n_nationkey
+                AND p_name LIKE '%green%'
+        ) profit
+        GROUP BY
+            nation,
+            o_year
+        ORDER BY
+            nation,
+            o_year DESC
+    """
+
+    return spark.sql(query)
+
 def get_query_18(spark):
     customer_df = spark.table("customer")
     orders_df = spark.table("orders")
@@ -151,7 +203,8 @@ def get_query_18(spark):
 QUERIES = {
     # 1: get_query_1,
     # 3: get_query_3,
-    5: get_query_5,
+    # 5: get_query_5,
     # 6: get_query_6,
+    9: get_query_9
     # 18: get_query_18
 }

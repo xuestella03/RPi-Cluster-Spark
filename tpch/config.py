@@ -21,14 +21,14 @@ SPARK_EXECUTOR_MEMORY = "640m"
 CUR_CONFIG = "dietpi-liberica"
 CUR_OS = "dietpi"
 CUR_JVM = "liberica"
-CUR_QUERY = "5"
+CUR_QUERY = "9"
 
-# JVM_HEAP_MIN = "1g"
-# JVM_HEAP_MAX = "1g"
 
-# JVM_GC_ALGORITHM = "SerialGC"
-# JVM_GC_ALGORITHM = "ParallelGC"
-# JVM_GC_ALGORITHM = "Default"
+# ========================================
+# More Spark Configs
+# ========================================
+MEMORY_FRACTION = "0.6"
+STORAGE_FRACTION = "0.5"
 
 SF = "1"
 
@@ -44,7 +44,7 @@ JVM_CONFIGS = {
     },
     
     # ========================================
-    # Max heap size
+    # Max heap size (ignore this)
     # ========================================
     "xmx-400": {
         "name": "xmx-400",
@@ -53,6 +53,45 @@ JVM_CONFIGS = {
         ],
         "description": "Max heap size 400",
         "expected": "Default is ~252"
+    },
+
+    # ========================================
+    # Reserved code cache size
+    # ========================================
+    "reserved-code-cache-64": {
+        "name": "reserved-code-cache-64",
+        "options": [
+            "-XX:ReservedCodeCacheSize=64m"
+        ],
+        "description": "default is 240",
+        "expected": ""
+    },
+
+    "reserved-code-cache-48": {
+        "name": "reserved-code-cache-48",
+        "options": [
+            "-XX:ReservedCodeCacheSize=48m"
+        ],
+        "description": "default is 240",
+        "expected": ""
+    },
+
+    "reserved-code-cache-128": {
+        "name": "reserved-code-cache-128",
+        "options": [
+            "-XX:ReservedCodeCacheSize=128m"
+        ],
+        "description": "default is 240",
+        "expected": ""
+    },
+
+    "reserved-code-cache-240": {
+        "name": "reserved-code-cache-240",
+        "options": [
+            "-XX:ReservedCodeCacheSize=240m"
+        ],
+        "description": "default is 240",
+        "expected": ""
     },
 
     # ========================================
@@ -338,10 +377,8 @@ JVM_CONFIGS = {
 # ============================================
 # ACTIVE CONFIGURATION
 # ============================================
-# Change this variable to switch between test configurations
-ACTIVE_CONFIG = "default"
-
-# For automated testing, you can override this programmatically
+# Configurations variable
+ACTIVE_CONFIG = "reserved-code-cache-240"
 
 # ============================================
 # HELPER FUNCTIONS

@@ -1,4 +1,4 @@
-active_config: default
+active_config: reserved-code-cache-240
 executor_memory: 640m
 tpch_config: dietpi-liberica
-tpch_query: '5'
+tpch_query: '9'
