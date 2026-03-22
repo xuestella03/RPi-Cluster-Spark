@@ -1,0 +1,11 @@
+header,maxmem,runtime
+Query6 dietpi liberica mem640m heap min 0,407364,144
+Query6 dietpi liberica mem640m heap min 0 any gc,276720,139
+Query6 dietpi liberica mem640m heap min 128,411980,157
+Query6 dietpi liberica mem640m heap min 128 any gc,286884,134
+Query6 dietpi liberica mem640m heap min 256,422388,146
+Query6 dietpi liberica mem640m heap min 256 any gc,329396,135
+Query6 dietpi liberica mem640m heap min 384,498064,145
+Query6 dietpi liberica mem640m heap min 384 any gc,374296,132
+Query6 dietpi liberica mem640m heap min 512,581556,145
+Query6 dietpi liberica mem640m heap min 512 any gc,403376,130

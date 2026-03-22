@@ -71,8 +71,9 @@ class TPCH:
             .config("spark.executor.extraJavaOptions", jvm_options) \
             .config("spark.memory.storageFraction", config.STORAGE_FRACTION) \
             .config("spark.memory.fraction", config.MEMORY_FRACTION) \
+            .config("spark.executor.cores", config.SPARK_EXECUTOR_CORES) \
             .getOrCreate()
-        
+            # .config("spark.executor.cores", config.SPARK_EXECUTOR_CORES) \
 
         # Can't do below because you can't set Xmx and Xms through java options 
         # need to use spark.driver.memory

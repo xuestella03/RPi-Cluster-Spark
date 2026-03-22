@@ -79,6 +79,15 @@
           - "Node: {{ inventory_hostname }}"
           - "{{ delayed_procs.stdout_lines }}"
 
+    # - name: Update spark-env.sh for workers
+    #   copy:
+    #     dest: "{{ worker_spark_home }}/conf/spark-env.sh"
+    #     content: |
+    #       #!/usr/bin/env bash
+    #       export JAVA_HOME={{ worker_java_home }}
+    #       export SPARK_WORKER_CORES=4
+    #       export SPARK_WORKER_MEMORY=768m
+    #     mode: '0755'
 # Run the benchmark on server only
 - name: Run TPC-H benchmark on server
   hosts: server

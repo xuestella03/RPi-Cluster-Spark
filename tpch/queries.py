@@ -150,6 +150,78 @@ def get_query_9(spark):
 
     return spark.sql(query)
 
+def get_query_12(spark):
+    orders_df = spark.table("orders")
+    lineitem_df = spark.table("lineitem")
+
+    orders_df.createOrReplaceTempView("orders")
+    lineitem_df.createOrReplaceTempView("lineitem")
+
+    query = """
+        SELECT
+            l_shipmode,
+            SUM(CASE
+                    WHEN o_orderpriority = '1-URGENT'
+                      OR o_orderpriority = '2-HIGH'
+                    THEN 1
+                    ELSE 0
+                END) AS high_line_count,
+            SUM(CASE
+                    WHEN o_orderpriority <> '1-URGENT'
+                      AND o_orderpriority <> '2-HIGH'
+                    THEN 1
+                    ELSE 0
+                END) AS low_line_count
+        FROM
+            orders,
+            lineitem
+        WHERE
+            o_orderkey = l_orderkey
+            AND l_shipmode IN ('MAIL', 'SHIP')
+            AND l_commitdate < l_receiptdate
+            AND l_shipdate < l_commitdate
+            AND l_receiptdate >= date '1994-01-01'
+            AND l_receiptdate < date '1995-01-01'
+        GROUP BY
+            l_shipmode
+        ORDER BY
+            l_shipmode
+    """
+
+    return spark.sql(query)
+
+def get_query_13(spark):
+    customer_df = spark.table("customer")
+    orders_df = spark.table("orders")
+
+    customer_df.createOrReplaceTempView("customer")
+    orders_df.createOrReplaceTempView("orders")
+
+    query = """
+        SELECT
+            c_count,
+            COUNT(*) AS custdist
+        FROM (
+            SELECT
+                c_custkey,
+                COUNT(o_orderkey) AS c_count
+            FROM
+                customer
+            LEFT OUTER JOIN orders
+                ON c_custkey = o_custkey
+                AND o_comment NOT LIKE '%special%requests%'
+            GROUP BY
+                c_custkey
+        ) c_orders
+        GROUP BY
+            c_count
+        ORDER BY
+            custdist DESC,
+            c_count DESC
+    """
+
+    return spark.sql(query)
+
 def get_query_18(spark):
     customer_df = spark.table("customer")
     orders_df = spark.table("orders")
@@ -203,8 +275,10 @@ def get_query_18(spark):
 QUERIES = {
     # 1: get_query_1,
     # 3: get_query_3,
-    # 5: get_query_5,
+    5: get_query_5,
     # 6: get_query_6,
-    9: get_query_9
+    # 9: get_query_9,
+    # 12: get_query_12,
+    # 13: get_query_13,
     # 18: get_query_18
 }

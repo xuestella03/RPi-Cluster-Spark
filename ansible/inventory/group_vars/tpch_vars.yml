@@ -1,4 +1,4 @@
-active_config: reserved-code-cache-240
-executor_memory: 640m
+active_config: reg-serial
+executor_memory: 768m
 tpch_config: dietpi-liberica
-tpch_query: '9'
+tpch_query: '5'

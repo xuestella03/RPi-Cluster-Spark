@@ -11,26 +11,31 @@ CLUSTER_MASTER_IP = "192.168.50.247"
 CLUSTER_MASTER_URL = f"spark://{CLUSTER_MASTER_IP}:7077"
 
 SPARK_DRIVER_MEMORY = "2g"
-# SPARK_EXECUTOR_MEMORY = "1g"
-# SPARK_DRIVER_MEMORY = "500m"
-SPARK_EXECUTOR_MEMORY = "640m"
 
-# SPARK_MEMORY_OVERHEAD = "100m"
+# SPARK_EXECUTOR_MEMORY = "640m"
+# SPARK_EXECUTOR_MEMORY = "512m"
+SPARK_EXECUTOR_MEMORY = "768m"
+# SPARK_EXECUTOR_MEMORY = "896m"
+# SPARK_EXECUTOR_MEMORY = "450m" # absolute minimum (1.5 * 300)
+# SPARK_EXECUTOR_MEMORY = "1g"
+
+SPARK_EXECUTOR_CORES = "3"
 
 # Current OS-JVM configuration (file name for results)
+# CUR_CONFIG = "dietpi-liberica-2pis"
 CUR_CONFIG = "dietpi-liberica"
 CUR_OS = "dietpi"
 CUR_JVM = "liberica"
-CUR_QUERY = "9"
+CUR_QUERY = "5"
 
 
 # ========================================
 # More Spark Configs
 # ========================================
-MEMORY_FRACTION = "0.6"
+MEMORY_FRACTION = "0.45"
 STORAGE_FRACTION = "0.5"
 
-SF = "1"
+SF = "0.3"
 
 JVM_CONFIGS = {
     # ========================================
@@ -148,7 +153,16 @@ JVM_CONFIGS = {
         "description": "G1GC optimized for 500MB heap",
         "expected": "Good balance of throughput and pause times"
     },
-    
+
+    # "reg-g1gc": {
+    #     "name": "reg-g1gc",
+    #     "options": [
+    #         "-XX:+UseG1GC",
+    #     ],
+    #     "description": "",
+    #     "expected": ""
+    # },
+
     "g1gc": {
         "name": "g1gc",
         "options": [
@@ -174,24 +188,120 @@ JVM_CONFIGS = {
         "description": "Parallel GC for maximum throughput",
         "expected": "Best throughput, higher pause times"
     },
+
+    "reg-parallel": {
+        "name": "reg-parallel",
+        "options": [
+            "-XX:+UseParallelGC",
+        ],
+        "description": "Parallel GC for maximum throughput",
+        "expected": "Best throughput, higher pause times"
+    },
     
-    "serial": {
-        "name": "serial",
+    "reg-serial": {
+        "name": "reg-serial",
         "options": [
             "-XX:+UseSerialGC",
         ],
         "description": "Simple serial GC (single-threaded)",
         "expected": "Simplest, predictable, but slower"
     },
+
+    "epsilon": {
+        "name": "epsilon",
+        "options": [
+            "-XX:+UnlockExperimentalVMOptions",
+            "-XX:+UseEpsilonGC",
+        ],
+        "description": "",
+        "expected": "S"
+    },
     
+    "two-thread-parallel": {
+        "name": "reg-parallel",
+        "options": [
+            "-XX:+UseParallelGC",
+            "-XX:ParallelGCThreads=2",
+        ],
+        "description": "Parallel GC for maximum throughput",
+        "expected": "Best throughput, higher pause times"
+    },
+
+    "one-thread-parallel": {
+        "name": "reg-parallel",
+        "options": [
+            "-XX:+UseParallelGC",
+            "-XX:ParallelGCThreads=1",
+        ],
+        "description": "Parallel GC for maximum throughput",
+        "expected": "Best throughput, higher pause times"
+    },
+
     # ========================================
     # Initial heap size
     # ========================================
-    "heap-min-100": {
-        "name": "heap-min-100",
+    "heap-min-0": {
+        "name": "heap-min-0",
         "options": [
-            "-XX:+UseG1GC",
-            "-Xms100m",  # Start at 256MB
+            "-XX:+UseParallelGC",
+            "-Xms0m",  # Start at 256MB
+            # Max is 600MB (set by spark.executor.memory)
+        ],
+        "description": "Heap grows from 256m to 600m",
+        "expected": "Lower initial memory, GC overhead during growth"
+    },
+
+    "heap-min-0-any-gc": {
+        "name": "heap-min-0-any-gc",
+        "options": [
+            "-Xms0m",  # Start at 256MB
+            # Max is 600MB (set by spark.executor.memory)
+        ],
+        "description": "Heap grows from 256m to 600m",
+        "expected": "Lower initial memory, GC overhead during growth"
+    },
+
+    "heap-min-64": {
+        "name": "heap-min-64",
+        "options": [
+            "-XX:+UseParallelGC",
+            "-Xms64m",  # Start at 256MB
+            # Max is 600MB (set by spark.executor.memory)
+        ],
+        "description": "Heap grows from 256m to 600m",
+        "expected": "Lower initial memory, GC overhead during growth"
+    },
+    
+    "heap-min-128": {
+        "name": "heap-min-128",
+        "options": [
+            "-XX:+UseParallelGC",
+            "-Xms128m",  # Start at 256MB
+            # Max is 600MB (set by spark.executor.memory)
+        ],
+        "description": "Heap grows from 256m to 600m",
+        "expected": "Lower initial memory, GC overhead during growth"
+    },
+
+    "heap-min-128-additional": {
+        "name": "heap-min-128-additional",
+        "options": [
+            "-XX:+UseParallelGC",
+            "-XX:ParallelGCThreads=4",
+            "-XX:MaxGCPauseMillis=200",
+            "-XX:GCTimeRatio=19",
+            "-Xms128m",  # Start at 256MB
+            # Max is 600MB (set by spark.executor.memory)
+        ],
+        "description": "Heap grows from 256m to 600m",
+        "expected": "Lower initial memory, GC overhead during growth"
+    },
+
+    "heap-min-128-any-gc": {
+        "name": "heap-min-128-any-gc",
+        "options": [
+            # "-XX:+UseG1GC",
+            "-Xms128m",  # Start at 256MB
             # Max is 600MB (set by spark.executor.memory)
         ],
         "description": "Heap grows from 256m to 600m",
@@ -201,7 +311,18 @@ JVM_CONFIGS = {
     "heap-min-256": {
         "name": "heap-min-256",
         "options": [
-            "-XX:+UseG1GC",
+            "-XX:+UseParallelGC",
+            "-Xms256m",  # Start at 256MB
+            # Max is 600MB (set by spark.executor.memory)
+        ],
+        "description": "Heap grows from 256m to 600m",
+        "expected": "Lower initial memory, GC overhead during growth"
+    },
+
+    "heap-min-256-any-gc": {
+        "name": "heap-min-256-any-gc",
+        "options": [
+            # "-XX:+UseG1GC",
             "-Xms256m",  # Start at 256MB
             # Max is 600MB (set by spark.executor.memory)
         ],
@@ -209,11 +330,42 @@ JVM_CONFIGS = {
         "expected": "Lower initial memory, GC overhead during growth"
     },
     
-    "heap-min-400": {
-        "name": "heap-400",
+    "heap-min-384": {
+        "name": "heap-384",
         "options": [
-            "-XX:+UseG1GC",
-            "-Xms400m",  
+            "-XX:+UseParallelGC",
+            "-Xms384m",  
+        ],
+        "description": "Pre-allocate 400m heap at startup",
+        "expected": "Less growth overhead"
+    },
+
+    "heap-min-384-any-gc": {
+        "name": "heap-384-any-gc",
+        "options": [
+            # "-XX:+UseG1GC",
+            "-Xms384m",  
+        ],
+        "description": "Pre-allocate 400m heap at startup",
+        "expected": "Less growth overhead"
+    },
+
+
+    "heap-min-512": {
+        "name": "heap-512",
+        "options": [
+            "-XX:+UseParallelGC",
+            "-Xms512m",  
+        ],
+        "description": "Pre-allocate 400m heap at startup",
+        "expected": "Less growth overhead"
+    },
+
+    "heap-min-512-any-gc": {
+        "name": "heap-512-any-gc",
+        "options": [
+            # "-XX:+UseG1GC",
+            "-Xms512m",  
         ],
         "description": "Pre-allocate 400m heap at startup",
         "expected": "Less growth overhead"
@@ -222,8 +374,18 @@ JVM_CONFIGS = {
     "heap-min-max": {
         "name": "heap-max",
         "options": [
-            "-XX:+UseG1GC",
-            "-Xms500m",  # Start at maximum
+            "-XX:+UseParallelGC",
+            "-Xms640m",  # Start at maximum
+        ],
+        "description": "Pre-allocate full 600m heap at startup",
+        "expected": "No growth overhead, uses memory immediately"
+    },
+
+    "heap-min-max-larger": {
+        "name": "heap-max-larger",
+        "options": [
+            "-XX:+UseParallelGC",
+            "-Xms768m",  # Start at maximum
         ],
         "description": "Pre-allocate full 600m heap at startup",
         "expected": "No growth overhead, uses memory immediately"
@@ -235,7 +397,8 @@ JVM_CONFIGS = {
     "metaspace-unlimited": {
         "name": "metaspace-unlimited",
         "options": [
-            "-XX:+UseG1GC",
+            "-XX:+UseParallelGC",
+            "-Xms128m",
             # No metaspace limits
         ],
         "description": "Unlimited metaspace (can grow unbounded), this is just G1GC with no extra configs",
@@ -245,7 +408,8 @@ JVM_CONFIGS = {
     "metaspace-128": {
         "name": "metaspace-128",
         "options": [
-            "-XX:+UseG1GC",
+            "-XX:+UseParallelGC",
+            "-Xms128m",
             "-XX:MetaspaceSize=96m",
             "-XX:MaxMetaspaceSize=128m",
         ],
@@ -256,8 +420,9 @@ JVM_CONFIGS = {
     "metaspace-192": {
         "name": "metaspace-192",
         "options": [
-            "-XX:+UseG1GC",
-            "-XX:MetaspaceSize=128m",
+            "-XX:+UseParallelGC",
+            "-Xms128m", # comment out for q9
+            "-XX:MetaspaceSize=96m",
             "-XX:MaxMetaspaceSize=192m",
         ],
         "description": "Generous metaspace limit (192MB)",
@@ -267,8 +432,9 @@ JVM_CONFIGS = {
     "metaspace-256": {
         "name": "metaspace-256",
         "options": [
-            "-XX:+UseG1GC",
-            "-XX:MetaspaceSize=128m",
+            "-XX:+UseParallelGC",
+            "-Xms128m", 
+            "-XX:MetaspaceSize=96m",
             "-XX:MaxMetaspaceSize=256m",
         ],
         "description": "Large metaspace limit (256MB)",
@@ -278,10 +444,29 @@ JVM_CONFIGS = {
     # ========================================
     # Compilation
     # ========================================
+
+    "tiered-full": {
+        "name": "tiered-full",
+        "options": [
+            "-XX:+UseParallelGC",
+            "-Xms128m", 
+            "-XX:MetaspaceSize=96m",
+            "-XX:MaxMetaspaceSize=256m",
+            # "-XX:+TieredCompilation",
+            # "-XX:TieredStopAtLevel=4",  # Full C1 + C2
+        ],
+        "description": "Full tiered compilation (default)",
+        "expected": "Balanced startup and peak performance"
+    },
+    
+
     "tiered-c1-only": {
         "name": "tiered-c1-only",
         "options": [
-            "-XX:+UseG1GC",
+            "-XX:+UseSerialGC",
+            # "-Xms128m", 
+            # "-XX:MetaspaceSize=96m",
+            # "-XX:MaxMetaspaceSize=256m",
             "-XX:+TieredCompilation",
             "-XX:TieredStopAtLevel=1",  # C1 compiler only
         ],
@@ -289,23 +474,15 @@ JVM_CONFIGS = {
         "expected": "Quick startup, lower peak performance"
     },
     
-    "tiered-full": {
-        "name": "tiered-full",
-        "options": [
-            "-XX:+UseG1GC",
-            "-XX:+TieredCompilation",
-            "-XX:TieredStopAtLevel=4",  # Full C1 + C2
-        ],
-        "description": "Full tiered compilation (default)",
-        "expected": "Balanced startup and peak performance"
-    },
-    
+
     "no-tiered-c2": {
         "name": "no-tiered-c2",
         "options": [
-            "-XX:+UseG1GC",
+            "-XX:+UseParallelGC",
+            "-Xms128m", 
+            "-XX:MetaspaceSize=96m",
+            "-XX:MaxMetaspaceSize=256m",
             "-XX:-TieredCompilation",
-            "-XX:CompileThreshold=1000",
         ],
         "description": "C2 compiler only (no tiering)",
         "expected": "Slower startup, best peak performance"
@@ -372,13 +549,69 @@ JVM_CONFIGS = {
         "expected": "Lowest memory usage"
     },
     
+    "final": {
+        "name": "final",
+        "options": [
+            "-XX:+UseParallelGC",
+            "-Xms768m",  # Start at maximum
+        ],
+        "description": "Pre-allocate full 600m heap at startup",
+        "expected": "No growth overhead, uses memory immediately"
+    },
+
+    "final2": {
+        "name": "final2",
+        "options": [
+            "-XX:+UseParallelGC",
+            "-Xms128m", 
+        ],
+        "description": "Pre-allocate full 600m heap at startup",
+        "expected": "No growth overhead, uses memory immediately"
+    },
+
+    "final3": {
+        "name": "final3",
+        "options": [
+            "-XX:+UseParallelGC",
+            "-Xms128m",  
+            "-XX:MetaspaceSize=96m",
+            "-XX:MaxMetaspaceSize=256m",
+        ],
+        "description": "Pre-allocate full 600m heap at startup",
+        "expected": "No growth overhead, uses memory immediately"
+    },
+
+    "final4": {
+        "name": "final4",
+        "options": [
+            "-XX:+UseSerialGC",
+            "-Xms128m", 
+            "-XX:MetaspaceSize=96m",
+            "-XX:MaxMetaspaceSize=256m",
+        ],
+        "description": "Pre-allocate full 600m heap at startup",
+        "expected": "No growth overhead, uses memory immediately"
+    },
+
+    "serial-no-jit": {
+        "name": "reg-serial",
+        "options": [
+            "-XX:+UseSerialGC",
+            "-Xint"
+        ],
+        "description": "Simple serial GC (single-threaded)",
+        "expected": "Simplest, predictable, but slower"
+    },
+
 }
 
 # ============================================
 # ACTIVE CONFIGURATION
 # ============================================
 # Configurations variable
-ACTIVE_CONFIG = "reserved-code-cache-240"
+ACTIVE_CONFIG = "reg-serial"
+# ACTIVE_CONFIG = "final4"
+# ACTIVE_CONFIG = "final3"
 
 # ============================================
 # HELPER FUNCTIONS
@@ -395,13 +628,14 @@ def build_jvm_options_string():
     config = JVM_CONFIGS[ACTIVE_CONFIG]
     options = config["options"].copy()
     
-    # Add GC Logging
+    # Add GC and other logging Logging
     gc_logging = [
         "-XX:+PrintGCDetails",
         "-XX:+PrintGCDateStamps",
         "-XX:+PrintGCTimeStamps",
         "-XX:+PrintGCApplicationStoppedTime",
         f"-Xloggc:/tmp/gc-{ACTIVE_CONFIG}.log",
+        "-XX:+PrintFlagsFinal",
     ]
     options.extend(gc_logging)
     

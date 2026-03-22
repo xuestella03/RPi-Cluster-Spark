@@ -1,0 +1,4 @@
+header,maxmem,runtime
+Query5 dietpi liberica mem512m default,350144,188
+Query5 dietpi liberica mem640m default,349332,180
+Query5 dietpi liberica mem768m default,343304,184

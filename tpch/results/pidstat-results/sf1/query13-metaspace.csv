@@ -1,0 +1,3 @@
+header,maxmem,runtime
+Query13 dietpi liberica mem640m metaspace 192,674704,124
+Query13 dietpi liberica mem640m metaspace 256,697748,128

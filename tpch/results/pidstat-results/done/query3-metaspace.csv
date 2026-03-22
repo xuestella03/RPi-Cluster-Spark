@@ -1,0 +1,4 @@
+header,maxmem,runtime
+Query3 dietpi liberica mem768m metaspace unlimited,498520,127
+Query3 dietpi liberica mem768m metaspace 256,492024,131
+Query3 dietpi liberica mem768m metaspace 192,498036,132

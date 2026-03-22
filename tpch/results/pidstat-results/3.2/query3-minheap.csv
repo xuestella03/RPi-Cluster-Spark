@@ -1,0 +1,5 @@
+header,maxmem,runtime
+Query3 dietpi liberica mem640m heap min 128,567740,212
+Query3 dietpi liberica mem640m heap min 256,461292,200
+Query3 dietpi liberica mem640m heap min 384,565556,207
+Query3 dietpi liberica mem640m heap min 512,643304,206

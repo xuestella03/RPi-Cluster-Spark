@@ -1,0 +1,9 @@
+Query6 dietpi liberica mem768m two thread parallel,429372,100
+Query6 dietpi liberica mem768m reg parallel,414852,95
+Query6 dietpi liberica mem768m one thread parallel,470220,102
+Query6 dietpi liberica mem768m reg serial,256676,97
+Query6 dietpi liberica mem768m reg parallel,445456,93
+Query6 dietpi liberica mem768m one thread parallel,467684,100
+Query6 dietpi liberica mem768m two thread parallel,441292,91
+Query6 dietpi liberica mem768m reg serial,250252,92
+Query6 dietpi liberica mem768m serial no jit,254136,99

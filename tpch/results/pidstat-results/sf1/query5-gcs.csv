@@ -1,0 +1,5 @@
+header,maxmem,runtime
+Query5 dietpi liberica mem640m reg g1gc,470808,202
+Query5 dietpi liberica mem640m reg parallel,513792,187
+Query5 dietpi liberica mem640m reg serial,350792,194
+Query5 dietpi liberica mem512m reg serial,352260,193

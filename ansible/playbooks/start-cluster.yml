@@ -121,7 +121,7 @@
           #!/usr/bin/env bash
           export JAVA_HOME={{ worker_java_home }}
           export SPARK_WORKER_CORES=4
-          export SPARK_WORKER_MEMORY=4g
+          export SPARK_WORKER_MEMORY=896g
         mode: '0755'
         
     - name: Get master IP
@@ -164,6 +164,17 @@
       debug:
         msg: "Worker connected to spark://{{ master_ip }}:7077"
       when: worker_check.rc == 0
+
+# - name: Configure spark-env.sh on workers
+#   hosts: workers
+#   tasks:
+#     - name: Set worker memory limit
+#       lineinfile:
+#         path: /opt/spark/conf/spark-env.sh
+#         regexp: '^export SPARK_WORKER_MEMORY'
+#         line: 'export SPARK_WORKER_MEMORY=640m'
+#         create: yes
+
 - name: Wait for cluster to be fully ready
   hosts: server
   tasks:

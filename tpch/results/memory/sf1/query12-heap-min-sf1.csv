@@ -1,0 +1,5 @@
+timestamp,query,elapsed_s,jvm_config,executor_memory,memory_fraction,storage_fraction,shuffle_partitions,OnHeapExecutionMemory_MB,OnHeapStorageMemory_MB,OnHeapUnifiedMemory_MB,JVMHeapMemory_MB,ProcessTreeJVMRSS_MB,MinorGCCount,MinorGCTime_ms,MajorGCCount,MajorGCTime_ms
+20260303_152705,12,184.701,heap-min-128,640m,0.45,0.5,4,9.44,4.05,13.38,142.97,369.47,229,2462,0,0
+20260303_153117,12,173.87,heap-min-256,640m,0.45,0.5,4,9.44,4.12,13.45,231.53,456.76,108,2016,0,0
+20260303_153507,12,177.73,heap-min-384,640m,0.45,0.5,4,9.44,4.04,13.37,312.44,549.4,74,1810,0,0
+20260303_154110,12,170.75,heap-min-512,640m,0.45,0.5,4,9.44,4.12,13.45,403.39,629.37,57,1625,0,0

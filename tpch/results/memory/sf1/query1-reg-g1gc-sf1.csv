@@ -1,0 +1,12 @@
+timestamp,query,elapsed_s,jvm_config,executor_memory,memory_fraction,storage_fraction,shuffle_partitions,OnHeapExecutionMemory_MB,OnHeapStorageMemory_MB,OnHeapUnifiedMemory_MB,JVMHeapMemory_MB,ProcessTreeJVMRSS_MB,MinorGCCount,MinorGCTime_ms,MajorGCCount,MajorGCTime_ms
+20260306_160609,1,175.33,reg-g1gc,512m,0.45,0.5,4,5.24,0.71,5.82,216.69,452.19,430,2527,0,0
+20260306_162955,1,172.888,reg-g1gc,512m,0.45,0.5,4,5.24,1.19,5.82,201.47,454.31,489,2735,0,0
+20260306_163336,1,174.199,reg-g1gc,512m,0.45,0.5,4,5.24,0.71,5.82,213.23,491.09,493,2892,0,0
+20260306_161003,1,169.266,reg-g1gc,640m,0.45,0.5,4,9.44,0.71,10.01,228.51,465.12,393,2273,0,0
+20260306_161415,1,170.575,reg-g1gc,640m,0.45,0.5,4,9.44,1.19,10.01,256.84,535.98,451,2419,0,0
+20260306_162010,1,178.126,reg-g1gc,640m,0.45,0.5,4,9.44,0.71,10.01,196.95,416.53,460,2716,0,0
+20260306_162534,1,174.782,reg-g1gc,640m,0.45,0.5,4,9.44,0.71,10.01,193.68,417.48,477,2697,0,0
+20260306_163806,1,173.12,reg-g1gc,768m,0.45,0.5,4,9.44,0.71,10.01,215.27,435.97,430,2505,0,0
+20260306_164235,1,172.748,reg-g1gc,768m,0.45,0.5,4,9.44,0.71,10.01,195.7,427.06,448,2413,0,0
+20260306_164648,1,172.311,reg-g1gc,768m,0.45,0.5,4,9.44,0.71,10.01,197.32,422.24,458,2568,0,0
+timestamp,query,elapsed_s,jvm_config,executor_memory,memory_fraction,storage_fraction,shuffle_partitions,OnHeapExecutionMemory_MB,OnHeapStorageMemory_MB,OnHeapUnifiedMemory_MB,JVMHeapMemory_MB,ProcessTreeJVMRSS_MB,MinorGCCount,MinorGCTime_ms,MajorGCCount,MajorGCTime_ms

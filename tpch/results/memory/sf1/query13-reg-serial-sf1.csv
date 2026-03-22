@@ -1,0 +1,6 @@
+timestamp,query,elapsed_s,jvm_config,executor_memory,memory_fraction,storage_fraction,shuffle_partitions,OnHeapExecutionMemory_MB,OnHeapStorageMemory_MB,OnHeapUnifiedMemory_MB,JVMHeapMemory_MB,ProcessTreeJVMRSS_MB,MinorGCCount,MinorGCTime_ms,MajorGCCount,MajorGCTime_ms
+20260303_220637,1,251.302,reg-serial,640m,0.45,0.5,4,9.44,0.71,10.01,103.66,332.09,1438,8374,5,1252
+20260303_220637,13,45.521,reg-serial,640m,0.45,0.5,4,148.79,1.58,150.38,295.3,565.79,1500,9528,7,2353
+timestamp,query,elapsed_s,jvm_config,executor_memory,memory_fraction,storage_fraction,shuffle_partitions,OnHeapExecutionMemory_MB,OnHeapStorageMemory_MB,OnHeapUnifiedMemory_MB,JVMHeapMemory_MB,ProcessTreeJVMRSS_MB,MinorGCCount,MinorGCTime_ms,MajorGCCount,MajorGCTime_ms
+20260303_221422,1,247.977,reg-serial,640m,0.45,0.5,4,9.44,0.71,10.01,103.32,317.1,1447,8304,5,1039
+20260303_221422,13,43.785,reg-serial,640m,0.45,0.5,4,148.79,1.58,150.38,235.05,501.97,1511,9525,7,2487
