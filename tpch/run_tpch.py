@@ -24,6 +24,7 @@ import socket
 import requests
 import json
 from datetime import datetime
+import random
 
 class TPCH:
     def __init__(self, data_path, sf=0.1):
@@ -329,9 +330,9 @@ class TPCH:
             lower peak in a later run would give a negative delta, which is wrong.
 
         GC metrics (MinorGCCount, MinorGCTime_ms, MajorGCCount, MajorGCTime_ms):
-            These are cumulative counters that only increase. To get the GC that
-            happened during a specific run, we subtract before from after, then
-            sum across executors (GC happens independently on each executor).
+            These are cumulative counters, so we subtract the before from the after
+            to get the GC for that run specifically. We also need to sum across the 
+            executors (GC happens independently on each executor).
 
         Returns a flat dict ready for CSV writing.
         """
@@ -392,7 +393,7 @@ class TPCH:
         """
         print(f"\nRunning query {query_num}")
 
-        # Snapshot BEFORE — captures cumulative state up to this point
+        # Snapshot BEFORE -- captures cumulative state up to this point
         metrics_before = self.get_executor_peak_metrics()
 
         start = time.time()
@@ -437,7 +438,7 @@ class TPCH:
         query_num_label = config.CUR_QUERY
         csv_path = os.path.join(
             results_dir,
-            f"query{query_num_label}-{config.ACTIVE_CONFIG}-sf{config.SF}.csv"
+            f"{timestamp}-{config.ACTIVE_CONFIG}-sf{config.SF}.csv"
         )
 
         spark_cfg = self.get_spark_configs()
@@ -456,91 +457,117 @@ class TPCH:
             writer = csv.DictWriter(f, fieldnames=fieldnames)
             writer.writeheader()
 
-            for query_num, query_function in queries.QUERIES.items():
+            # For now we'll do 5 iterations
+            for i in range(5):
+                
+                # Randomize queries 
+                shuffled = random.shuffle(queries.QUERIES.items())
 
-                # ── Run 1: Warmup ──────────────────────────────────────────
-                # Purpose: warm OS page cache so data is in memory for run 2,
-                # warm JIT so hot paths are compiled.
-                # We still record it so you can compare warm vs cold if needed.
-                print(f"\n{'='*40}")
-                print(f"WARMUP RUN — Query {query_num}")
-                print(f"{'='*40}")
+                for query_num, query_function in shuffled:
+                    print(f"Running iteration {i}: query {query_num}")
+                    run_elapsed, _, before_run, after_run = self.run_query(query_num, query_function)
+                    run_peaks = self.aggregate_peak_metrics(before_run, after_run)
+                    run_row = {
+                        "timestamp": timestamp,
+                        "run": "warmup",
+                        "query": query_num,
+                        "elapsed_s": round(run_elapsed, 3),
+                        "jvm_config": config.ACTIVE_CONFIG,
+                        "executor_memory": config.SPARK_EXECUTOR_MEMORY,
+                        "memory_fraction": spark_cfg.get("memory.fraction", "0.6"),
+                        "storage_fraction": spark_cfg.get("memory.storageFraction", "0.5"),
+                        "shuffle_partitions": spark_cfg.get("sql.shuffle.partitions", "4"),
+                        **{k: round(v, 2) if v is not None else "" for k, v in run_peaks.items()}
+                    }
 
-                warmup_elapsed, _, before_warmup, after_warmup = self.run_query(query_num, query_function)
-                warmup_peaks = self.aggregate_peak_metrics(before_warmup, after_warmup)
+                    writer.writerow(run_row)
+                    f.flush()
 
-                warmup_row = {
-                    "timestamp": timestamp,
-                    "run": "warmup",
-                    "query": query_num,
-                    "elapsed_s": round(warmup_elapsed, 3),
-                    "jvm_config": config.ACTIVE_CONFIG,
-                    "executor_memory": config.SPARK_EXECUTOR_MEMORY,
-                    "memory_fraction": spark_cfg.get("memory.fraction", "0.6"),
-                    "storage_fraction": spark_cfg.get("memory.storageFraction", "0.5"),
-                    "shuffle_partitions": spark_cfg.get("sql.shuffle.partitions", "4"),
-                    **{k: round(v, 2) if v is not None else "" for k, v in warmup_peaks.items()}
-                }
-                writer.writerow(warmup_row)
-                f.flush()
+        #     for query_num, query_function in queries.QUERIES.items():
 
-                print(f"Warmup complete: {warmup_elapsed:.2f}s")
-                print(f"Warmup peaks: {json.dumps(warmup_peaks, indent=2)}")
+        #         # ── Run 1: Warmup ──────────────────────────────────────────
+        #         # Purpose: warm OS page cache so data is in memory for run 2,
+        #         # warm JIT so hot paths are compiled.
+        #         # We still record it so you can compare warm vs cold if needed.
+        #         print(f"\n{'='*40}")
+        #         print(f"WARMUP RUN — Query {query_num}")
+        #         print(f"{'='*40}")
 
-                # Clear Spark's SQL result cache between runs.
-                # This evicts any cached DataFrames/broadcast results from storage memory
-                # so run 2 doesn't get an unfair storage memory advantage.
-                # Note: OS page cache is NOT cleared — that's intentional, since
-                # we want run 2 to measure compute/GC without disk I/O noise.
-                self.spark.catalog.clearCache()
+        #         warmup_elapsed, _, before_warmup, after_warmup = self.run_query(query_num, query_function)
+        #         warmup_peaks = self.aggregate_peak_metrics(before_warmup, after_warmup)
 
-                # ── Run 2: Measurement ─────────────────────────────────────
-                # Baseline for GC deltas is the end of warmup (after_warmup),
-                # so GC counts/times reflect only what happens during this run.
-                print(f"\n{'='*40}")
-                print(f"MEASUREMENT RUN — Query {query_num}")
-                print(f"{'='*40}")
+        #         warmup_row = {
+        #             "timestamp": timestamp,
+        #             "run": "warmup",
+        #             "query": query_num,
+        #             "elapsed_s": round(warmup_elapsed, 3),
+        #             "jvm_config": config.ACTIVE_CONFIG,
+        #             "executor_memory": config.SPARK_EXECUTOR_MEMORY,
+        #             "memory_fraction": spark_cfg.get("memory.fraction", "0.6"),
+        #             "storage_fraction": spark_cfg.get("memory.storageFraction", "0.5"),
+        #             "shuffle_partitions": spark_cfg.get("sql.shuffle.partitions", "4"),
+        #             **{k: round(v, 2) if v is not None else "" for k, v in warmup_peaks.items()}
+        #         }
+        #         writer.writerow(warmup_row)
+        #         f.flush()
 
-                meas_elapsed, _, before_meas, after_meas = self.run_query(query_num, query_function)
+        #         print(f"Warmup complete: {warmup_elapsed:.2f}s")
+        #         print(f"Warmup peaks: {json.dumps(warmup_peaks, indent=2)}")
 
-                # For GC metrics: delta from end-of-warmup to end-of-measurement
-                # For memory metrics: peak since app start (from after_meas)
-                meas_peaks = self.aggregate_peak_metrics(before_meas, after_meas)
+        #         # Clear Spark's SQL result cache between runs.
+        #         # This evicts any cached DataFrames/broadcast results from storage memory
+        #         # so run 2 doesn't get an unfair storage memory advantage.
+        #         # Note: OS page cache is NOT cleared — that's intentional, since
+        #         # we want run 2 to measure compute/GC without disk I/O noise.
+        #         self.spark.catalog.clearCache()
 
-                times[query_num] = meas_elapsed
+        #         # ── Run 2: Measurement ─────────────────────────────────────
+        #         # Baseline for GC deltas is the end of warmup (after_warmup),
+        #         # so GC counts/times reflect only what happens during this run.
+        #         print(f"\n{'='*40}")
+        #         print(f"MEASUREMENT RUN — Query {query_num}")
+        #         print(f"{'='*40}")
 
-                meas_row = {
-                    "timestamp": timestamp,
-                    "run": "measurement",
-                    "query": query_num,
-                    "elapsed_s": round(meas_elapsed, 3),
-                    "jvm_config": config.ACTIVE_CONFIG,
-                    "executor_memory": config.SPARK_EXECUTOR_MEMORY,
-                    "memory_fraction": spark_cfg.get("memory.fraction", "0.6"),
-                    "storage_fraction": spark_cfg.get("memory.storageFraction", "0.5"),
-                    "shuffle_partitions": spark_cfg.get("sql.shuffle.partitions", "4"),
-                    **{k: round(v, 2) if v is not None else "" for k, v in meas_peaks.items()}
-                }
-                writer.writerow(meas_row)
-                f.flush()
+        #         meas_elapsed, _, before_meas, after_meas = self.run_query(query_num, query_function)
 
-                print(f"Measurement complete: {meas_elapsed:.2f}s")
-                print(f"Measurement peaks: {json.dumps(meas_peaks, indent=2)}")
+        #         # For GC metrics: delta from end-of-warmup to end-of-measurement
+        #         # For memory metrics: peak since app start (from after_meas)
+        #         meas_peaks = self.aggregate_peak_metrics(before_meas, after_meas)
 
-            print("\n" + "="*60)
-            print("BENCHMARK SUMMARY")
-            print("="*60)
+        #         times[query_num] = meas_elapsed
 
-        self.print_config_summary()
+        #         meas_row = {
+        #             "timestamp": timestamp,
+        #             "run": "measurement",
+        #             "query": query_num,
+        #             "elapsed_s": round(meas_elapsed, 3),
+        #             "jvm_config": config.ACTIVE_CONFIG,
+        #             "executor_memory": config.SPARK_EXECUTOR_MEMORY,
+        #             "memory_fraction": spark_cfg.get("memory.fraction", "0.6"),
+        #             "storage_fraction": spark_cfg.get("memory.storageFraction", "0.5"),
+        #             "shuffle_partitions": spark_cfg.get("sql.shuffle.partitions", "4"),
+        #             **{k: round(v, 2) if v is not None else "" for k, v in meas_peaks.items()}
+        #         }
+        #         writer.writerow(meas_row)
+        #         f.flush()
 
-        print("Query Execution Times (measurement run):")
-        print("-"*60)
-        for query_num, elapsed in times.items():
-            print(f"  {query_num}: {elapsed:.2f}s")
-        print("-"*60)
-        print(f"  Total Time: {sum(times.values()):.2f}s")
-        print("="*60 + "\n")
-        print(f"Results saved to: {csv_path}")
+        #         print(f"Measurement complete: {meas_elapsed:.2f}s")
+        #         print(f"Measurement peaks: {json.dumps(meas_peaks, indent=2)}")
+
+        #     print("\n" + "="*60)
+        #     print("BENCHMARK SUMMARY")
+        #     print("="*60)
+
+        # self.print_config_summary()
+
+        # print("Query Execution Times (measurement run):")
+        # print("-"*60)
+        # for query_num, elapsed in times.items():
+        #     print(f"  {query_num}: {elapsed:.2f}s")
+        # print("-"*60)
+        # print(f"  Total Time: {sum(times.values()):.2f}s")
+        # print("="*60 + "\n")
+        # print(f"Results saved to: {csv_path}")
 
     def cleanup(self):
         self.spark.stop()
