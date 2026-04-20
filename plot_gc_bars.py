@@ -61,13 +61,14 @@ def main():
     df = pd.read_csv(filename)
 
     # Sort executor memory numerically (strip 'm')
-    # df["exec_mem_num"] = df["executor_memory"].str.replace("m", "", regex=False).astype(int)
-    # df = df.sort_values("exec_mem_num")
+    df["exec_mem_num"] = df["executor_memory"].str.replace("m", "", regex=False).astype(int)
+    df = df.sort_values("exec_mem_num")
 
-    df["jvm_config"] = df["jvm_config"]
+    # df["jvm_config"] = df["jvm_config"]
     # df = df.sort_values("jvm_config")
 
-    labels = df["jvm_config"].tolist()
+    labels = df["exec_mem_num"].tolist()
+    # labels = df["jvm_config"].tolist()
     minor = df["MinorGCTime_ms"].tolist()
     major = df["MajorGCTime_ms"].tolist()
 

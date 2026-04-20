@@ -36,27 +36,6 @@ class TPCH:
 
         jvm_options = config.build_jvm_options_string()
 
-        # self.spark = SparkSession.builder \
-        #     .appName("TPC-H Benchmark") \
-        #     .master(config.CLUSTER_MASTER_URL) \
-        #     .config("spark.driver.memory", config.SPARK_DRIVER_MEMORY) \
-        #     .config("spark.executor.memory", config.SPARK_EXECUTOR_MEMORY) \
-        #     .config("spark.sql.shuffle.partitions", "8") \
-        #     .config("spark.eventLog.enabled", True) \
-        #     .config("spark.eventLog.dir", "/home/xuestella03/Documents/Repositories/RPi-Cluster-Spark/tpch/memory") \
-        #     .config("spark.log.structuredLogging.enabled", True) \
-        #     .getOrCreate()
-        
-        # self.spark = SparkSession.builder \
-        #     .appName("TPC-H Benchmark") \
-        #     .master(config.CLUSTER_MASTER_URL) \
-        #     .config("spark.driver.memory", config.SPARK_DRIVER_MEMORY) \
-        #     .config("spark.executor.memory", config.SPARK_EXECUTOR_MEMORY) \
-        #     .config("spark.sql.shuffle.partitions", "4") \
-        #     .config("spark.driver.extraJavaOptions", jvm_options) \
-        #     .config("spark.executor.extraJavaOptions", jvm_options) \
-        #     .getOrCreate()
-
         self.spark = SparkSession.builder \
             .appName("TPC-H Benchmark") \
             .master(config.CLUSTER_MASTER_URL) \
@@ -73,27 +52,6 @@ class TPCH:
             .config("spark.memory.fraction", config.MEMORY_FRACTION) \
             .config("spark.executor.cores", config.SPARK_EXECUTOR_CORES) \
             .getOrCreate()
-            # .config("spark.executor.cores", config.SPARK_EXECUTOR_CORES) \
-
-        # Can't do below because you can't set Xmx and Xms through java options 
-        # need to use spark.driver.memory
-        # self.spark = SparkSession.builder \
-        #     .appName("TPC-H Benchmark") \
-        #     .master(config.CLUSTER_MASTER_URL) \
-        #     .config("spark.driver.memory", config.SPARK_DRIVER_MEMORY) \
-        #     .config("spark.executor.memory", config.SPARK_EXECUTOR_MEMORY) \
-        #     .config("spark.driver.extraJavaOptions", jvm_options) \
-        #     .config("spark.executor.extraJavaOptions", jvm_options) \
-        #     .config("spark.sql.shuffle.partitions", "8") \
-        #     .getOrCreate()
-        
-        # self.spark = SparkSession.builder \
-        #     .appName("TPC-H Benchmark") \
-        #     .master(config.CLUSTER_MASTER_URL) \
-        #     .config("spark.driver.memory", config.SPARK_DRIVER_MEMORY) \
-        #     .config("spark.executor.memory", config.SPARK_EXECUTOR_MEMORY) \
-        #     .config("spark.sql.shuffle.partitions", "8") \
-        #     .getOrCreate()
 
         print(f"Spark session started.")
         print(f"Spark UI here: {self.spark.sparkContext.uiWebUrl}")
@@ -322,7 +280,9 @@ class TPCH:
     def get_executor_peak_metrics(self):
         """
         Pull peak executor memory metrics from Spark REST API.
-        Returns dict of {executor_id: peakMemoryMetrics}.
+        Returns dict of {executor_id: {metric_name: value}}.
+        Note: these are CUMULATIVE since app start — use snapshot_and_delta()
+        to get per-run values.
         """
         try:
             app_id = self.spark.sparkContext.applicationId
@@ -338,72 +298,154 @@ class TPCH:
                 peak = ex.get("peakMemoryMetrics", {})
                 if peak:
                     results[ex_id] = {
-                        # Unified memory
+                        # Unified memory (these are true peaks — take max, not delta)
                         "OnHeapExecutionMemory_MB":  peak.get("OnHeapExecutionMemory", 0) / 1e6,
                         "OnHeapStorageMemory_MB":    peak.get("OnHeapStorageMemory", 0) / 1e6,
                         "OnHeapUnifiedMemory_MB":    peak.get("OnHeapUnifiedMemory", 0) / 1e6,
-                        # Total JVM heap
+                        # Total JVM heap (true peak — take max)
                         "JVMHeapMemory_MB":          peak.get("JVMHeapMemory", 0) / 1e6,
                         "JVMOffHeapMemory_MB":       peak.get("JVMOffHeapMemory", 0) / 1e6,
-                        # Process-level (RSS = actual physical RAM used), should match pidstat
+                        # Process-level RSS (true peak — take max)
                         "ProcessTreeJVMRSS_MB":      peak.get("ProcessTreeJVMRSSMemory", 0) / 1e6,
-                        # GC
-                        "MinorGCCount":  peak.get("MinorGCCount", 0),
+                        # GC counts/times (cumulative counters — must delta these)
+                        "MinorGCCount":   peak.get("MinorGCCount", 0),
                         "MinorGCTime_ms": peak.get("MinorGCTime", 0),
-                        "MajorGCCount":  peak.get("MajorGCCount", 0),
+                        "MajorGCCount":   peak.get("MajorGCCount", 0),
                         "MajorGCTime_ms": peak.get("MajorGCTime", 0),
                     }
             return results
         except Exception as e:
             print(f"Warning: could not fetch executor metrics: {e}")
             return {}
-    
+
+    def aggregate_peak_metrics(self, metrics_before, metrics_after):
+        """
+        Compute per-run metrics by combining a before-snapshot and after-snapshot.
+
+        Memory metrics (OnHeap*, JVMHeap*, RSS):
+            These are true high-water marks tracked by Spark since app start.
+            They never decrease. So the "after" value IS the peak for the run —
+            we just take max across executors. We do NOT delta these because a
+            lower peak in a later run would give a negative delta, which is wrong.
+
+        GC metrics (MinorGCCount, MinorGCTime_ms, MajorGCCount, MajorGCTime_ms):
+            These are cumulative counters that only increase. To get the GC that
+            happened during a specific run, we subtract before from after, then
+            sum across executors (GC happens independently on each executor).
+
+        Returns a flat dict ready for CSV writing.
+        """
+        MEMORY_KEYS = {
+            "OnHeapExecutionMemory_MB",
+            "OnHeapStorageMemory_MB",
+            "OnHeapUnifiedMemory_MB",
+            "JVMHeapMemory_MB",
+            # "JVMOffHeapMemory_MB",
+            "ProcessTreeJVMRSS_MB",
+        }
+        GC_KEYS = {
+            "MinorGCCount",
+            "MinorGCTime_ms",
+            "MajorGCCount",
+            "MajorGCTime_ms",
+        }
+        ALL_KEYS = MEMORY_KEYS | GC_KEYS
+
+        # Work only with worker executors (exclude driver)
+        def worker_only(metrics):
+            filtered = {eid: m for eid, m in metrics.items() if eid != "driver"}
+            return filtered if filtered else metrics  # fallback if only driver exists
+
+        after_workers = worker_only(metrics_after)
+        before_workers = worker_only(metrics_before)
+
+        if not after_workers:
+            print("WARNING: No executor peak metrics found.")
+            return {k: None for k in ALL_KEYS}
+
+        result = {}
+
+        for k in MEMORY_KEYS:
+            # True peak since app start — take max across executors from the AFTER snapshot.
+            # The before snapshot is irrelevant for memory peaks.
+            vals = [m.get(k, 0) for m in after_workers.values() if m.get(k) is not None]
+            result[k] = max(vals) if vals else None
+
+        for k in GC_KEYS:
+            # Cumulative counter — delta each executor then sum.
+            # This gives total GC activity that happened during this specific run.
+            total = 0
+            for eid, after_vals in after_workers.items():
+                after_val = after_vals.get(k, 0)
+                before_val = before_workers.get(eid, {}).get(k, 0)
+                total += max(0, after_val - before_val)  # max(0,...) guards against clock skew
+            result[k] = total
+
+        return result
+
     def run_query(self, query_num, query_function):
-        """Run a single query and return timing and result snippet"""
+        """
+        Run a single query.
         
-        # TODO: attach the result prints to a verbose flag
-        
+        Snapshots metrics before and after execution so the caller can compute
+        per-run deltas. Returns (elapsed_s, result_df, metrics_before, metrics_after).
+        """
         print(f"\nRunning query {query_num}")
+
+        # Snapshot BEFORE — captures cumulative state up to this point
+        metrics_before = self.get_executor_peak_metrics()
+
         start = time.time()
         result_df = query_function(self.spark)
+        result_df.show(3, truncate=False)  # triggers actual execution
+        elapsed = time.time() - start
 
-        print("Sample Results:")
-        result_df.show(3, truncate=False)
+        # Snapshot AFTER
+        metrics_after = self.get_executor_peak_metrics()
 
-        elapsed = time.time() - start 
+        print(f"Time Elapsed: {elapsed:.2f}s")
 
-        print(f"Time Elapsed: {elapsed:.02f}")
-        
-        # Note: if running multiple queries in one app, 
-        # will need to take delta of before that query to after 
-        metrics = self.get_executor_peak_metrics()
-        print(f"Peak Metrics: {json.dumps(metrics, indent=2)}")
-
-        return elapsed, result_df, metrics
+        return elapsed, result_df, metrics_before, metrics_after
 
     def run_queries(self):
+        """
+        Runs each query twice:
+          - Run 1 (warmup): warms the OS page cache and JIT, result discarded
+          - Run 2 (measurement): recorded to CSV, reflects in-memory performance
 
+        The second run's metrics are computed as a delta from the end of run 1,
+        so GC counts/times reflect only what happened during run 2.
+        Memory peaks reflect the high-water mark since app start (unavoidable —
+        Spark resets these only on executor restart, not between queries).
+
+        Change for iterations:
+        for i in range(number of times we run everything):
+            for q in random order of queries:
+                run and collect data 
+                compute values delta -- note that this 
+                clear cache after the q runs
+        take mean over i iterations for each run
+
+        """
         print("\nRunning queries...")
-        print("The queries to run:")
-        print(list(queries.QUERIES.keys()))
+        print("The queries to run:", list(queries.QUERIES.keys()))
 
         results_dir = "/home/xuestella03/Documents/Repositories/RPi-Cluster-Spark/tpch/results/memory"
         os.makedirs(results_dir, exist_ok=True)
     
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        query_num = config.CUR_QUERY
+        query_num_label = config.CUR_QUERY
         csv_path = os.path.join(
             results_dir,
-            f"query{query_num}-{config.ACTIVE_CONFIG}-sf{config.SF}.csv"
+            f"query{query_num_label}-{config.ACTIVE_CONFIG}-sf{config.SF}.csv"
         )
 
         spark_cfg = self.get_spark_configs()
 
-        # These are things we want in the csv 
-        # including the things from the spark api
         fieldnames = [
-            "timestamp", "query", "elapsed_s", "jvm_config", "executor_memory", "memory_fraction",
-            "storage_fraction", "shuffle_partitions","OnHeapExecutionMemory_MB", "OnHeapStorageMemory_MB", "OnHeapUnifiedMemory_MB",
+            "timestamp", "run", "query", "elapsed_s", "jvm_config", "executor_memory",
+            "memory_fraction", "storage_fraction", "shuffle_partitions",
+            "OnHeapExecutionMemory_MB", "OnHeapStorageMemory_MB", "OnHeapUnifiedMemory_MB",
             "JVMHeapMemory_MB", "ProcessTreeJVMRSS_MB",
             "MinorGCCount", "MinorGCTime_ms", "MajorGCCount", "MajorGCTime_ms"
         ]
@@ -411,81 +453,101 @@ class TPCH:
         times = {}
 
         with open(csv_path, 'a', newline='') as f:
-
             writer = csv.DictWriter(f, fieldnames=fieldnames)
             writer.writeheader()
 
-            # Honestly change this because I only every run one at a time now
             for query_num, query_function in queries.QUERIES.items():
-                elapsed, _, peaks = self.run_query(query_num, query_function) # temporarily don't store results df
-                times[query_num] = elapsed
-                row = {
+
+                # ── Run 1: Warmup ──────────────────────────────────────────
+                # Purpose: warm OS page cache so data is in memory for run 2,
+                # warm JIT so hot paths are compiled.
+                # We still record it so you can compare warm vs cold if needed.
+                print(f"\n{'='*40}")
+                print(f"WARMUP RUN — Query {query_num}")
+                print(f"{'='*40}")
+
+                warmup_elapsed, _, before_warmup, after_warmup = self.run_query(query_num, query_function)
+                warmup_peaks = self.aggregate_peak_metrics(before_warmup, after_warmup)
+
+                warmup_row = {
                     "timestamp": timestamp,
+                    "run": "warmup",
                     "query": query_num,
-                    "elapsed_s": round(elapsed, 3),
+                    "elapsed_s": round(warmup_elapsed, 3),
                     "jvm_config": config.ACTIVE_CONFIG,
                     "executor_memory": config.SPARK_EXECUTOR_MEMORY,
                     "memory_fraction": spark_cfg.get("memory.fraction", "0.6"),
-                    "storage_fraction": spark_cfg.get("memory.storageFraction", "0.5"), # add later
+                    "storage_fraction": spark_cfg.get("memory.storageFraction", "0.5"),
                     "shuffle_partitions": spark_cfg.get("sql.shuffle.partitions", "4"),
-                    **{k: round(peaks.get("0", "1").get(k, 0), 2) for k in fieldnames 
-                    if k in peaks.get("0", "1")}
+                    **{k: round(v, 2) if v is not None else "" for k, v in warmup_peaks.items()}
                 }
-                writer.writerow(row)
-                f.flush()  # write after each query in case of crash
-            
+                writer.writerow(warmup_row)
+                f.flush()
+
+                print(f"Warmup complete: {warmup_elapsed:.2f}s")
+                print(f"Warmup peaks: {json.dumps(warmup_peaks, indent=2)}")
+
+                # Clear Spark's SQL result cache between runs.
+                # This evicts any cached DataFrames/broadcast results from storage memory
+                # so run 2 doesn't get an unfair storage memory advantage.
+                # Note: OS page cache is NOT cleared — that's intentional, since
+                # we want run 2 to measure compute/GC without disk I/O noise.
+                self.spark.catalog.clearCache()
+
+                # ── Run 2: Measurement ─────────────────────────────────────
+                # Baseline for GC deltas is the end of warmup (after_warmup),
+                # so GC counts/times reflect only what happens during this run.
+                print(f"\n{'='*40}")
+                print(f"MEASUREMENT RUN — Query {query_num}")
+                print(f"{'='*40}")
+
+                meas_elapsed, _, before_meas, after_meas = self.run_query(query_num, query_function)
+
+                # For GC metrics: delta from end-of-warmup to end-of-measurement
+                # For memory metrics: peak since app start (from after_meas)
+                meas_peaks = self.aggregate_peak_metrics(before_meas, after_meas)
+
+                times[query_num] = meas_elapsed
+
+                meas_row = {
+                    "timestamp": timestamp,
+                    "run": "measurement",
+                    "query": query_num,
+                    "elapsed_s": round(meas_elapsed, 3),
+                    "jvm_config": config.ACTIVE_CONFIG,
+                    "executor_memory": config.SPARK_EXECUTOR_MEMORY,
+                    "memory_fraction": spark_cfg.get("memory.fraction", "0.6"),
+                    "storage_fraction": spark_cfg.get("memory.storageFraction", "0.5"),
+                    "shuffle_partitions": spark_cfg.get("sql.shuffle.partitions", "4"),
+                    **{k: round(v, 2) if v is not None else "" for k, v in meas_peaks.items()}
+                }
+                writer.writerow(meas_row)
+                f.flush()
+
+                print(f"Measurement complete: {meas_elapsed:.2f}s")
+                print(f"Measurement peaks: {json.dumps(meas_peaks, indent=2)}")
+
             print("\n" + "="*60)
             print("BENCHMARK SUMMARY")
             print("="*60)
-        
-        # Print configuration
+
         self.print_config_summary()
-        
-        # Print query times
-        print("Query Execution Times:")
+
+        print("Query Execution Times (measurement run):")
         print("-"*60)
         for query_num, elapsed in times.items():
             print(f"  {query_num}: {elapsed:.2f}s")
         print("-"*60)
         print(f"  Total Time: {sum(times.values()):.2f}s")
         print("="*60 + "\n")
-
-        print(f"\nResults saved to: {csv_path}")
-
-        # filename = f"/home/xuestella03/Documents/Repositories/RPi-Cluster-Spark/tpch/results/{config.CUR_OS}-jvm/{config.CUR_JVM}-{config.JVM_GC_ALGORITHM}-sf{config.SF}.csv"
-        # fieldnames = times.keys()
-
-        # with open(filename, 'a', newline='') as f:
-        #     writer = csv.DictWriter(f, fieldnames)
-        #     writer.writerow(times)
-
+        print(f"Results saved to: {csv_path}")
 
     def cleanup(self):
         self.spark.stop()
 
+
 if __name__ == "__main__":
-    """
-    TODO: add arg options - run all 4 queries or run specific queries
-    """
     print("Running run_tpch.py...")
-
-    # Initialize 
-    # PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-    # DATA_DIR = os.path.join(PROJECT_ROOT, "data")
-    # print(f"Data directory: {DATA_DIR}")
-    # benchmark = TPCH(data_path="/mnt/tpch/sf1") # change to path to correct sf
     benchmark = TPCH(data_path=f"/home/dietpi/Documents/Repositories/RPi-Cluster-Spark/tpch/data/sf{config.SF}")
-
-    # hostname = socket.gethostname()
-    # if 'dietpi' in hostname or 'raspberrypi' in hostname:
-    #     data_path = "/home/dietpi/Documents/Repositories/RPi-Cluster-Spark/tpch/data/sf10"
-    # else:
-    #     data_path = "/home/xuestella03/Documents/Repositories/RPi-Cluster-Spark/tpch/data/sf10"
-
-    # benchmark = TPCH(data_path=data_path)
-    # Run queries
     benchmark.run_queries()
-
-    # Cleanup
     benchmark.cleanup()
-

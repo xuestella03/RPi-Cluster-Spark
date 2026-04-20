@@ -6,3 +6,5 @@ tpch/__pycache__/*
 tpch/memory/*
 *.log
 tpch/results/dietpi-jvm/*
+*.csv
+*.png

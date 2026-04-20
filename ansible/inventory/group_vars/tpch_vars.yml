@@ -1,4 +1,4 @@
 active_config: reg-serial
-executor_memory: 768m
+executor_memory: 896m
 tpch_config: dietpi-liberica
 tpch_query: '5'

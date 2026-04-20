@@ -72,6 +72,9 @@ def plot_from_csv(filename):
     print(headers)
     memory_mb = (df["maxmem"] / 1024).tolist()  # Convert KB to MB
     runtime = df["runtime"].tolist()
+
+    print(memory_mb)
+    print(runtime)
     
     x = np.arange(len(headers))
     width = 0.35  # Width of each bar
