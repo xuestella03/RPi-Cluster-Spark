@@ -36,7 +36,7 @@ CUR_QUERY = "5"
 MEMORY_FRACTION = "0.45"
 STORAGE_FRACTION = "0.5"
 
-SF = "0.3"
+SF = "1"
 
 JVM_CONFIGS = {
     # ========================================
@@ -645,7 +645,7 @@ JVM_CONFIGS = {
 # ACTIVE CONFIGURATION
 # ============================================
 # Configurations variable
-ACTIVE_CONFIG = "c2-only"
+ACTIVE_CONFIG = "default"
 # ACTIVE_CONFIG = "final4"
 # ACTIVE_CONFIG = "final3"
 
