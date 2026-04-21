@@ -15,8 +15,8 @@ SPARK_DRIVER_MEMORY = "2g"
 
 # SPARK_EXECUTOR_MEMORY = "640m"
 # SPARK_EXECUTOR_MEMORY = "512m"
-# SPARK_EXECUTOR_MEMORY = "768m"
-SPARK_EXECUTOR_MEMORY = "896m"
+SPARK_EXECUTOR_MEMORY = "768m"
+# SPARK_EXECUTOR_MEMORY = "896m"
 # SPARK_EXECUTOR_MEMORY = "450m" # absolute minimum (1.5 * 300)
 # SPARK_EXECUTOR_MEMORY = "1g"
 
@@ -244,7 +244,7 @@ JVM_CONFIGS = {
     "heap-min-0": {
         "name": "heap-min-0",
         "options": [
-            "-XX:+UseParallelGC",
+            "-XX:+UseSerialGC",
             "-Xms0m",  # Start at 256MB
             # Max is 600MB (set by spark.executor.memory)
         ],
@@ -276,7 +276,7 @@ JVM_CONFIGS = {
     "heap-min-128": {
         "name": "heap-min-128",
         "options": [
-            "-XX:+UseParallelGC",
+            "-XX:+UseSerialGC",
             "-Xms128m",  # Start at 256MB
             # Max is 600MB (set by spark.executor.memory)
         ],
@@ -312,7 +312,7 @@ JVM_CONFIGS = {
     "heap-min-256": {
         "name": "heap-min-256",
         "options": [
-            "-XX:+UseParallelGC",
+            "-XX:+UseSerialGC",
             "-Xms256m",  # Start at 256MB
             # Max is 600MB (set by spark.executor.memory)
         ],
@@ -355,7 +355,7 @@ JVM_CONFIGS = {
     "heap-min-512": {
         "name": "heap-512",
         "options": [
-            "-XX:+UseParallelGC",
+            "-XX:+UseSerialGC",
             "-Xms512m",  
         ],
         "description": "Pre-allocate 400m heap at startup",
@@ -376,7 +376,7 @@ JVM_CONFIGS = {
         "name": "heap-max",
         "options": [
             "-XX:+UseParallelGC",
-            "-Xms640m",  # Start at maximum
+            "-Xms768",  # Start at maximum
         ],
         "description": "Pre-allocate full 600m heap at startup",
         "expected": "No growth overhead, uses memory immediately"
@@ -392,6 +392,30 @@ JVM_CONFIGS = {
         "expected": "No growth overhead, uses memory immediately"
     },
     
+
+    "reserved-code-cache-64": {
+        "name": "reserved-code-cache-64",
+        "options": [
+            "-XX:+UseSerialGC",
+            "-XX:ReservedCodeCacheSize=64m",
+            "-XX:+PrintCodeCache"
+        ],
+        "description": "",
+        "expected": ""
+    },
+
+    "reserved-code-cache-48": {
+        "name": "reserved-code-cache-48",
+        "options": [
+            "-XX:+UseSerialGC",
+            "-XX:ReservedCodeCacheSize=48m",
+            "-XX:+PrintCodeCache"
+        ],
+        "description": "",
+        "expected": ""
+    },
+
+
     # ========================================
     # Metaspace
     # ========================================
@@ -468,12 +492,23 @@ JVM_CONFIGS = {
             # "-Xms128m", 
             # "-XX:MetaspaceSize=96m",
             # "-XX:MaxMetaspaceSize=256m",
-            "-XX:+TieredCompilation",
+            # "-XX:+TieredCompilation",
             "-XX:TieredStopAtLevel=1",  # C1 compiler only
         ],
         "description": "Fast startup with C1 compiler only",
         "expected": "Quick startup, lower peak performance"
     },
+
+    "c2-only": {
+        "name": "c2-only",
+        "options": [
+            "-XX:+UseSerialGC",
+            "-XX:-TieredCompilation",
+        ],
+        "description": "",
+        "expected": ""
+    },
+
     
 
     "no-tiered-c2": {
@@ -610,7 +645,7 @@ JVM_CONFIGS = {
 # ACTIVE CONFIGURATION
 # ============================================
 # Configurations variable
-ACTIVE_CONFIG = "reg-serial"
+ACTIVE_CONFIG = "c2-only"
 # ACTIVE_CONFIG = "final4"
 # ACTIVE_CONFIG = "final3"
 
@@ -635,8 +670,8 @@ def build_jvm_options_string():
         "-XX:+PrintGCDateStamps",
         "-XX:+PrintGCTimeStamps",
         "-XX:+PrintGCApplicationStoppedTime",
-        f"-Xloggc:/tmp/gc-{ACTIVE_CONFIG}.log",
-        "-XX:+PrintFlagsFinal",
+        # f"-Xloggc:/tmp/gc-{ACTIVE_CONFIG}.log",
+        # "-XX:+PrintFlagsFinal",
     ]
     options.extend(gc_logging)
     

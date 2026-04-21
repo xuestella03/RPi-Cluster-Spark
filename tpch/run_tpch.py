@@ -457,11 +457,18 @@ class TPCH:
             writer = csv.DictWriter(f, fieldnames=fieldnames)
             writer.writeheader()
 
+            # Before running any actual things we need to do a warmup that'll consist mostly of the disk i/o
+            print(f"Running warmup")
+            index = random.randint(0, 3)
+            query_num, query_function = list(queries.QUERIES.items())[index]
+            self.run_query(query_num, query_function)
+            # TODO: actually record this so we can have the timing to map to pidstat
+
             # For now we'll do 5 iterations
-            for i in range(5):
+            for i in range(3):
                 
                 # Randomize queries 
-                shuffled = random.shuffle(queries.QUERIES.items())
+                shuffled = random.sample(list(queries.QUERIES.items()), k=len(queries.QUERIES))
 
                 for query_num, query_function in shuffled:
                     print(f"Running iteration {i}: query {query_num}")
@@ -469,7 +476,6 @@ class TPCH:
                     run_peaks = self.aggregate_peak_metrics(before_run, after_run)
                     run_row = {
                         "timestamp": timestamp,
-                        "run": "warmup",
                         "query": query_num,
                         "elapsed_s": round(run_elapsed, 3),
                         "jvm_config": config.ACTIVE_CONFIG,
@@ -482,6 +488,8 @@ class TPCH:
 
                     writer.writerow(run_row)
                     f.flush()
+
+                    self.spark.catalog.clearCache()
 
         #     for query_num, query_function in queries.QUERIES.items():
 
