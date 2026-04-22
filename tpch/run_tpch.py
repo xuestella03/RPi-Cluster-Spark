@@ -462,6 +462,7 @@ class TPCH:
             index = random.randint(0, 3)
             query_num, query_function = list(queries.QUERIES.items())[index]
             self.run_query(query_num, query_function)
+            self.spark.catalog.clearCache()
             # TODO: actually record this so we can have the timing to map to pidstat
 
             # For now we'll do 5 iterations
