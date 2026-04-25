@@ -384,6 +384,77 @@ class TPCH:
 
         return result
 
+    def force_executor_gc_and_measure(self):
+        """
+        Force GC on each executor and return live heap readings before/after.
+        Runs System.gc() inside a task on each executor via mapPartitions,
+        which gives actual current heap usage (not the REST API peak).
+        """
+        sc = self.spark.sparkContext
+        
+        # One partition per executor so each executor gets exactly one task
+        num_executors = max(
+            len(sc._jsc.sc().statusTracker().getExecutorInfos()) - 1,  # subtract driver
+            1
+        )
+
+        def gc_and_read_heap(partition_iter):
+            # consume the iterator (required by mapPartitions)
+            list(partition_iter)
+            
+            import java.lang.management.ManagementFactory as MF  # noqa — runs in JVM via Py4J
+            from pyspark import SparkContext
+            jvm = SparkContext._jvm
+            
+            memory_bean = jvm.java.lang.management.ManagementFactory.getMemoryMXBean()
+            
+            heap_before = memory_bean.getHeapMemoryUsage().getUsed() / 1e6
+            
+            jvm.java.lang.System.gc()
+            
+            # small sleep inside the task to let GC finish before reading
+            import time
+            time.sleep(1)
+            
+            heap_after = memory_bean.getHeapMemoryUsage().getUsed() / 1e6
+            
+            import os
+            executor_id = os.environ.get("SPARK_EXECUTOR_ID", "unknown")
+            
+            yield {
+                "executor_id": executor_id,
+                "heap_before_mb": round(heap_before, 1),
+                "heap_after_mb":  round(heap_after, 1),
+                "freed_mb":       round(heap_before - heap_after, 1),
+            }
+
+        results = (
+            sc.parallelize(range(num_executors), num_executors)
+            .mapPartitions(gc_and_read_heap)
+            .collect()
+        )
+
+        # Also do driver
+        from py4j.java_gateway import java_import
+        jvm = self.spark._jvm
+        java_import(jvm, "java.lang.management.*")
+        memory_bean = jvm.java.lang.management.ManagementFactory.getMemoryMXBean()
+
+        driver_before = memory_bean.getHeapMemoryUsage().getUsed() / 1e6
+        jvm.java.lang.System.gc()
+        time.sleep(1)
+        driver_after = memory_bean.getHeapMemoryUsage().getUsed() / 1e6
+
+        print(f"\n{'='*50}")
+        print(f"  GC REPORT")
+        print(f"{'='*50}")
+        print(f"  {'Node':<20} {'Before':>10} {'After':>10} {'Freed':>10}")
+        print(f"  {'-'*50}")
+        print(f"  {'driver':<20} {driver_before:>9.1f}m {driver_after:>9.1f}m {driver_before - driver_after:>9.1f}m")
+        for r in sorted(results, key=lambda x: x["executor_id"]):
+            print(f"  {r['executor_id']:<20} {r['heap_before_mb']:>9.1f}m {r['heap_after_mb']:>9.1f}m {r['freed_mb']:>9.1f}m")
+        print(f"{'='*50}\n")
+
     def run_query(self, query_num, query_function):
         """
         Run a single query.
@@ -459,14 +530,15 @@ class TPCH:
 
             # Before running any actual things we need to do a warmup that'll consist mostly of the disk i/o
             print(f"Running warmup")
-            index = random.randint(0, 3)
+            # index = random.randint(0, 3)
+            index = 0
             query_num, query_function = list(queries.QUERIES.items())[index]
             self.run_query(query_num, query_function)
             self.spark.catalog.clearCache()
             # TODO: actually record this so we can have the timing to map to pidstat
 
             # For now we'll do 5 iterations
-            for i in range(3):
+            for i in range(1):
                 
                 # Randomize queries 
                 shuffled = random.sample(list(queries.QUERIES.items()), k=len(queries.QUERIES))
@@ -491,7 +563,7 @@ class TPCH:
                     f.flush()
 
                     self.spark.catalog.clearCache()
-
+                    self.force_executor_gc_and_measure()
         #     for query_num, query_function in queries.QUERIES.items():
 
         #         # ── Run 1: Warmup ──────────────────────────────────────────

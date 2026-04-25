@@ -670,7 +670,7 @@ def build_jvm_options_string():
         "-XX:+PrintGCDateStamps",
         "-XX:+PrintGCTimeStamps",
         "-XX:+PrintGCApplicationStoppedTime",
-        # f"-Xloggc:/tmp/gc-{ACTIVE_CONFIG}.log",
+        f"-Xloggc:/tmp/4-24-gc-{ACTIVE_CONFIG}.log",
         # "-XX:+PrintFlagsFinal",
     ]
     options.extend(gc_logging)

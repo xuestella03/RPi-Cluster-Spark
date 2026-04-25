@@ -273,10 +273,10 @@ def get_query_18(spark):
 
 
 QUERIES = {
-    1: get_query_1,
-    3: get_query_3,
+    # 1: get_query_1,
+    # 3: get_query_3,
     5: get_query_5,
-    6: get_query_6,
+    # 6: get_query_6,
     # 9: get_query_9,
     # 12: get_query_12,
     # 13: get_query_13,
