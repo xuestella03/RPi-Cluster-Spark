@@ -1,0 +1,106 @@
+# ~/Documents/Repositories/RPi-Cluster-Spark/ansible/run-tpch-scala.yml
+---
+- name: Start pidstat monitoring on workers
+  hosts: workers
+  become: yes
+  vars:
+    results_dir: "/home/dietpi/Documents/Repositories/RPi-Cluster-Spark/tpch/results/pidstat"
+    timestamp: "{{ lookup('pipe', 'date +%Y%m%d_%H%M%S') }}"
+    pidstat_filename: "{{ timestamp }}-scala-{{ active_config }}-mem{{ executor_memory }}"
+  tasks:
+    - name: Create results directory
+      file:
+        path: "{{ results_dir }}"
+        state: directory
+        mode: '0755'
+        owner: dietpi
+
+    - name: Start pidstat
+      shell: |
+        LOG="{{ results_dir }}/pidstat_{{ inventory_hostname }}_{{ pidstat_filename }}.log"
+        nohup pidstat -h -u -r -d 1 -C java > "$LOG" 2>&1 &
+        echo $! > /tmp/pidstat_{{ inventory_hostname }}.pid
+        chown dietpi:dietpi "$LOG"
+        echo "Started pidstat, logging to $LOG"
+      args:
+        executable: /bin/bash
+
+- name: Run Scala TPC-H benchmark
+  hosts: server
+  become: no
+  vars:
+    jar_path: "{{ ansible_env.HOME }}/Documents/Repositories/RPi-Cluster-Spark/tpch-scala/target/scala-2.13/tpch-benchmark_2.13-0.1.0.jar"
+    spark_home: "/opt/spark"
+    results_dir: "{{ ansible_env.HOME }}/Documents/Repositories/RPi-Cluster-Spark/tpch/results/scala"
+    # Override these with -e flag: ansible-playbook ... -e executor_memory=512m
+    executor_memory: "768m"
+    active_config: "default"
+    sf: "1.5"
+    master_ip: "192.168.50.65"
+
+  tasks:
+    - name: Create results directory
+      file:
+        path: "{{ results_dir }}"
+        state: directory
+
+    - name: Submit Spark job
+      shell: |
+        {{ spark_home }}/bin/spark-submit \
+          --master spark://{{ master_ip }}:7077 \
+          --executor-memory {{ executor_memory }} \
+          --driver-memory 2g \
+          --conf spark.sql.shuffle.partitions=4 \
+          --conf spark.executor.cores=4 \
+          --conf spark.memory.fraction=0.45 \
+          --conf spark.memory.storageFraction=0.5 \
+          {{ jar_path }}
+      environment:
+        EXECUTOR_MEMORY: "{{ executor_memory }}"
+        SPARK_MASTER_URL: "spark://{{ master_ip }}:7077"
+        DATA_PATH: "/home/dietpi/Documents/Repositories/RPi-Cluster-Spark/tpch/data/sf{{ sf }}"
+        RESULTS_DIR: "{{ results_dir }}"
+        ACTIVE_CONFIG: "{{ active_config }}"
+        SF: "{{ sf }}"
+      register: spark_output
+
+    - name: Show output
+      debug:
+        msg: "{{ spark_output.stdout_lines }}"
+
+    - name: Show errors if any
+      debug:
+        msg: "{{ spark_output.stderr_lines }}"
+      when: spark_output.stderr_lines | length > 0
+
+- name: Stop pidstat and collect logs
+  hosts: workers
+  become: yes
+  vars:
+    results_dir: "/home/dietpi/Documents/Repositories/RPi-Cluster-Spark/tpch/results/pidstat"
+    local_results: "{{ hostvars[groups['server'][0]]['ansible_env']['HOME'] }}/Documents/Repositories/RPi-Cluster-Spark/tpch/results/pidstat"
+  tasks:
+    - name: Stop pidstat
+      shell: |
+        if [ -f /tmp/pidstat_{{ inventory_hostname }}.pid ]; then
+          kill $(cat /tmp/pidstat_{{ inventory_hostname }}.pid) 2>/dev/null || true
+          rm /tmp/pidstat_{{ inventory_hostname }}.pid
+        fi
+      args:
+        executable: /bin/bash
+
+    - name: Find log files
+      find:
+        paths: "{{ results_dir }}"
+        patterns: "pidstat_*.log"
+      register: log_files
+
+    - name: Fetch logs
+      fetch:
+        src: "{{ item.path }}"
+        dest: "{{ local_results }}/"
+        flat: yes
+      loop: "{{ log_files.files }}"
+
+    - name: Clean up remote logs
+      shell: rm -f {{ results_dir }}/pidstat_*.log

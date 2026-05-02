@@ -1,0 +1,9 @@
+[0m[[0m[0mdebug[0m] [0m[0mPackaging /home/xuestella03/Documents/Repositories/RPi-Cluster-Spark/tpch-scala/target/scala-2.13/tpch-benchmark_2.13-0.1.0.jar ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	tpch[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/xuestella03/Documents/Repositories/RPi-Cluster-Spark/tpch-scala/target/scala-2.13/classes/tpch[0m
+[0m[[0m[0mdebug[0m] [0m[0m	tpch/TpchBenchmark.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/xuestella03/Documents/Repositories/RPi-Cluster-Spark/tpch-scala/target/scala-2.13/classes/tpch/TpchBenchmark.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	tpch/TpchBenchmark$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/xuestella03/Documents/Repositories/RPi-Cluster-Spark/tpch-scala/target/scala-2.13/classes/tpch/TpchBenchmark$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0mDone packaging.[0m

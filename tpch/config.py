@@ -14,8 +14,8 @@ CLUSTER_MASTER_URL = f"spark://{CLUSTER_MASTER_IP}:7077"
 SPARK_DRIVER_MEMORY = "2g"
 
 # SPARK_EXECUTOR_MEMORY = "640m"
-SPARK_EXECUTOR_MEMORY = "512m"
-# SPARK_EXECUTOR_MEMORY = "768m"
+# SPARK_EXECUTOR_MEMORY = "512m"
+SPARK_EXECUTOR_MEMORY = "768m"
 # SPARK_EXECUTOR_MEMORY = "896m"
 # SPARK_EXECUTOR_MEMORY = "450m" # absolute minimum (1.5 * 300)
 # SPARK_EXECUTOR_MEMORY = "1g"
@@ -36,7 +36,7 @@ CUR_QUERY = "5"
 MEMORY_FRACTION = "0.45"
 STORAGE_FRACTION = "0.5"
 
-SF = "1.5"
+SF = "2"
 
 JVM_CONFIGS = {
     # ========================================
@@ -645,7 +645,7 @@ JVM_CONFIGS = {
 # ACTIVE CONFIGURATION
 # ============================================
 # Configurations variable
-ACTIVE_CONFIG = "default"
+ACTIVE_CONFIG = "reg-serial"
 # ACTIVE_CONFIG = "final4"
 # ACTIVE_CONFIG = "final3"
 

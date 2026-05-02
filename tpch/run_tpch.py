@@ -278,6 +278,33 @@ class TPCH:
             
             print("="*60 + "\n")
 
+    def get_executor_memory_metrics(self):
+        """
+        Pull memory metrics from Spark REST API. 
+        These are snapshots, so we run this before and after we force GC. 
+        """
+        try:
+            app_id = self.spark.sparkContext.applicationId
+            ui_url = self.spark.sparkContext.uiWebUrl
+            
+            url = f"{ui_url}/api/v1/applications/{app_id}/executors"
+            response = requests.get(url, timeout=10)
+            executors = response.json()
+            
+            results = {}
+            for ex in executors:
+                ex_id = ex.get("id", "unknown")
+                mem = ex.get("memoryMetrics", {})
+                if mem:
+                    results[ex_id] = {
+                        "usedOnHeapStorageMemory_MB":  mem.get("usedOnHeapStorageMemory", 0) / 1e6,
+                        "totalOnHeapStorageMemory_MB":  mem.get("totalOnHeapStorageMemory", 0) / 1e6,
+                    }
+            return results
+        except Exception as e:
+            print(f"Warning: could not fetch executor metrics: {e}")
+            return {}
+    
     def get_executor_peak_metrics(self):
         """
         Pull peak executor memory metrics from Spark REST API.
@@ -384,57 +411,155 @@ class TPCH:
 
         return result
 
-    def force_executor_gc_and_measure(self):
-        """
-        Force GC on each executor and return live heap readings before/after.
-        Runs System.gc() inside a task on each executor via mapPartitions,
-        which gives actual current heap usage (not the REST API peak).
-        """
+    def force_gc(self):
+        """Force GC on driver and all executors via JVM."""
+        import time
+
+        # --- Driver GC ---
+        self.spark._jvm.java.lang.System.gc()
+
+        # --- Executor GC via a lightweight Spark task ---
         sc = self.spark.sparkContext
-        
-        # One partition per executor so each executor gets exactly one task
+
         num_executors = max(
-            len(sc._jsc.sc().statusTracker().getExecutorInfos()) - 1,  # subtract driver
+            len(sc._jsc.sc().statusTracker().getExecutorInfos()) - 1,
             1
         )
 
-        def gc_and_read_heap(partition_iter):
-            # consume the iterator (required by mapPartitions)
-            list(partition_iter)
-            
-            import java.lang.management.ManagementFactory as MF  # noqa — runs in JVM via Py4J
-            from pyspark import SparkContext
-            jvm = SparkContext._jvm
-            
-            memory_bean = jvm.java.lang.management.ManagementFactory.getMemoryMXBean()
-            
-            heap_before = memory_bean.getHeapMemoryUsage().getUsed() / 1e6
-            
-            jvm.java.lang.System.gc()
-            
-            # small sleep inside the task to let GC finish before reading
-            import time
-            time.sleep(1)
-            
-            heap_after = memory_bean.getHeapMemoryUsage().getUsed() / 1e6
-            
-            import os
-            executor_id = os.environ.get("SPARK_EXECUTOR_ID", "unknown")
-            
-            yield {
-                "executor_id": executor_id,
-                "heap_before_mb": round(heap_before, 1),
-                "heap_after_mb":  round(heap_after, 1),
-                "freed_mb":       round(heap_before - heap_after, 1),
-            }
+        def run_gc_on_executor(partition_iter):
+            """
+            Runs inside the executor's Python worker.
+            We call System.gc() via SparkEnv's RpcEnv — but the simplest
+            reliable path is just letting the JVM side handle it via
+            a small Java call through the existing worker gateway.
+            """
+            import ctypes
+            import gc
 
-        results = (
+            print("Attempting to force GC")
+
+            # Python-side GC (frees Python objects on executor)
+            gc.collect()
+
+            # Trigger JVM GC on the executor via jvm handle available in workers
+            try:
+                from pyspark import SparkContext
+                jvm = SparkContext._jvm
+                if jvm is not None:
+                    print("SparkContext._jvm is not None; running System.gc()")
+                    jvm.java.lang.System.gc()
+            except Exception:
+                print("Failed to run System.gc()")
+                pass  # Best-effort; don't crash the worker
+
+            yield 1
+
+        sc.parallelize(range(num_executors), num_executors) \
+            .mapPartitions(run_gc_on_executor) \
+            .collect()
+
+        time.sleep(2)
+        print("[GC] Forced GC on driver and all executors")
+
+    def unpersist_broadcast(self):
+        """
+        Spark's storage memory has cached RDDs/DFs and broadcast variables. clearCache() will clear
+        cached RDDs and DFs, but broadcast variables are not evicted. 
+        """
+        sc = self.spark.sparkContext
+        for broadcast in sc._jsc.sc().broadcastManager().cachedValues().values():
+            try:
+                broadcast.unpersist()
+
+            except:
+                pass 
+
+    def force_executor_gc_and_measure(self):
+        sc = self.spark.sparkContext
+        num_executors = max(
+            len(sc._jsc.sc().statusTracker().getExecutorInfos()) - 1,
+            1
+        )
+
+        # Pass 1: collect PIDs from executors
+        def collect_pid(partition_iter):
+            list(partition_iter)
+            import os
+            yield (
+                os.environ.get("SPARK_EXECUTOR_ID", "unknown"),
+                os.uname().nodename,
+                os.getpid(),
+            )
+
+        pid_list = (
             sc.parallelize(range(num_executors), num_executors)
-            .mapPartitions(gc_and_read_heap)
+            .mapPartitions(collect_pid)
             .collect()
         )
 
-        # Also do driver
+        # Pass 2: run jcmd on each executor's own machine in a separate task
+        def measure_and_gc(partition_iter):
+            import subprocess, time, os
+
+            items = list(partition_iter)
+            if not items:
+                return
+            executor_id, hostname, pid = items[0]
+
+            def heap_mb():
+                try:
+                    r = subprocess.run(
+                        ["jcmd", str(pid), "GC.heap_info"],
+                        capture_output=True, text=True, timeout=10
+                    )
+                    used_kb = sum(
+                        int(p[5:-1]) for p in r.stdout.split()
+                        if p.startswith("used=") and p.endswith("K")
+                    )
+                    return used_kb / 1024
+                except Exception as e:
+                    return -1.0
+
+            def rss_mb():
+                try:
+                    with open(f"/proc/{pid}/status") as f:
+                        for line in f:
+                            if line.startswith("VmRSS:"):
+                                return int(line.split()[1]) / 1024
+                except Exception:
+                    pass
+                return 0.0
+
+            before = heap_mb()
+            rss_before = rss_mb()
+
+            subprocess.run(
+                ["jcmd", str(pid), "GC.run"],
+                capture_output=True, text=True, timeout=20
+            )
+            time.sleep(2)
+
+            after = heap_mb()
+            rss_after = rss_mb()
+
+            yield {
+                "executor_id": executor_id,
+                "hostname":    hostname,
+                "heap_before": round(before, 1),
+                "heap_after":  round(after, 1),
+                "freed":       round(before - after, 1),
+                "rss_before":  round(rss_before, 1),
+                "rss_after":   round(rss_after, 1),
+            }
+
+        results = (
+            sc.parallelize(pid_list, len(pid_list))
+            .mapPartitions(measure_and_gc)
+            .collect()
+        )
+
+        # Driver GC via Py4J (this part works fine since driver is local)
+        import time
         from py4j.java_gateway import java_import
         jvm = self.spark._jvm
         java_import(jvm, "java.lang.management.*")
@@ -445,15 +570,125 @@ class TPCH:
         time.sleep(1)
         driver_after = memory_bean.getHeapMemoryUsage().getUsed() / 1e6
 
-        print(f"\n{'='*50}")
+        print(f"\n{'='*75}")
         print(f"  GC REPORT")
-        print(f"{'='*50}")
-        print(f"  {'Node':<20} {'Before':>10} {'After':>10} {'Freed':>10}")
-        print(f"  {'-'*50}")
-        print(f"  {'driver':<20} {driver_before:>9.1f}m {driver_after:>9.1f}m {driver_before - driver_after:>9.1f}m")
+        print(f"{'='*75}")
+        print(f"  {'Node':<20} {'Heap Before':>12} {'Heap After':>12} {'Freed':>10} {'RSS Before':>11} {'RSS After':>10}")
+        print(f"  {'-'*75}")
+        print(f"  {'driver':<20} {driver_before:>11.1f}m {driver_after:>11.1f}m {driver_before-driver_after:>9.1f}m {'n/a':>11} {'n/a':>10}")
         for r in sorted(results, key=lambda x: x["executor_id"]):
-            print(f"  {r['executor_id']:<20} {r['heap_before_mb']:>9.1f}m {r['heap_after_mb']:>9.1f}m {r['freed_mb']:>9.1f}m")
-        print(f"{'='*50}\n")
+            print(f"  {r['executor_id']} {r['hostname']:<20} {r['heap_before']:>11.1f}m {r['heap_after']:>11.1f}m {r['freed']:>9.1f}m {r['rss_before']:>10.1f}m {r['rss_after']:>9.1f}m")
+        print(f"{'='*75}\n")
+
+
+    # def force_executor_gc_and_measure(self):
+    #     sc = self.spark.sparkContext
+    #     num_executors = max(
+    #         len(sc._jsc.sc().statusTracker().getExecutorInfos()) - 1,
+    #         1
+    #     )
+
+    #     # Step 1: collect executor PIDs and RSS — no jcmd yet
+    #     def collect_pid_and_rss(partition_iter):
+    #         list(partition_iter)
+    #         import os
+
+    #         pid = os.getpid()
+    #         executor_id = os.environ.get("SPARK_EXECUTOR_ID", "unknown")
+    #         hostname = os.uname().nodename
+
+    #         def read_rss_mb():
+    #             with open(f"/proc/{pid}/status") as f:
+    #                 for line in f:
+    #                     if line.startswith("VmRSS:"):
+    #                         return int(line.split()[1]) / 1024
+    #             return 0.0
+
+    #         yield {
+    #             "executor_id": executor_id,
+    #             "hostname": hostname,
+    #             "pid": pid,
+    #             "rss_mb": round(read_rss_mb(), 1),
+    #         }
+
+    #     executor_info = (
+    #         sc.parallelize(range(num_executors), num_executors)
+    #         .mapPartitions(collect_pid_and_rss)
+    #         .collect()
+    #     )
+
+    #     # Step 2: run jcmd FROM THE DRIVER against each executor's PID
+    #     # This is safe because jcmd attaches externally, not from within the task
+    #     import subprocess
+
+    #     def jcmd_heap_mb(pid):
+    #         try:
+    #             result = subprocess.run(
+    #                 ["jcmd", str(pid), "GC.heap_info"],
+    #                 capture_output=True, text=True, timeout=10
+    #             )
+    #             used_kb = 0
+    #             for part in result.stdout.split():
+    #                 if part.startswith("used=") and part.endswith("K"):
+    #                     used_kb += int(part[5:-1])
+    #             return used_kb / 1024
+    #         except Exception as e:
+    #             print(f"  [jcmd heap_info error pid={pid}]: {e}")
+    #             return 0.0
+
+    #     def jcmd_run_gc(pid):
+    #         try:
+    #             subprocess.run(
+    #                 ["jcmd", str(pid), "GC.run"],
+    #                 capture_output=True, text=True, timeout=20
+    #             )
+    #         except Exception as e:
+    #             print(f"  [jcmd GC.run error pid={pid}]: {e}")
+
+    #     # Step 3: for each executor, measure heap before, force GC, measure after
+    #     import time
+    #     from py4j.java_gateway import java_import
+    #     jvm = self.spark._jvm
+    #     java_import(jvm, "java.lang.management.*")
+    #     memory_bean = jvm.java.lang.management.ManagementFactory.getMemoryMXBean()
+
+    #     driver_before = memory_bean.getHeapMemoryUsage().getUsed() / 1e6
+    #     jvm.java.lang.System.gc()
+    #     time.sleep(1)
+    #     driver_after = memory_bean.getHeapMemoryUsage().getUsed() / 1e6
+
+    #     results = []
+    #     for info in executor_info:
+    #         pid = info["pid"]
+    #         heap_before = jcmd_heap_mb(pid)
+    #         rss_before = info["rss_mb"]
+
+    #         jcmd_run_gc(pid)
+    #         time.sleep(2)
+
+    #         heap_after = jcmd_heap_mb(pid)
+
+    #         # RSS after GC — run another tiny task to read it
+    #         # (or just note that RSS rarely drops after GC since OS doesn't reclaim immediately)
+    #         results.append({
+    #             "executor_id": info["executor_id"],
+    #             "hostname":    info["hostname"],
+    #             "heap_before": round(heap_before, 1),
+    #             "heap_after":  round(heap_after, 1),
+    #             "freed":       round(heap_before - heap_after, 1),
+    #             "rss_before":  rss_before,
+    #         })
+
+    #     print(f"\n{'='*70}")
+    #     print(f"  GC REPORT")
+    #     print(f"{'='*70}")
+    #     print(f"  {'Node':<20} {'Heap Before':>12} {'Heap After':>12} {'Freed':>10} {'RSS':>8}")
+    #     print(f"  {'-'*70}")
+    #     print(f"  {'driver':<20} {driver_before:>11.1f}m {driver_after:>11.1f}m {driver_before-driver_after:>9.1f}m {'n/a':>8}")
+    #     for r in sorted(results, key=lambda x: x["executor_id"]):
+    #         print(f"  {r['hostname']:<20} {r['heap_before']:>11.1f}m {r['heap_after']:>11.1f}m {r['freed']:>9.1f}m {r['rss_before']:>7.1f}m")
+    #     print(f"{'='*70}\n")
+
 
     def run_query(self, query_num, query_function):
         """
@@ -481,16 +716,8 @@ class TPCH:
 
     def run_queries(self):
         """
-        Runs each query twice:
-          - Run 1 (warmup): warms the OS page cache and JIT, result discarded
-          - Run 2 (measurement): recorded to CSV, reflects in-memory performance
+        Run a warmup query.
 
-        The second run's metrics are computed as a delta from the end of run 1,
-        so GC counts/times reflect only what happened during run 2.
-        Memory peaks reflect the high-water mark since app start (unavoidable —
-        Spark resets these only on executor restart, not between queries).
-
-        Change for iterations:
         for i in range(number of times we run everything):
             for q in random order of queries:
                 run and collect data 
@@ -538,12 +765,14 @@ class TPCH:
             # TODO: actually record this so we can have the timing to map to pidstat
 
             # For now we'll do 5 iterations
-            for i in range(1):
+            for i in range(2):
                 
                 # Randomize queries 
                 shuffled = random.sample(list(queries.QUERIES.items()), k=len(queries.QUERIES))
 
                 for query_num, query_function in shuffled:
+                    memory_before = self.get_executor_memory_metrics()
+                    print(f"Memory before: {memory_before['0']}")
                     print(f"Running iteration {i}: query {query_num}")
                     run_elapsed, _, before_run, after_run = self.run_query(query_num, query_function)
                     run_peaks = self.aggregate_peak_metrics(before_run, after_run)
@@ -561,94 +790,17 @@ class TPCH:
 
                     writer.writerow(run_row)
                     f.flush()
+                    
+                    memory_after = self.get_executor_memory_metrics()
+                    print(f"Memory after: {memory_after['0']}")
 
                     self.spark.catalog.clearCache()
-                    self.force_executor_gc_and_measure()
-        #     for query_num, query_function in queries.QUERIES.items():
+                    # self.force_gc()
+                    # self.unpersist_broadcast()
+                    time.sleep(3) # in case clearCache and forcing gc aren't instantaneous
 
-        #         # ── Run 1: Warmup ──────────────────────────────────────────
-        #         # Purpose: warm OS page cache so data is in memory for run 2,
-        #         # warm JIT so hot paths are compiled.
-        #         # We still record it so you can compare warm vs cold if needed.
-        #         print(f"\n{'='*40}")
-        #         print(f"WARMUP RUN — Query {query_num}")
-        #         print(f"{'='*40}")
-
-        #         warmup_elapsed, _, before_warmup, after_warmup = self.run_query(query_num, query_function)
-        #         warmup_peaks = self.aggregate_peak_metrics(before_warmup, after_warmup)
-
-        #         warmup_row = {
-        #             "timestamp": timestamp,
-        #             "run": "warmup",
-        #             "query": query_num,
-        #             "elapsed_s": round(warmup_elapsed, 3),
-        #             "jvm_config": config.ACTIVE_CONFIG,
-        #             "executor_memory": config.SPARK_EXECUTOR_MEMORY,
-        #             "memory_fraction": spark_cfg.get("memory.fraction", "0.6"),
-        #             "storage_fraction": spark_cfg.get("memory.storageFraction", "0.5"),
-        #             "shuffle_partitions": spark_cfg.get("sql.shuffle.partitions", "4"),
-        #             **{k: round(v, 2) if v is not None else "" for k, v in warmup_peaks.items()}
-        #         }
-        #         writer.writerow(warmup_row)
-        #         f.flush()
-
-        #         print(f"Warmup complete: {warmup_elapsed:.2f}s")
-        #         print(f"Warmup peaks: {json.dumps(warmup_peaks, indent=2)}")
-
-        #         # Clear Spark's SQL result cache between runs.
-        #         # This evicts any cached DataFrames/broadcast results from storage memory
-        #         # so run 2 doesn't get an unfair storage memory advantage.
-        #         # Note: OS page cache is NOT cleared — that's intentional, since
-        #         # we want run 2 to measure compute/GC without disk I/O noise.
-        #         self.spark.catalog.clearCache()
-
-        #         # ── Run 2: Measurement ─────────────────────────────────────
-        #         # Baseline for GC deltas is the end of warmup (after_warmup),
-        #         # so GC counts/times reflect only what happens during this run.
-        #         print(f"\n{'='*40}")
-        #         print(f"MEASUREMENT RUN — Query {query_num}")
-        #         print(f"{'='*40}")
-
-        #         meas_elapsed, _, before_meas, after_meas = self.run_query(query_num, query_function)
-
-        #         # For GC metrics: delta from end-of-warmup to end-of-measurement
-        #         # For memory metrics: peak since app start (from after_meas)
-        #         meas_peaks = self.aggregate_peak_metrics(before_meas, after_meas)
-
-        #         times[query_num] = meas_elapsed
-
-        #         meas_row = {
-        #             "timestamp": timestamp,
-        #             "run": "measurement",
-        #             "query": query_num,
-        #             "elapsed_s": round(meas_elapsed, 3),
-        #             "jvm_config": config.ACTIVE_CONFIG,
-        #             "executor_memory": config.SPARK_EXECUTOR_MEMORY,
-        #             "memory_fraction": spark_cfg.get("memory.fraction", "0.6"),
-        #             "storage_fraction": spark_cfg.get("memory.storageFraction", "0.5"),
-        #             "shuffle_partitions": spark_cfg.get("sql.shuffle.partitions", "4"),
-        #             **{k: round(v, 2) if v is not None else "" for k, v in meas_peaks.items()}
-        #         }
-        #         writer.writerow(meas_row)
-        #         f.flush()
-
-        #         print(f"Measurement complete: {meas_elapsed:.2f}s")
-        #         print(f"Measurement peaks: {json.dumps(meas_peaks, indent=2)}")
-
-        #     print("\n" + "="*60)
-        #     print("BENCHMARK SUMMARY")
-        #     print("="*60)
-
-        # self.print_config_summary()
-
-        # print("Query Execution Times (measurement run):")
-        # print("-"*60)
-        # for query_num, elapsed in times.items():
-        #     print(f"  {query_num}: {elapsed:.2f}s")
-        # print("-"*60)
-        # print(f"  Total Time: {sum(times.values()):.2f}s")
-        # print("="*60 + "\n")
-        # print(f"Results saved to: {csv_path}")
+                    memory_after_clearing = self.get_executor_memory_metrics()
+                    print(f"Memory after clearing: {memory_after_clearing['0']}")
 
     def cleanup(self):
         self.spark.stop()

@@ -1,0 +1,61 @@
+---
+- name: Build Spark distribution on driver
+  hosts: server
+  become: no
+  tasks:
+    # - name: Build Spark tarball
+    #   shell: |
+    #     cd ~/Documents/Repositories/spark
+    #     ./dev/make-distribution.sh --name custom --tgz -DskipTests
+    #   args:
+    #     executable: /bin/bash
+    #   register: build_output
+    #   # This takes a while - set a long timeout
+    #   async: 3600
+    #   poll: 30
+
+    - name: Find the built tarball
+      find:
+        paths: ~/Documents/Repositories/spark
+        patterns: "spark-*-bin-custom.tgz"
+      register: tarball
+
+    - name: Show tarball path
+      debug:
+        msg: "Built: {{ tarball.files[0].path }}"
+
+- name: Deploy Spark to workers
+  hosts: workers
+  become: yes
+  vars:
+    spark_install_dir: "/opt/spark"
+  tasks:
+    - name: Copy tarball to worker
+      copy:
+        src: "{{ hostvars[groups['server'][0]]['tarball']['files'][0]['path'] }}"
+        dest: /tmp/spark-custom.tgz
+
+    - name: Remove old Spark installation
+      file:
+        path: "{{ spark_install_dir }}"
+        state: absent
+
+    - name: Create Spark directory
+      file:
+        path: "{{ spark_install_dir }}"
+        state: directory
+
+    - name: Extract Spark
+      unarchive:
+        src: /tmp/spark-custom.tgz
+        dest: "{{ spark_install_dir }}"
+        remote_src: yes
+        extra_opts: [--strip-components=1]
+
+    - name: Confirm Spark version on worker
+      shell: "{{ spark_install_dir }}/bin/spark-shell --version 2>&1 | head -20"
+      register: version_check
+
+    - name: Show version
+      debug:
+        msg: "{{ version_check.stdout_lines }}"

@@ -10,38 +10,24 @@
   hosts: server
   become: yes
   tasks:
-    # - name: Get JAVA_HOME and save 
-    #   # ansible.builtin.shell: |
-    #   #   source /etc/profile
-    #   #   echo $JAVA_HOME 
-    #   # args:
-    #   #   executable: /bin/bash
-    #   # register: master_java_home_output
-    #   include_vars:
-    #     file: ansible/inventory/group_vars/server.yml
-    #     name: server_vars
-    # - name: Display java home output 
-    #   ansible.builtin.debug:
-    #     # var: master_java_home_output
-    #     msg: "{{ server_vars.java_home }}"
 
-    - name: Get SPARK_HOME and save 
-      ansible.builtin.shell: |
-        source /etc/profile.d/spark.sh
-        echo $SPARK_HOME 
-      args:
-        executable: /bin/bash
-      register: master_spark_home_output
-    - name: Display spark home output 
-      ansible.builtin.debug:
-        var: master_spark_home_output.stdout 
+    # - name: Get SPARK_HOME and save 
+    #   ansible.builtin.shell: |
+    #     source /etc/profile.d/spark.sh
+    #     echo $SPARK_HOME 
+    #   args:
+    #     executable: /bin/bash
+    #   register: master_spark_home_output
+    # - name: Display spark home output 
+    #   ansible.builtin.debug:
+    #     var: master_spark_home_output.stdout 
 
     - name: Update spark-env.sh with server JAVA_HOME 
       copy:
-        dest: "{{ master_spark_home_output.stdout }}/conf/spark-env.sh"
+        dest: "/home/xuestella03/Documents/Repositories/spark/dist/conf/spark-env.sh"
         content: |
           #!/usr/bin/env bash
-          export JAVA_HOME=/usr/lib/jvm/java-1.21.0-openjdk-amd64
+          export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
           export SPARK_MASTER_HOST={{ ansible_default_ipv4.address }}
           export SPARK_MASTER_PORT=7077
           export SPARK_MASTER_WEBUI_PORT=8080
@@ -53,9 +39,9 @@
       
     - name: Start Spark master
       shell: |
-        export SPARK_HOME={{ master_spark_home_output.stdout }}
-        export JAVA_HOME=/usr/lib/jvm/java-1.21.0-openjdk-amd64
-        {{ master_spark_home_output.stdout }}/sbin/start-master.sh
+        export SPARK_HOME=/home/xuestella03/Documents/Repositories/spark/dist
+        export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+        /home/xuestella03/Documents/Repositories/spark/dist/sbin/start-master.sh
         sleep 5
       register: master_start
       
