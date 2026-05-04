@@ -1,0 +1,4 @@
+[0m[[0m[31merror[0m] [0m[0m/home/xuestella03/Documents/Repositories/RPi-Cluster-Spark/tpch-scala/src/main/scala/TpchBenchmark.scala:155:35: not found: value Random[0m
+[0m[[0m[31merror[0m] [0m[0m            val shuffledQueries = Random.shuffle(queries.toSeq)[0m
+[0m[[0m[31merror[0m] [0m[0m                                  ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m

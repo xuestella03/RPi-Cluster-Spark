@@ -35,7 +35,7 @@
     # Override these with -e flag: ansible-playbook ... -e executor_memory=512m
     executor_memory: "768m"
     active_config: "default"
-    sf: "1.5"
+    sf: "0.3"
     master_ip: "192.168.50.65"
 
   tasks:

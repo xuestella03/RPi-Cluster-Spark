@@ -1,3 +1,19 @@
+error id: file://<WORKSPACE>/tpch-scala/src/main/scala/TpchBenchmark.scala:show.
+file://<WORKSPACE>/tpch-scala/src/main/scala/TpchBenchmark.scala
+empty definition using pc, found symbol in pc: 
+empty definition using semanticdb
+empty definition using fallback
+non-local guesses:
+	 -org/apache/spark/sql/types.
+	 -org/apache/spark/sql/types#
+	 -org/apache/spark/sql/types().
+	 -scala/Predef.
+	 -scala/Predef#
+	 -scala/Predef().
+offset: 7945
+uri: file://<WORKSPACE>/tpch-scala/src/main/scala/TpchBenchmark.scala
+text:
+```scala
 // ~/Documents/Repositories/RPi-Cluster-Spark/tpch-scala/src/main/scala/TpchBenchmark.scala
 package tpch
 
@@ -6,7 +22,6 @@ import org.apache.spark.sql.types._
 import java.io.{FileWriter, PrintWriter}
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import scala.util.Random
 
 object TpchBenchmark {
 
@@ -102,7 +117,7 @@ object TpchBenchmark {
     val dataPath         = sys.env.getOrElse("DATA_PATH", 
         "/home/dietpi/Documents/Repositories/RPi-Cluster-Spark/tpch/data/sf0.3")
     val resultsDir       = sys.env.getOrElse("RESULTS_DIR",
-        "/home/xuestella03/Documents/Repositories/RPi-Cluster-Spark/tpch/results/scala")
+        "<WORKSPACE>/tpch/results/scala")
     val activeConfig     = sys.env.getOrElse("ACTIVE_CONFIG", "default")
     val sf               = sys.env.getOrElse("SF", "0.3")
 
@@ -140,35 +155,19 @@ object TpchBenchmark {
         val writer = new PrintWriter(new FileWriter(csvPath, true))
         writer.println("timestamp,query,elapsed_s,executor_memory,active_config")
 
-        // Map query number -> function
-        val queries: Map[Int, SparkSession => Unit] = Map(
-            1 -> getQuery1,
-            3 -> getQuery3,
-            5 -> getQuery5,
-            6 -> getQuery6
-        )
-
         // Run queries for x iterations
-        for (i <- 0 until 3) {
-            println(s"\n=== Iteration $i ===")
+        for (i <- 0 until 1) {
+        println(s"\n=== Iteration $i ===")
+        val start = System.currentTimeMillis()
+        runQuery(spark, s"Q5-iter$i", getQuery5)
+        val elapsed = (System.currentTimeMillis() - start) / 1000.0
 
-            // Shuffle queries each iteration
-            val shuffledQueries = Random.shuffle(queries.toSeq)
+        writer.println(s"$timestamp,5,$elapsed,$executorMemory,$activeConfig")
+        writer.flush()
 
-            for ((qNum, qFunc) <- shuffledQueries) {
-                println(s"Running Q$qNum (iteration $i)")
-
-                val start = System.currentTimeMillis()
-                runQuery(spark, s"Q${qNum}-iter$i", qFunc)
-                val elapsed = (System.currentTimeMillis() - start) / 1000.0
-
-                writer.println(s"$timestamp,$qNum,$elapsed,$executorMemory,$activeConfig")
-                writer.flush()
-
-                spark.catalog.clearCache()
-                System.gc()
-                Thread.sleep(3000)
-            }
+        spark.catalog.clearCache()
+        System.gc()
+        Thread.sleep(3000)
         }
 
         writer.close()
@@ -225,27 +224,7 @@ object TpchBenchmark {
         FROM lineitem
         WHERE l_shipdate <= date '1998-12-01' - interval '90' day
         GROUP BY l_returnflag, l_linestatus
-        ORDER BY l_returnflag, l_linestatus
-        """).show(10)
-    }
-
-    def getQuery3(spark: SparkSession): Unit = {
-        spark.sql("""
-        SELECT
-            l_orderkey,
-            SUM(l_extendedprice * (1 - l_discount)) as revenue,
-            o_orderdate,
-            o_shippriority
-        FROM customer, orders, lineitem
-        WHERE c_mktsegment = 'BUILDING'
-            AND c_custkey = o_custkey
-            AND l_orderkey = o_orderkey
-            AND o_orderdate < date '1995-03-15'
-            AND l_shipdate > date '1995-03-15'
-        GROUP BY l_orderkey, o_orderdate, o_shippriority
-        ORDER BY revenue DESC, o_orderdate
-        LIMIT 10
-        """).show(10)
+        ORDER BY l_returnflag, l_linestatus""").show@@(10)
     }
 
     def getQuery5(spark: SparkSession): Unit = {
@@ -265,15 +244,29 @@ object TpchBenchmark {
         """).show(10)
     }
 
-    def getQuery6(spark: SparkSession): Unit = {
-        spark.sql("""
-        SELECT
-            SUM(l_extendedprice * l_discount) as revenue
-        FROM lineitem
-        WHERE l_shipdate >= date '1994-01-01'
-            AND l_shipdate < date '1995-01-01'
-            AND l_discount BETWEEN 0.05 AND 0.07
-            AND l_quantity < 24
-        """).show(10)
-    }
+    // def getQuery5(spark: SparkSession): Unit = {
+    // spark.sql("""
+    //     SELECT 
+    //     nation._c1 AS n_name, 
+    //     SUM(lineitem._c5 * (1 - lineitem._c6)) AS revenue
+    //     FROM customer
+    //     JOIN orders   ON customer._c0 = orders._c1     
+    //     JOIN lineitem ON lineitem._c0 = orders._c0     
+    //     JOIN supplier ON lineitem._c2 = supplier._c0   
+    //     JOIN nation   ON customer._c3 = nation._c0     
+    //                 AND supplier._c3 = nation._c0     
+    //     JOIN region   ON nation._c2 = region._c0       
+    //     WHERE region._c1 = 'ASIA'                      
+    //     AND orders._c4 >= '1994-01-01'               
+    //     AND orders._c4 < '1995-01-01'
+    //     GROUP BY nation._c1
+    //     ORDER BY revenue DESC
+    // """).show(10)
+    // }
 }
+```
+
+
+#### Short summary: 
+
+empty definition using pc, found symbol in pc: 

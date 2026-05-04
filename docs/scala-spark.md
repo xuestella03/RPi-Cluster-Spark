@@ -15,6 +15,7 @@ Follow instructions [here](https://www.scala-sbt.org/1.x/docs/Installing-sbt-on-
 
 ## Building After Making Changes
 ```
+cd tpch-scala
 # if edited spark
 ./build/mvn -DskipTests clean package -pl sql/core,core,launcher -am
 ./build/mvn -DskipTests package -pl assembly -am
@@ -30,5 +31,5 @@ sbt package
 ansible-playbook ansible/playbooks/deploy-custom-spark.yml -i ansible/inventory/hosts.yml --ask-pass
 
 # to run benchmark
-ansible-playbook ansible/playbooks/run-tpch-scala.yml -i ansible/inventory/hosts.yml  --ask-become-pass --ask-pass 
+ansible-playbook ansible/playbooks/run-tpch-scala.yml -i ansible/inventory/hosts.yml -e "active_config=dietpi-liberica-default" -e executor_memory=768m  --ask-become-pass --ask-pass
 ```

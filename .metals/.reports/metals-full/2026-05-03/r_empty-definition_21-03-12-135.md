@@ -1,12 +1,26 @@
+error id: file://<WORKSPACE>/tpch-scala/src/main/scala/TpchBenchmark.scala:scala/Predef.println(+1).
+file://<WORKSPACE>/tpch-scala/src/main/scala/TpchBenchmark.scala
+empty definition using pc, found symbol in pc: 
+empty definition using semanticdb
+empty definition using fallback
+non-local guesses:
+	 -println.
+	 -println#
+	 -println().
+	 -scala/Predef.println.
+	 -scala/Predef.println#
+	 -scala/Predef.println().
+offset: 6960
+uri: file://<WORKSPACE>/tpch-scala/src/main/scala/TpchBenchmark.scala
+text:
+```scala
 // ~/Documents/Repositories/RPi-Cluster-Spark/tpch-scala/src/main/scala/TpchBenchmark.scala
 package tpch
 
 import org.apache.spark.sql.SparkSession
-import org.apache.spark.sql.types._
 import java.io.{FileWriter, PrintWriter}
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import scala.util.Random
 
 object TpchBenchmark {
 
@@ -102,7 +116,7 @@ object TpchBenchmark {
     val dataPath         = sys.env.getOrElse("DATA_PATH", 
         "/home/dietpi/Documents/Repositories/RPi-Cluster-Spark/tpch/data/sf0.3")
     val resultsDir       = sys.env.getOrElse("RESULTS_DIR",
-        "/home/xuestella03/Documents/Repositories/RPi-Cluster-Spark/tpch/results/scala")
+        "<WORKSPACE>/tpch/results/scala")
     val activeConfig     = sys.env.getOrElse("ACTIVE_CONFIG", "default")
     val sf               = sys.env.getOrElse("SF", "0.3")
 
@@ -117,7 +131,6 @@ object TpchBenchmark {
         .config("spark.driver.memory", "2g")
         .config("spark.memory.fraction", "0.45")
         .config("spark.memory.storageFraction", "0.5")
-        .config("spark.task.maxFailures", "1") 
         .getOrCreate()
 
         println(s"Spark UI: ${spark.sparkContext.uiWebUrl.getOrElse("unavailable")}")
@@ -128,9 +141,6 @@ object TpchBenchmark {
         println("Running warmup...")
         runQuery(spark, "warmup", getQuery5)
         spark.catalog.clearCache()
-        spark.sparkContext.getPersistentRDDs.foreach { case (_, rdd) => rdd.unpersist() }
-        System.gc()
-        Thread.sleep(5000)  
 
         // Results setup
         val timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"))
@@ -140,35 +150,18 @@ object TpchBenchmark {
         val writer = new PrintWriter(new FileWriter(csvPath, true))
         writer.println("timestamp,query,elapsed_s,executor_memory,active_config")
 
-        // Map query number -> function
-        val queries: Map[Int, SparkSession => Unit] = Map(
-            1 -> getQuery1,
-            3 -> getQuery3,
-            5 -> getQuery5,
-            6 -> getQuery6
-        )
+        // Run queries - just 2 iterations like your current setup
+        for (i <- 0 until 1) {
+        println(s"\n=== Iteration $i ===")
+        val start = System.currentTimeMillis()
+        runQuery(spark, s"Q5-iter$i", getQuery5)
+        val elapsed = (System.currentTimeMillis() - start) / 1000.0
 
-        // Run queries for x iterations
-        for (i <- 0 until 3) {
-            println(s"\n=== Iteration $i ===")
+        writer.println(s"$timestamp,5,$elapsed,$executorMemory,$activeConfig")
+        writer.flush()
 
-            // Shuffle queries each iteration
-            val shuffledQueries = Random.shuffle(queries.toSeq)
-
-            for ((qNum, qFunc) <- shuffledQueries) {
-                println(s"Running Q$qNum (iteration $i)")
-
-                val start = System.currentTimeMillis()
-                runQuery(spark, s"Q${qNum}-iter$i", qFunc)
-                val elapsed = (System.currentTimeMillis() - start) / 1000.0
-
-                writer.println(s"$timestamp,$qNum,$elapsed,$executorMemory,$activeConfig")
-                writer.flush()
-
-                spark.catalog.clearCache()
-                System.gc()
-                Thread.sleep(3000)
-            }
+        spark.catalog.clearCache()
+        Thread.sleep(3000)
         }
 
         writer.close()
@@ -207,73 +200,49 @@ object TpchBenchmark {
         val start = System.currentTimeMillis()
         queryFn(spark)
         val elapsed = (System.currentTimeMillis() - start) / 1000.0
-        println(s"$label finished in ${elapsed}s")
+        pr@@intln(s"$label finished in ${elapsed}s")
     }
 
-    def getQuery1(spark: SparkSession): Unit = {
-        spark.sql("""SELECT
-            l_returnflag,
-            l_linestatus,
-            SUM(l_quantity) as sum_qty,
-            SUM(l_extendedprice) as sum_base_price,
-            SUM(l_extendedprice * (1 - l_discount)) as sum_disc_price,
-            SUM(l_extendedprice * (1 - l_discount) * (1 + l_tax)) as sum_charge,
-            AVG(l_quantity) as avg_qty,
-            AVG(l_extendedprice) as avg_price,
-            AVG(l_discount) as avg_disc,
-            COUNT(*) as count_order
-        FROM lineitem
-        WHERE l_shipdate <= date '1998-12-01' - interval '90' day
-        GROUP BY l_returnflag, l_linestatus
-        ORDER BY l_returnflag, l_linestatus
-        """).show(10)
-    }
+  def getQuery5(spark: SparkSession): Unit = {
+    spark.sql("""
+      SELECT n_name, SUM(l_extendedprice * (1 - l_discount)) AS revenue
+      FROM customer
+      JOIN orders   ON c_custkey = o_custkey
+      JOIN lineitem ON l_orderkey = o_orderkey
+      JOIN supplier ON l_suppkey = s_suppkey
+      JOIN nation   ON c_nationkey = n_nationkey AND s_nationkey = n_nationkey
+      JOIN region   ON n_regionkey = r_regionkey
+      WHERE r_name = 'ASIA'
+        AND o_orderdate >= '1994-01-01'
+        AND o_orderdate < '1995-01-01'
+      GROUP BY n_name
+      ORDER BY revenue DESC
+    """).show(10)
+  }
 
-    def getQuery3(spark: SparkSession): Unit = {
-        spark.sql("""
-        SELECT
-            l_orderkey,
-            SUM(l_extendedprice * (1 - l_discount)) as revenue,
-            o_orderdate,
-            o_shippriority
-        FROM customer, orders, lineitem
-        WHERE c_mktsegment = 'BUILDING'
-            AND c_custkey = o_custkey
-            AND l_orderkey = o_orderkey
-            AND o_orderdate < date '1995-03-15'
-            AND l_shipdate > date '1995-03-15'
-        GROUP BY l_orderkey, o_orderdate, o_shippriority
-        ORDER BY revenue DESC, o_orderdate
-        LIMIT 10
-        """).show(10)
-    }
-
-    def getQuery5(spark: SparkSession): Unit = {
-        spark.sql("""
-        SELECT n_name, SUM(l_extendedprice * (1 - l_discount)) AS revenue
-        FROM customer
-        JOIN orders   ON c_custkey = o_custkey
-        JOIN lineitem ON l_orderkey = o_orderkey
-        JOIN supplier ON l_suppkey = s_suppkey
-        JOIN nation   ON c_nationkey = n_nationkey AND s_nationkey = n_nationkey
-        JOIN region   ON n_regionkey = r_regionkey
-        WHERE r_name = 'ASIA'
-            AND o_orderdate >= '1994-01-01'
-            AND o_orderdate < '1995-01-01'
-        GROUP BY n_name
-        ORDER BY revenue DESC
-        """).show(10)
-    }
-
-    def getQuery6(spark: SparkSession): Unit = {
-        spark.sql("""
-        SELECT
-            SUM(l_extendedprice * l_discount) as revenue
-        FROM lineitem
-        WHERE l_shipdate >= date '1994-01-01'
-            AND l_shipdate < date '1995-01-01'
-            AND l_discount BETWEEN 0.05 AND 0.07
-            AND l_quantity < 24
-        """).show(10)
-    }
+    // def getQuery5(spark: SparkSession): Unit = {
+    // spark.sql("""
+    //     SELECT 
+    //     nation._c1 AS n_name, 
+    //     SUM(lineitem._c5 * (1 - lineitem._c6)) AS revenue
+    //     FROM customer
+    //     JOIN orders   ON customer._c0 = orders._c1     
+    //     JOIN lineitem ON lineitem._c0 = orders._c0     
+    //     JOIN supplier ON lineitem._c2 = supplier._c0   
+    //     JOIN nation   ON customer._c3 = nation._c0     
+    //                 AND supplier._c3 = nation._c0     
+    //     JOIN region   ON nation._c2 = region._c0       
+    //     WHERE region._c1 = 'ASIA'                      
+    //     AND orders._c4 >= '1994-01-01'               
+    //     AND orders._c4 < '1995-01-01'
+    //     GROUP BY nation._c1
+    //     ORDER BY revenue DESC
+    // """).show(10)
+    // }
 }
+```
+
+
+#### Short summary: 
+
+empty definition using pc, found symbol in pc: 
