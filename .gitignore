@@ -8,3 +8,5 @@ tpch/memory/*
 tpch/results/dietpi-jvm/*
 *.csv
 *.png
+.metals/*
+tpch/event-logs/*

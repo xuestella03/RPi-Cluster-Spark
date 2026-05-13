@@ -48,17 +48,26 @@
       shell: |
         {{ spark_home }}/bin/spark-submit \
           --master spark://{{ master_ip }}:7077 \
+          --conf spark.driver.port=7078 \
+          --conf spark.blockManager.port=7079 \
+          --conf spark.scheduler.minRegisteredResourcesRatio=1.0 \
+          --conf spark.scheduler.maxRegisteredResourcesWaitingTime=60s \
+          --num-executors 2 \
+          --executor-cores 4 \
           --executor-memory {{ executor_memory }} \
           --driver-memory 2g \
+          --conf spark.dynamicAllocation.enabled=false \
           --conf spark.sql.shuffle.partitions=4 \
           --conf spark.executor.cores=4 \
           --conf spark.memory.fraction=0.45 \
           --conf spark.memory.storageFraction=0.5 \
+          --conf spark.executor.extraJavaOptions="-XX:+UseSerialGC" \
+          --conf spark.driver.extraJavaOptions="-XX:+UseSerialGC" \
           {{ jar_path }}
       environment:
         EXECUTOR_MEMORY: "{{ executor_memory }}"
         SPARK_MASTER_URL: "spark://{{ master_ip }}:7077"
-        DATA_PATH: "/home/dietpi/Documents/Repositories/RPi-Cluster-Spark/tpch/data/sf{{ sf }}"
+        DATA_PATH: "/mnt/tpch/sf1"
         RESULTS_DIR: "{{ results_dir }}"
         ACTIVE_CONFIG: "{{ active_config }}"
         SF: "{{ sf }}"

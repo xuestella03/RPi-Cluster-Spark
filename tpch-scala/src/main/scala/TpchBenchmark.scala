@@ -99,8 +99,10 @@ object TpchBenchmark {
     // Config values
     val executorMemory   = sys.env.getOrElse("EXECUTOR_MEMORY", "768m")
     val masterUrl        = sys.env.getOrElse("SPARK_MASTER_URL", "spark://192.168.50.65:7077")
+    // val dataPath         = sys.env.getOrElse("DATA_PATH", 
+    //     "/home/dietpi/Documents/Repositories/RPi-Cluster-Spark/tpch/data/sf0.3")
     val dataPath         = sys.env.getOrElse("DATA_PATH", 
-        "/home/dietpi/Documents/Repositories/RPi-Cluster-Spark/tpch/data/sf0.3")
+        "/mnt/tpch/sf1")
     val resultsDir       = sys.env.getOrElse("RESULTS_DIR",
         "/home/xuestella03/Documents/Repositories/RPi-Cluster-Spark/tpch/results/scala")
     val activeConfig     = sys.env.getOrElse("ACTIVE_CONFIG", "default")
@@ -113,11 +115,16 @@ object TpchBenchmark {
         .master(masterUrl)
         .config("spark.executor.memory", executorMemory)
         .config("spark.executor.cores", "4")
+        .config("spark.scheduler.minRegisteredResourcesRatio", "1.0")
+        .config("spark.dynamicAllocation.enabled", "false")
         .config("spark.sql.shuffle.partitions", "4")
         .config("spark.driver.memory", "2g")
         .config("spark.memory.fraction", "0.45")
         .config("spark.memory.storageFraction", "0.5")
         .config("spark.task.maxFailures", "1") 
+        .config("spark.eventLog.enabled", "true")
+        .config("spark.eventLog.dir", "/home/xuestella03/Documents/Repositories/RPi-Cluster-Spark/tpch/event-logs")
+        .config("spark.eventLog.compress", "false")
         .getOrCreate()
 
         println(s"Spark UI: ${spark.sparkContext.uiWebUrl.getOrElse("unavailable")}")
@@ -126,7 +133,7 @@ object TpchBenchmark {
 
         // Warmup
         println("Running warmup...")
-        runQuery(spark, "warmup", getQuery5)
+        runQuery(spark, "warmup", getQuery6)
         spark.catalog.clearCache()
         spark.sparkContext.getPersistentRDDs.foreach { case (_, rdd) => rdd.unpersist() }
         System.gc()
@@ -142,10 +149,10 @@ object TpchBenchmark {
 
         // Map query number -> function
         val queries: Map[Int, SparkSession => Unit] = Map(
-            1 -> getQuery1,
-            3 -> getQuery3,
+            // 1 -> getQuery1,
+            // 3 -> getQuery3,
             5 -> getQuery5,
-            6 -> getQuery6
+            // 6 -> getQuery6
         )
 
         // Run queries for x iterations
@@ -266,7 +273,7 @@ object TpchBenchmark {
     }
 
     def getQuery6(spark: SparkSession): Unit = {
-        spark.sql("""
+        def df = spark.sql("""
         SELECT
             SUM(l_extendedprice * l_discount) as revenue
         FROM lineitem
@@ -274,6 +281,10 @@ object TpchBenchmark {
             AND l_shipdate < date '1995-01-01'
             AND l_discount BETWEEN 0.05 AND 0.07
             AND l_quantity < 24
-        """).show(10)
+        """)
+        df.explain("formatted")
+
+        df.show(10)
+
     }
 }

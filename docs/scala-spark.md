@@ -14,7 +14,7 @@ Follow instructions [here](https://www.scala-sbt.org/1.x/docs/Installing-sbt-on-
 
 
 ## Building After Making Changes
-```
+```bash
 cd tpch-scala
 # if edited spark
 ./build/mvn -DskipTests clean package -pl sql/core,core,launcher -am
@@ -26,7 +26,7 @@ sbt package
 ```
 
 ## Running
-```
+```bash
 # if changed spark
 ansible-playbook ansible/playbooks/deploy-custom-spark.yml -i ansible/inventory/hosts.yml --ask-pass
 

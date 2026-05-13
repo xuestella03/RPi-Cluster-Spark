@@ -100,15 +100,15 @@
     #   ansible.builtin.debug:
     #     var: worker_spark_home_output.stdout 
 
-    - name: Update spark-env.sh for workers
-      copy:
-        dest: "{{ worker_spark_home }}/conf/spark-env.sh"
-        content: |
-          #!/usr/bin/env bash
-          export JAVA_HOME={{ worker_java_home }}
-          export SPARK_WORKER_CORES=4
-          export SPARK_WORKER_MEMORY=896g
-        mode: '0755'
+    # - name: Update spark-env.sh for workers
+    #   copy:
+    #     dest: "{{ worker_spark_home }}/conf/spark-env.sh"
+    #     content: |
+    #       #!/usr/bin/env bash
+    #       export JAVA_HOME={{ worker_java_home }}
+    #       export SPARK_WORKER_CORES=4
+    #       export SPARK_WORKER_MEMORY=896g
+    #     mode: '0755'
         
     - name: Get master IP
       set_fact:
