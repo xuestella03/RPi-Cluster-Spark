@@ -67,7 +67,8 @@
       environment:
         EXECUTOR_MEMORY: "{{ executor_memory }}"
         SPARK_MASTER_URL: "spark://{{ master_ip }}:7077"
-        DATA_PATH: "/mnt/tpch/sf1"
+        # DATA_PATH: "/mnt/tpch/sf1"
+        DATA_PATH: "/home/dietpi/Documents/Repositories/RPi-Cluster-Spark/tpch/data/sf0.3"
         RESULTS_DIR: "{{ results_dir }}"
         ACTIVE_CONFIG: "{{ active_config }}"
         SF: "{{ sf }}"

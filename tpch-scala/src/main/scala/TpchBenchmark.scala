@@ -149,10 +149,10 @@ object TpchBenchmark {
 
         // Map query number -> function
         val queries: Map[Int, SparkSession => Unit] = Map(
-            // 1 -> getQuery1,
-            // 3 -> getQuery3,
+            1 -> getQuery1,
+            3 -> getQuery3,
             5 -> getQuery5,
-            // 6 -> getQuery6
+            6 -> getQuery6
         )
 
         // Run queries for x iterations
