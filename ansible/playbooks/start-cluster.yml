@@ -9,6 +9,8 @@
 - name: Start Spark master
   hosts: server
   become: yes
+  vars:
+    spark_install_dir: "/opt/spark"
   tasks:
 
     # - name: Get SPARK_HOME and save 
@@ -31,6 +33,7 @@
           export SPARK_MASTER_HOST={{ ansible_default_ipv4.address }}
           export SPARK_MASTER_PORT=7077
           export SPARK_MASTER_WEBUI_PORT=8080
+          export SPARK_EXECUTOR_MEMORY=2G
         mode: '0755'
         
     - name: Kill any existing Spark processes

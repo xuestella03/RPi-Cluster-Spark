@@ -1,0 +1,474 @@
+======================================================================
+CONFIG: q3-x8-sf1-mem512-3-4:1-48part-partbytes64m
+  --- Stage 0  (total tasks=12) ---
+    host=192.168.50.197  n=8  {'run': 11886.2, 'deser': 1251.5, 'gc': 401.9, 'bytesIn': 61485822.9, 'shWrite': 32346701.5, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 957403.2, 'shWriteAcc': 32.3, 'peakMem': 67371008.0, 'aggBuildMs': 0.0}
+    host=192.168.50.198  n=4  {'run': 55589.5, 'deser': 7227.8, 'gc': 2793.8, 'bytesIn': 67174400.0, 'shWrite': 114748046.8, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 1043501.0, 'shWriteAcc': 114.7, 'peakMem': 1310720.0, 'aggBuildMs': 0.0}
+  --- Stage 2  (total tasks=1) ---
+    host=192.168.50.198  n=1  {'run': 1512.0, 'deser': 1164.0, 'gc': 35.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 10136.0, 'fetchWaitTM': 84.0, 'remoteBytes': 6766.0, 'localBytes': 3370.0, 'fetchWaitMs': 84.0, 'outRows': 4.0, 'peakMem': 1310720.0, 'aggBuildMs': 0.0}
+  --- Stage 3  (total tasks=12) ---
+    host=192.168.50.197  n=8  {'run': 3584.2, 'deser': 37.6, 'gc': 51.4, 'bytesIn': 61485822.9, 'shWrite': 45367785.2, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 524361.0, 'shWriteAcc': 45.4}
+    host=192.168.50.198  n=4  {'run': 21633.2, 'deser': 156.0, 'gc': 801.5, 'bytesIn': 67174400.0, 'shWrite': 170368865.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 572166.0, 'shWriteAcc': 170.4}
+  --- Stage 4  (total tasks=6) ---
+    host=192.168.50.197  n=6  {'run': 160.5, 'deser': 42.7, 'gc': 2.2, 'bytesIn': 4112304.0, 'shWrite': 0.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 10047.3}
+  --- Stage 5  (total tasks=8) ---
+    host=192.168.50.197  n=8  {'run': 1067.9, 'deser': 35.1, 'gc': 25.5, 'bytesIn': 21552928.6, 'shWrite': 19467561.1, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 200217.0, 'shWriteAcc': 19.5}
+  --- Stage 7  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 228.0, 'deser': 65.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 1620334.0, 'fetchWaitTM': 8.0, 'localBytes': 1620334.0, 'fetchWaitMs': 8.0}
+  --- Stage 9  (total tasks=9) ---
+    host=192.168.50.197  n=4  {'run': 1728.0, 'deser': 606.2, 'gc': 438.2, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 4441792.2, 'fetchWaitTM': 56.8, 'remoteBytes': 1564993.2, 'localBytes': 2876799.0, 'fetchWaitMs': 56.8, 'outRows': 5819.0, 'peakMem': 134742016.0, 'aggBuildMs': 0.0}
+    host=192.168.50.198  n=5  {'run': 3098.6, 'deser': 597.8, 'gc': 461.4, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 4583258.6, 'fetchWaitTM': 26.8, 'remoteBytes': 2968591.8, 'localBytes': 1614666.8, 'fetchWaitMs': 26.8, 'outRows': 6096.6, 'peakMem': 2621440.0, 'aggBuildMs': 0.0}
+  --- Stage 10  (total tasks=12) ---
+    host=192.168.50.197  n=8  {'run': 3333.4, 'deser': 29.4, 'gc': 180.9, 'bytesIn': 61485822.9, 'shWrite': 43802895.6, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 524361.0, 'shWriteAcc': 43.8}
+    host=192.168.50.198  n=4  {'run': 18795.2, 'deser': 87.0, 'gc': 581.5, 'bytesIn': 67174400.0, 'shWrite': 107573603.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 572166.0, 'shWriteAcc': 107.6}
+  --- Stage 11  (total tasks=6) ---
+    host=192.168.50.197  n=6  {'run': 129.2, 'deser': 16.5, 'gc': 1.3, 'bytesIn': 4112304.0, 'shWrite': 0.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 10047.3}
+  --- Stage 12  (total tasks=8) ---
+    host=192.168.50.197  n=8  {'run': 802.5, 'deser': 35.6, 'gc': 41.1, 'bytesIn': 21552928.6, 'shWrite': 11044423.1, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 200217.0, 'shWriteAcc': 11.0}
+  --- Stage 14  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 81.0, 'deser': 9.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 1620334.0, 'fetchWaitTM': 2.0, 'localBytes': 1620334.0, 'fetchWaitMs': 2.0}
+  --- Stage 16  (total tasks=9) ---
+    host=192.168.50.198  n=9  {'run': 1338.6, 'deser': 255.1, 'gc': 246.2, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 4520384.7, 'fetchWaitTM': 22.2, 'remoteBytes': 2927795.0, 'localBytes': 1592589.7, 'fetchWaitMs': 22.2, 'outRows': 5973.2, 'peakMem': 2621440.0, 'aggBuildMs': 0.0}
+  --- Stage 17  (total tasks=12) ---
+    host=192.168.50.197  n=8  {'run': 2819.8, 'deser': 23.0, 'gc': 59.8, 'bytesIn': 61485822.9, 'shWrite': 39156580.4, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 524361.0, 'shWriteAcc': 39.2}
+    host=192.168.50.198  n=4  {'run': 18788.5, 'deser': 84.2, 'gc': 474.2, 'bytesIn': 67174400.0, 'shWrite': 106838682.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 572166.0, 'shWriteAcc': 106.8}
+  --- Stage 18  (total tasks=6) ---
+    host=192.168.50.197  n=6  {'run': 117.7, 'deser': 19.3, 'gc': 1.2, 'bytesIn': 4112304.0, 'shWrite': 0.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 10047.3}
+  --- Stage 19  (total tasks=8) ---
+    host=192.168.50.197  n=8  {'run': 866.2, 'deser': 23.9, 'gc': 147.2, 'bytesIn': 21552928.6, 'shWrite': 14481288.5, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 200217.0, 'shWriteAcc': 14.5}
+  --- Stage 21  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 59.0, 'deser': 10.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 1620334.0, 'fetchWaitTM': 1.0, 'localBytes': 1620334.0, 'fetchWaitMs': 1.0}
+  --- Stage 23  (total tasks=9) ---
+    host=192.168.50.198  n=9  {'run': 1092.4, 'deser': 199.4, 'gc': 39.9, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 4520384.7, 'fetchWaitTM': 23.3, 'remoteBytes': 2927795.0, 'localBytes': 1592589.7, 'fetchWaitMs': 23.3, 'outRows': 5973.2, 'peakMem': 2621440.0, 'aggBuildMs': 0.0}
+  --- Stage 24  (total tasks=12) ---
+    host=192.168.50.197  n=8  {'run': 2827.6, 'deser': 18.9, 'gc': 58.9, 'bytesIn': 61485822.9, 'shWrite': 29768633.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 524361.0, 'shWriteAcc': 29.8}
+    host=192.168.50.198  n=4  {'run': 19712.8, 'deser': 73.0, 'gc': 963.0, 'bytesIn': 67174400.0, 'shWrite': 103408789.5, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 572166.0, 'shWriteAcc': 103.4}
+  --- Stage 25  (total tasks=6) ---
+    host=192.168.50.197  n=6  {'run': 127.7, 'deser': 13.8, 'gc': 0.0, 'bytesIn': 4112304.0, 'shWrite': 0.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 10047.3}
+  --- Stage 26  (total tasks=8) ---
+    host=192.168.50.197  n=8  {'run': 693.1, 'deser': 17.6, 'gc': 35.2, 'bytesIn': 21552928.6, 'shWrite': 7713202.9, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 200217.0, 'shWriteAcc': 7.7}
+  --- Stage 28  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 47.0, 'deser': 8.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 1620334.0, 'fetchWaitTM': 2.0, 'localBytes': 1620334.0, 'fetchWaitMs': 2.0}
+  --- Stage 30  (total tasks=9) ---
+    host=192.168.50.198  n=9  {'run': 1074.2, 'deser': 175.1, 'gc': 30.2, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 4520384.7, 'fetchWaitTM': 16.1, 'remoteBytes': 2927795.0, 'localBytes': 1592589.7, 'fetchWaitMs': 16.1, 'outRows': 5973.2, 'peakMem': 2621440.0, 'aggBuildMs': 0.0}
+  --- Stage 31  (total tasks=12) ---
+    host=192.168.50.197  n=8  {'run': 2819.4, 'deser': 19.4, 'gc': 62.9, 'bytesIn': 61485822.9, 'shWrite': 39200397.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 524361.0, 'shWriteAcc': 39.2}
+    host=192.168.50.198  n=4  {'run': 19088.5, 'deser': 55.2, 'gc': 479.5, 'bytesIn': 67174400.0, 'shWrite': 74237409.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 572166.0, 'shWriteAcc': 74.2}
+  --- Stage 32  (total tasks=6) ---
+    host=192.168.50.197  n=6  {'run': 81.3, 'deser': 9.2, 'gc': 1.3, 'bytesIn': 4112304.0, 'shWrite': 0.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 10047.3}
+  --- Stage 33  (total tasks=8) ---
+    host=192.168.50.197  n=8  {'run': 824.0, 'deser': 24.5, 'gc': 134.8, 'bytesIn': 21552928.6, 'shWrite': 10653087.2, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 200217.0, 'shWriteAcc': 10.7}
+  --- Stage 35  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 45.0, 'deser': 15.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 1620334.0, 'fetchWaitTM': 0.0, 'localBytes': 1620334.0, 'fetchWaitMs': 0.0}
+  --- Stage 37  (total tasks=9) ---
+    host=192.168.50.198  n=9  {'run': 1273.2, 'deser': 185.8, 'gc': 226.7, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 4520384.7, 'fetchWaitTM': 19.2, 'remoteBytes': 2927795.0, 'localBytes': 1592589.7, 'fetchWaitMs': 19.2, 'outRows': 5973.2, 'peakMem': 2621440.0, 'aggBuildMs': 0.0}
+  --- Stage 38  (total tasks=12) ---
+    host=192.168.50.197  n=8  {'run': 2815.0, 'deser': 18.1, 'gc': 62.5, 'bytesIn': 61485822.9, 'shWrite': 32525908.8, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 524361.0, 'shWriteAcc': 32.5}
+    host=192.168.50.198  n=4  {'run': 18991.8, 'deser': 56.0, 'gc': 513.5, 'bytesIn': 67174400.0, 'shWrite': 100016599.5, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 572166.0, 'shWriteAcc': 100.0}
+  --- Stage 39  (total tasks=6) ---
+    host=192.168.50.197  n=6  {'run': 99.5, 'deser': 11.8, 'gc': 1.2, 'bytesIn': 4112304.0, 'shWrite': 0.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 10047.3}
+  --- Stage 40  (total tasks=8) ---
+    host=192.168.50.197  n=8  {'run': 700.8, 'deser': 19.2, 'gc': 35.0, 'bytesIn': 21552928.6, 'shWrite': 8039284.4, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 200217.0, 'shWriteAcc': 8.0}
+  --- Stage 42  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 47.0, 'deser': 7.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 1620334.0, 'fetchWaitTM': 1.0, 'localBytes': 1620334.0, 'fetchWaitMs': 1.0}
+  --- Stage 44  (total tasks=9) ---
+    host=192.168.50.198  n=9  {'run': 975.0, 'deser': 179.7, 'gc': 20.9, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 4520384.7, 'fetchWaitTM': 16.9, 'remoteBytes': 2927795.0, 'localBytes': 1592589.7, 'fetchWaitMs': 16.9, 'outRows': 5973.2, 'peakMem': 2621440.0, 'aggBuildMs': 0.0}
+  --- Stage 45  (total tasks=12) ---
+    host=192.168.50.197  n=8  {'run': 2808.2, 'deser': 18.2, 'gc': 73.1, 'bytesIn': 61485822.9, 'shWrite': 28068557.6, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 524361.0, 'shWriteAcc': 28.1}
+    host=192.168.50.198  n=4  {'run': 19543.0, 'deser': 72.0, 'gc': 884.8, 'bytesIn': 67174400.0, 'shWrite': 79899791.5, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 572166.0, 'shWriteAcc': 79.9}
+  --- Stage 46  (total tasks=6) ---
+    host=192.168.50.197  n=6  {'run': 127.7, 'deser': 11.8, 'gc': 2.3, 'bytesIn': 4112304.0, 'shWrite': 0.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 10047.3}
+  --- Stage 47  (total tasks=8) ---
+    host=192.168.50.197  n=8  {'run': 884.5, 'deser': 17.4, 'gc': 130.8, 'bytesIn': 21552928.6, 'shWrite': 7690131.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 200217.0, 'shWriteAcc': 7.7}
+  --- Stage 49  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 46.0, 'deser': 10.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 1620334.0, 'fetchWaitTM': 1.0, 'localBytes': 1620334.0, 'fetchWaitMs': 1.0}
+  --- Stage 51  (total tasks=9) ---
+    host=192.168.50.198  n=9  {'run': 1065.9, 'deser': 133.1, 'gc': 23.2, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 4520384.7, 'fetchWaitTM': 17.4, 'remoteBytes': 2927795.0, 'localBytes': 1592589.7, 'fetchWaitMs': 17.4, 'outRows': 5973.2, 'peakMem': 2621440.0, 'aggBuildMs': 0.0}
+  --- Stage 52  (total tasks=12) ---
+    host=192.168.50.197  n=8  {'run': 2712.9, 'deser': 16.5, 'gc': 59.5, 'bytesIn': 61485822.9, 'shWrite': 29627353.9, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 524361.0, 'shWriteAcc': 29.6}
+    host=192.168.50.198  n=4  {'run': 19174.5, 'deser': 53.0, 'gc': 483.0, 'bytesIn': 67174400.0, 'shWrite': 80196210.2, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 572166.0, 'shWriteAcc': 80.2}
+  --- Stage 53  (total tasks=6) ---
+    host=192.168.50.197  n=6  {'run': 79.3, 'deser': 8.7, 'gc': 1.2, 'bytesIn': 4112304.0, 'shWrite': 0.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 10047.3}
+  --- Stage 54  (total tasks=8) ---
+    host=192.168.50.197  n=8  {'run': 722.2, 'deser': 21.5, 'gc': 37.1, 'bytesIn': 21552928.6, 'shWrite': 7274243.5, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 200217.0, 'shWriteAcc': 7.3}
+  --- Stage 56  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 72.0, 'deser': 8.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 1620334.0, 'fetchWaitTM': 1.0, 'localBytes': 1620334.0, 'fetchWaitMs': 1.0}
+  --- Stage 58  (total tasks=9) ---
+    host=192.168.50.198  n=9  {'run': 1211.1, 'deser': 108.0, 'gc': 198.4, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 4520384.7, 'fetchWaitTM': 17.9, 'remoteBytes': 2927795.0, 'localBytes': 1592589.7, 'fetchWaitMs': 17.9, 'outRows': 5973.2, 'peakMem': 2621440.0, 'aggBuildMs': 0.0}
+======================================================================
+CONFIG: q3-x8-sf1-mem512-3-1:1-48part-partbytes32m
+  --- Stage 0  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 6137.5, 'deser': 557.2, 'gc': 210.1, 'bytesIn': 32990800.4, 'shWrite': 20657704.3, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 512956.1, 'shWriteAcc': 20.7, 'peakMem': 67371008.0, 'aggBuildMs': 0.0}
+    host=192.168.50.198  n=4  {'run': 42036.8, 'deser': 7079.2, 'gc': 2051.0, 'bytesIn': 33619968.0, 'shWrite': 123172943.8, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 521777.0, 'shWriteAcc': 123.2, 'peakMem': 1310720.0, 'aggBuildMs': 0.0}
+  --- Stage 2  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 296.0, 'deser': 238.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 19467.0, 'fetchWaitTM': 19.0, 'remoteBytes': 3390.0, 'localBytes': 16077.0, 'fetchWaitMs': 19.0, 'outRows': 4.0, 'peakMem': 67371008.0, 'aggBuildMs': 0.0}
+  --- Stage 3  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1789.3, 'deser': 21.3, 'gc': 36.4, 'bytesIn': 32990800.4, 'shWrite': 27378353.3, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 281080.9, 'shWriteAcc': 27.4}
+    host=192.168.50.198  n=4  {'run': 12277.0, 'deser': 125.2, 'gc': 471.5, 'bytesIn': 33619968.0, 'shWrite': 124013318.5, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 285753.5, 'shWriteAcc': 124.0}
+  --- Stage 4  (total tasks=6) ---
+    host=192.168.50.197  n=6  {'run': 161.5, 'deser': 72.3, 'gc': 2.7, 'bytesIn': 4112304.0, 'shWrite': 0.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 10047.3}
+  --- Stage 5  (total tasks=8) ---
+    host=192.168.50.197  n=8  {'run': 1039.2, 'deser': 27.0, 'gc': 51.4, 'bytesIn': 21552928.6, 'shWrite': 11652614.5, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 200217.0, 'shWriteAcc': 11.7}
+  --- Stage 7  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 164.0, 'deser': 16.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 1620334.0, 'fetchWaitTM': 5.0, 'localBytes': 1620334.0, 'fetchWaitMs': 5.0}
+  --- Stage 9  (total tasks=9) ---
+    host=192.168.50.197  n=9  {'run': 935.4, 'deser': 214.1, 'gc': 195.6, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 4529499.4, 'fetchWaitTM': 31.9, 'remoteBytes': 797110.4, 'localBytes': 3732389.0, 'fetchWaitMs': 31.9, 'outRows': 5973.2, 'peakMem': 134742016.0, 'aggBuildMs': 0.0}
+  --- Stage 10  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1858.4, 'deser': 18.4, 'gc': 87.6, 'bytesIn': 32990800.4, 'shWrite': 25253227.8, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 280950.3, 'shWriteAcc': 25.3}
+    host=192.168.50.198  n=4  {'run': 9442.5, 'deser': 116.0, 'gc': 802.5, 'bytesIn': 33619968.0, 'shWrite': 235686741.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 286374.0, 'shWriteAcc': 235.7}
+  --- Stage 11  (total tasks=6) ---
+    host=192.168.50.197  n=6  {'run': 198.2, 'deser': 31.3, 'gc': 2.2, 'bytesIn': 4112304.0, 'shWrite': 0.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 10047.3}
+  --- Stage 12  (total tasks=8) ---
+    host=192.168.50.197  n=4  {'run': 1000.5, 'deser': 34.8, 'gc': 52.8, 'bytesIn': 22085632.0, 'shWrite': 11696642.2, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 205193.5, 'shWriteAcc': 11.7}
+    host=192.168.50.198  n=4  {'run': 6257.8, 'deser': 137.8, 'gc': 674.2, 'bytesIn': 21020225.2, 'shWrite': 57824905.5, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 195240.5, 'shWriteAcc': 57.8}
+  --- Stage 14  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 88.0, 'deser': 12.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 1620334.0, 'fetchWaitTM': 1.0, 'remoteBytes': 789862.0, 'localBytes': 830472.0, 'fetchWaitMs': 1.0}
+  --- Stage 16  (total tasks=9) ---
+    host=192.168.50.197  n=9  {'run': 446.7, 'deser': 58.7, 'gc': 72.9, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 4529499.4, 'fetchWaitTM': 17.7, 'remoteBytes': 801545.2, 'localBytes': 3727954.2, 'fetchWaitMs': 17.7, 'outRows': 5973.2, 'peakMem': 134742016.0, 'aggBuildMs': 0.0}
+  --- Stage 17  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1693.2, 'deser': 14.6, 'gc': 54.8, 'bytesIn': 32990800.4, 'shWrite': 19498743.1, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 281080.9, 'shWriteAcc': 19.5}
+    host=192.168.50.198  n=4  {'run': 9155.0, 'deser': 99.5, 'gc': 525.0, 'bytesIn': 33619968.0, 'shWrite': 295497756.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 285753.5, 'shWriteAcc': 295.5}
+  --- Stage 18  (total tasks=6) ---
+    host=192.168.50.197  n=6  {'run': 126.5, 'deser': 12.0, 'gc': 1.3, 'bytesIn': 4112304.0, 'shWrite': 0.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 10047.3}
+  --- Stage 19  (total tasks=8) ---
+    host=192.168.50.197  n=6  {'run': 791.5, 'deser': 31.7, 'gc': 23.0, 'bytesIn': 22085632.0, 'shWrite': 9500272.3, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 205150.3, 'shWriteAcc': 9.5}
+    host=192.168.50.198  n=2  {'run': 3804.5, 'deser': 75.0, 'gc': 598.0, 'bytesIn': 19954818.5, 'shWrite': 19134597.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 185417.0, 'shWriteAcc': 19.1}
+  --- Stage 21  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 65.0, 'deser': 9.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 1620334.0, 'fetchWaitTM': 2.0, 'remoteBytes': 375777.0, 'localBytes': 1244557.0, 'fetchWaitMs': 2.0}
+  --- Stage 23  (total tasks=9) ---
+    host=192.168.50.197  n=9  {'run': 332.2, 'deser': 44.8, 'gc': 35.7, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 4529499.4, 'fetchWaitTM': 7.4, 'remoteBytes': 797110.4, 'localBytes': 3732389.0, 'fetchWaitMs': 7.4, 'outRows': 5973.2, 'peakMem': 134742016.0, 'aggBuildMs': 0.0}
+  --- Stage 24  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1632.2, 'deser': 14.7, 'gc': 42.2, 'bytesIn': 32990800.4, 'shWrite': 18601128.9, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 280911.4, 'shWriteAcc': 18.6}
+    host=192.168.50.198  n=4  {'run': 9178.0, 'deser': 85.2, 'gc': 341.5, 'bytesIn': 33619968.0, 'shWrite': 84144296.5, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 286559.0, 'shWriteAcc': 84.1}
+  --- Stage 25  (total tasks=6) ---
+    host=192.168.50.197  n=6  {'run': 110.8, 'deser': 13.0, 'gc': 0.0, 'bytesIn': 4112304.0, 'shWrite': 0.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 10047.3}
+  --- Stage 26  (total tasks=8) ---
+    host=192.168.50.197  n=6  {'run': 915.0, 'deser': 21.0, 'gc': 57.0, 'bytesIn': 21375360.8, 'shWrite': 8506632.3, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 198683.3, 'shWriteAcc': 8.5}
+    host=192.168.50.198  n=2  {'run': 4024.5, 'deser': 100.0, 'gc': 504.0, 'bytesIn': 22085632.0, 'shWrite': 27327299.5, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 204818.0, 'shWriteAcc': 27.3}
+  --- Stage 28  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 84.0, 'deser': 9.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 1620334.0, 'fetchWaitTM': 2.0, 'remoteBytes': 414839.0, 'localBytes': 1205495.0, 'fetchWaitMs': 2.0}
+  --- Stage 30  (total tasks=9) ---
+    host=192.168.50.197  n=9  {'run': 380.3, 'deser': 46.6, 'gc': 119.6, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 4529499.4, 'fetchWaitTM': 5.8, 'remoteBytes': 801682.4, 'localBytes': 3727817.0, 'fetchWaitMs': 5.8, 'outRows': 5973.2, 'peakMem': 134742016.0, 'aggBuildMs': 0.0}
+  --- Stage 31  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1616.8, 'deser': 11.3, 'gc': 41.0, 'bytesIn': 32990800.4, 'shWrite': 19435425.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 280944.7, 'shWriteAcc': 19.4}
+    host=192.168.50.198  n=4  {'run': 8252.8, 'deser': 75.8, 'gc': 308.2, 'bytesIn': 33619968.0, 'shWrite': 80815348.8, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 286400.5, 'shWriteAcc': 80.8}
+  --- Stage 32  (total tasks=6) ---
+    host=192.168.50.197  n=6  {'run': 84.5, 'deser': 10.3, 'gc': 0.0, 'bytesIn': 4112304.0, 'shWrite': 0.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 10047.3}
+  --- Stage 33  (total tasks=8) ---
+    host=192.168.50.197  n=5  {'run': 867.8, 'deser': 27.6, 'gc': 22.4, 'bytesIn': 21233306.6, 'shWrite': 7697586.4, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 197431.8, 'shWriteAcc': 7.7}
+    host=192.168.50.198  n=3  {'run': 4018.3, 'deser': 77.0, 'gc': 543.3, 'bytesIn': 22085632.0, 'shWrite': 17190115.7, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 204859.0, 'shWriteAcc': 17.2}
+  --- Stage 35  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 83.0, 'deser': 8.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 1620334.0, 'fetchWaitTM': 3.0, 'remoteBytes': 622432.0, 'localBytes': 997902.0, 'fetchWaitMs': 3.0}
+  --- Stage 37  (total tasks=9) ---
+    host=192.168.50.197  n=9  {'run': 283.2, 'deser': 43.8, 'gc': 42.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 4529499.4, 'fetchWaitTM': 12.4, 'remoteBytes': 802048.1, 'localBytes': 3727451.3, 'fetchWaitMs': 12.4, 'outRows': 5973.2, 'peakMem': 134742016.0, 'aggBuildMs': 0.0}
+  --- Stage 38  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1608.5, 'deser': 9.5, 'gc': 34.8, 'bytesIn': 32990800.4, 'shWrite': 21838453.8, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 280944.7, 'shWriteAcc': 21.8}
+    host=192.168.50.198  n=4  {'run': 8731.8, 'deser': 77.5, 'gc': 302.0, 'bytesIn': 33619968.0, 'shWrite': 85704876.5, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 286400.5, 'shWriteAcc': 85.7}
+  --- Stage 39  (total tasks=6) ---
+    host=192.168.50.197  n=6  {'run': 94.7, 'deser': 8.3, 'gc': 1.7, 'bytesIn': 4112304.0, 'shWrite': 0.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 10047.3}
+  --- Stage 40  (total tasks=8) ---
+    host=192.168.50.197  n=6  {'run': 775.0, 'deser': 32.2, 'gc': 23.5, 'bytesIn': 21375360.8, 'shWrite': 7414113.3, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 198583.0, 'shWriteAcc': 7.4}
+    host=192.168.50.198  n=2  {'run': 4186.5, 'deser': 102.0, 'gc': 517.5, 'bytesIn': 22085632.0, 'shWrite': 19711296.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 205119.0, 'shWriteAcc': 19.7}
+  --- Stage 42  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 63.0, 'deser': 7.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 1620334.0, 'fetchWaitTM': 0.0, 'remoteBytes': 415473.0, 'localBytes': 1204861.0, 'fetchWaitMs': 0.0}
+  --- Stage 44  (total tasks=9) ---
+    host=192.168.50.197  n=9  {'run': 278.0, 'deser': 35.0, 'gc': 25.6, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 4529499.4, 'fetchWaitTM': 5.6, 'remoteBytes': 802048.1, 'localBytes': 3727451.3, 'fetchWaitMs': 5.6, 'outRows': 5973.2, 'peakMem': 134742016.0, 'aggBuildMs': 0.0}
+  --- Stage 45  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1580.5, 'deser': 9.2, 'gc': 32.4, 'bytesIn': 32990800.4, 'shWrite': 18727454.5, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 280944.7, 'shWriteAcc': 18.7}
+    host=192.168.50.198  n=4  {'run': 8450.2, 'deser': 73.5, 'gc': 298.5, 'bytesIn': 33619968.0, 'shWrite': 76026849.5, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 286400.5, 'shWriteAcc': 76.0}
+  --- Stage 46  (total tasks=6) ---
+    host=192.168.50.197  n=6  {'run': 100.2, 'deser': 7.2, 'gc': 0.0, 'bytesIn': 4112304.0, 'shWrite': 0.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 10047.3}
+  --- Stage 47  (total tasks=8) ---
+    host=192.168.50.197  n=6  {'run': 876.0, 'deser': 22.0, 'gc': 59.3, 'bytesIn': 21375360.8, 'shWrite': 7450081.3, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 198727.0, 'shWriteAcc': 7.5}
+    host=192.168.50.198  n=2  {'run': 3367.5, 'deser': 124.5, 'gc': 98.0, 'bytesIn': 22085632.0, 'shWrite': 22804347.5, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 204687.0, 'shWriteAcc': 22.8}
+  --- Stage 49  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 81.0, 'deser': 8.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 1620334.0, 'fetchWaitTM': 0.0, 'remoteBytes': 412118.0, 'localBytes': 1208216.0, 'fetchWaitMs': 0.0}
+  --- Stage 51  (total tasks=9) ---
+    host=192.168.50.197  n=9  {'run': 265.0, 'deser': 33.1, 'gc': 13.7, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 4529499.4, 'fetchWaitTM': 3.8, 'remoteBytes': 802048.1, 'localBytes': 3727451.3, 'fetchWaitMs': 3.8, 'outRows': 5973.2, 'peakMem': 134742016.0, 'aggBuildMs': 0.0}
+  --- Stage 52  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1595.3, 'deser': 9.6, 'gc': 36.0, 'bytesIn': 32990800.4, 'shWrite': 18884118.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 280944.7, 'shWriteAcc': 18.9}
+    host=192.168.50.198  n=4  {'run': 8926.2, 'deser': 78.2, 'gc': 733.0, 'bytesIn': 33619968.0, 'shWrite': 78970694.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 286400.5, 'shWriteAcc': 79.0}
+  --- Stage 53  (total tasks=6) ---
+    host=192.168.50.197  n=6  {'run': 97.7, 'deser': 7.7, 'gc': 0.0, 'bytesIn': 4112304.0, 'shWrite': 0.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 10047.3}
+  --- Stage 54  (total tasks=8) ---
+    host=192.168.50.197  n=7  {'run': 783.4, 'deser': 16.0, 'gc': 60.6, 'bytesIn': 21476828.1, 'shWrite': 8368893.3, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 199498.0, 'shWriteAcc': 8.4}
+    host=192.168.50.198  n=1  {'run': 3350.0, 'deser': 68.0, 'gc': 66.0, 'bytesIn': 22085632.0, 'shWrite': 12708372.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 205250.0, 'shWriteAcc': 12.7}
+  --- Stage 56  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 65.0, 'deser': 7.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 1620334.0, 'fetchWaitTM': 0.0, 'remoteBytes': 209097.0, 'localBytes': 1411237.0, 'fetchWaitMs': 0.0}
+  --- Stage 58  (total tasks=9) ---
+    host=192.168.50.197  n=9  {'run': 355.1, 'deser': 35.2, 'gc': 69.4, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 4529499.4, 'fetchWaitTM': 7.0, 'remoteBytes': 802048.1, 'localBytes': 3727451.3, 'fetchWaitMs': 7.0, 'outRows': 5973.2, 'peakMem': 134742016.0, 'aggBuildMs': 0.0}
+======================================================================
+CONFIG: q3-x8-sf1-mem512-3-1:0-48part-partbytes32m
+  --- Stage 0  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 6357.6, 'deser': 553.8, 'gc': 217.7, 'bytesIn': 33100220.8, 'shWrite': 22476976.6, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 514490.2, 'shWriteAcc': 22.5, 'peakMem': 67371008.0, 'aggBuildMs': 0.0}
+  --- Stage 2  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 381.0, 'deser': 197.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 19467.0, 'fetchWaitTM': 13.0, 'localBytes': 19467.0, 'fetchWaitMs': 13.0, 'outRows': 4.0, 'peakMem': 67371008.0, 'aggBuildMs': 0.0}
+  --- Stage 3  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 1975.0, 'deser': 26.4, 'gc': 37.4, 'bytesIn': 33100220.8, 'shWrite': 33104453.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 281893.6, 'shWriteAcc': 33.1}
+  --- Stage 4  (total tasks=6) ---
+    host=192.168.50.197  n=6  {'run': 199.8, 'deser': 47.3, 'gc': 3.5, 'bytesIn': 4112304.0, 'shWrite': 0.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 10047.3}
+  --- Stage 5  (total tasks=8) ---
+    host=192.168.50.197  n=8  {'run': 1344.1, 'deser': 35.6, 'gc': 145.9, 'bytesIn': 21552928.6, 'shWrite': 11911096.2, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 200217.0, 'shWriteAcc': 11.9}
+  --- Stage 7  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 199.0, 'deser': 19.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 1620334.0, 'fetchWaitTM': 9.0, 'localBytes': 1620334.0, 'fetchWaitMs': 9.0}
+  --- Stage 9  (total tasks=9) ---
+    host=192.168.50.197  n=9  {'run': 1097.0, 'deser': 314.9, 'gc': 179.2, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 4529499.4, 'fetchWaitTM': 21.1, 'localBytes': 4529499.4, 'fetchWaitMs': 21.1, 'outRows': 5973.2, 'peakMem': 134742016.0, 'aggBuildMs': 0.0}
+  --- Stage 10  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 1921.3, 'deser': 15.9, 'gc': 65.8, 'bytesIn': 33100220.8, 'shWrite': 30162728.6, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 281893.6, 'shWriteAcc': 30.2}
+  --- Stage 11  (total tasks=6) ---
+    host=192.168.50.197  n=6  {'run': 190.3, 'deser': 27.0, 'gc': 2.7, 'bytesIn': 4112304.0, 'shWrite': 0.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 10047.3}
+  --- Stage 12  (total tasks=8) ---
+    host=192.168.50.197  n=8  {'run': 954.4, 'deser': 22.1, 'gc': 25.2, 'bytesIn': 21552928.6, 'shWrite': 11775723.8, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 200217.0, 'shWriteAcc': 11.8}
+  --- Stage 14  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 97.0, 'deser': 10.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 1620334.0, 'fetchWaitTM': 2.0, 'localBytes': 1620334.0, 'fetchWaitMs': 2.0}
+  --- Stage 16  (total tasks=9) ---
+    host=192.168.50.197  n=9  {'run': 465.2, 'deser': 67.0, 'gc': 71.9, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 4529499.4, 'fetchWaitTM': 9.4, 'localBytes': 4529499.4, 'fetchWaitMs': 9.4, 'outRows': 5973.2, 'peakMem': 134742016.0, 'aggBuildMs': 0.0}
+  --- Stage 17  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 1823.1, 'deser': 11.5, 'gc': 47.3, 'bytesIn': 33100220.8, 'shWrite': 19464438.5, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 281893.6, 'shWriteAcc': 19.5}
+  --- Stage 18  (total tasks=6) ---
+    host=192.168.50.197  n=6  {'run': 132.5, 'deser': 14.0, 'gc': 1.2, 'bytesIn': 4112304.0, 'shWrite': 0.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 10047.3}
+  --- Stage 19  (total tasks=8) ---
+    host=192.168.50.197  n=8  {'run': 871.1, 'deser': 18.8, 'gc': 19.5, 'bytesIn': 21552928.6, 'shWrite': 10721588.8, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 200217.0, 'shWriteAcc': 10.7}
+  --- Stage 21  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 65.0, 'deser': 11.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 1620334.0, 'fetchWaitTM': 1.0, 'localBytes': 1620334.0, 'fetchWaitMs': 1.0}
+  --- Stage 23  (total tasks=9) ---
+    host=192.168.50.197  n=9  {'run': 421.9, 'deser': 60.1, 'gc': 98.9, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 4529499.4, 'fetchWaitTM': 11.1, 'localBytes': 4529499.4, 'fetchWaitMs': 11.1, 'outRows': 5973.2, 'peakMem': 134742016.0, 'aggBuildMs': 0.0}
+  --- Stage 24  (total tasks=6) ---
+    host=192.168.50.197  n=6  {'run': 230.0, 'deser': 20.7, 'gc': 24.8, 'bytesIn': 4112304.0, 'shWrite': 0.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 10047.3}
+  --- Stage 25  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 1762.3, 'deser': 18.7, 'gc': 36.6, 'bytesIn': 33100220.8, 'shWrite': 19184118.4, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 281893.6, 'shWriteAcc': 19.2}
+  --- Stage 26  (total tasks=8) ---
+    host=192.168.50.197  n=8  {'run': 837.1, 'deser': 17.8, 'gc': 21.9, 'bytesIn': 21552928.6, 'shWrite': 8544298.5, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 200217.0, 'shWriteAcc': 8.5}
+  --- Stage 28  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 50.0, 'deser': 11.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 1620334.0, 'fetchWaitTM': 1.0, 'localBytes': 1620334.0, 'fetchWaitMs': 1.0}
+  --- Stage 30  (total tasks=9) ---
+    host=192.168.50.197  n=9  {'run': 396.6, 'deser': 63.9, 'gc': 39.7, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 4529499.4, 'fetchWaitTM': 8.3, 'localBytes': 4529499.4, 'fetchWaitMs': 8.3, 'outRows': 5973.2, 'peakMem': 134742016.0, 'aggBuildMs': 0.0}
+  --- Stage 31  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 1735.3, 'deser': 10.1, 'gc': 37.5, 'bytesIn': 33100220.8, 'shWrite': 19345800.8, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 281893.6, 'shWriteAcc': 19.3}
+  --- Stage 32  (total tasks=6) ---
+    host=192.168.50.197  n=6  {'run': 120.7, 'deser': 10.7, 'gc': 0.0, 'bytesIn': 4112304.0, 'shWrite': 0.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 10047.3}
+  --- Stage 33  (total tasks=8) ---
+    host=192.168.50.197  n=8  {'run': 786.4, 'deser': 13.2, 'gc': 19.6, 'bytesIn': 21552928.6, 'shWrite': 6564682.1, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 200217.0, 'shWriteAcc': 6.6}
+  --- Stage 35  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 61.0, 'deser': 8.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 1620334.0, 'fetchWaitTM': 1.0, 'localBytes': 1620334.0, 'fetchWaitMs': 1.0}
+  --- Stage 37  (total tasks=9) ---
+    host=192.168.50.197  n=9  {'run': 387.8, 'deser': 64.7, 'gc': 100.9, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 4529499.4, 'fetchWaitTM': 12.4, 'localBytes': 4529499.4, 'fetchWaitMs': 12.4, 'outRows': 5973.2, 'peakMem': 134742016.0, 'aggBuildMs': 0.0}
+  --- Stage 38  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 1681.2, 'deser': 10.1, 'gc': 31.9, 'bytesIn': 33100220.8, 'shWrite': 18002243.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 281893.6, 'shWriteAcc': 18.0}
+  --- Stage 39  (total tasks=6) ---
+    host=192.168.50.197  n=6  {'run': 97.8, 'deser': 8.0, 'gc': 1.2, 'bytesIn': 4112304.0, 'shWrite': 0.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 10047.3}
+  --- Stage 40  (total tasks=8) ---
+    host=192.168.50.197  n=8  {'run': 791.5, 'deser': 14.9, 'gc': 14.9, 'bytesIn': 21552928.6, 'shWrite': 7157584.2, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 200217.0, 'shWriteAcc': 7.2}
+  --- Stage 42  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 62.0, 'deser': 8.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 1620334.0, 'fetchWaitTM': 1.0, 'localBytes': 1620334.0, 'fetchWaitMs': 1.0}
+  --- Stage 44  (total tasks=9) ---
+    host=192.168.50.197  n=9  {'run': 399.1, 'deser': 44.9, 'gc': 95.6, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 4529499.4, 'fetchWaitTM': 10.6, 'localBytes': 4529499.4, 'fetchWaitMs': 10.6, 'outRows': 5973.2, 'peakMem': 134742016.0, 'aggBuildMs': 0.0}
+  --- Stage 45  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 1683.3, 'deser': 10.5, 'gc': 32.7, 'bytesIn': 33100220.8, 'shWrite': 16778193.7, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 281893.6, 'shWriteAcc': 16.8}
+  --- Stage 46  (total tasks=6) ---
+    host=192.168.50.197  n=6  {'run': 115.2, 'deser': 8.0, 'gc': 1.2, 'bytesIn': 4112304.0, 'shWrite': 0.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 10047.3}
+  --- Stage 47  (total tasks=8) ---
+    host=192.168.50.197  n=8  {'run': 764.0, 'deser': 15.6, 'gc': 14.8, 'bytesIn': 21552928.6, 'shWrite': 5916825.4, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 200217.0, 'shWriteAcc': 5.9}
+  --- Stage 49  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 62.0, 'deser': 8.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 1620334.0, 'fetchWaitTM': 0.0, 'localBytes': 1620334.0, 'fetchWaitMs': 0.0}
+  --- Stage 51  (total tasks=9) ---
+    host=192.168.50.197  n=9  {'run': 254.8, 'deser': 35.2, 'gc': 10.1, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 4529499.4, 'fetchWaitTM': 2.9, 'localBytes': 4529499.4, 'fetchWaitMs': 2.9, 'outRows': 5973.2, 'peakMem': 134742016.0, 'aggBuildMs': 0.0}
+  --- Stage 52  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 1689.3, 'deser': 10.5, 'gc': 32.3, 'bytesIn': 33100220.8, 'shWrite': 18492706.2, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 281893.6, 'shWriteAcc': 18.5}
+  --- Stage 53  (total tasks=6) ---
+    host=192.168.50.197  n=6  {'run': 92.7, 'deser': 7.7, 'gc': 0.0, 'bytesIn': 4112304.0, 'shWrite': 0.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 10047.3}
+  --- Stage 54  (total tasks=8) ---
+    host=192.168.50.197  n=8  {'run': 894.2, 'deser': 45.4, 'gc': 92.4, 'bytesIn': 21552928.6, 'shWrite': 7351801.9, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 200217.0, 'shWriteAcc': 7.4}
+  --- Stage 56  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 60.0, 'deser': 8.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 1620334.0, 'fetchWaitTM': 0.0, 'localBytes': 1620334.0, 'fetchWaitMs': 0.0}
+  --- Stage 58  (total tasks=9) ---
+    host=192.168.50.197  n=9  {'run': 476.1, 'deser': 42.8, 'gc': 119.3, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 4529499.4, 'fetchWaitTM': 9.4, 'localBytes': 4529499.4, 'fetchWaitMs': 9.4, 'outRows': 5973.2, 'peakMem': 134742016.0, 'aggBuildMs': 0.0}
+======================================================================
+CONFIG: q3-x8-sf1-mem512-3-1:1-48part-partbytes32m-operationAware
+  --- Stage 0  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 7015.6, 'deser': 703.4, 'gc': 244.8, 'bytesIn': 32990800.4, 'shWrite': 22293217.1, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 512956.1, 'shWriteAcc': 22.3, 'peakMem': 67371008.0, 'aggBuildMs': 0.0}
+    host=192.168.50.198  n=4  {'run': 40072.0, 'deser': 7086.8, 'gc': 1963.8, 'bytesIn': 33619968.0, 'shWrite': 88847876.8, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 521777.0, 'shWriteAcc': 88.8, 'peakMem': 1310720.0, 'aggBuildMs': 0.0}
+  --- Stage 2  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 353.0, 'deser': 189.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 19467.0, 'fetchWaitTM': 29.0, 'remoteBytes': 3390.0, 'localBytes': 16077.0, 'fetchWaitMs': 29.0, 'outRows': 4.0, 'peakMem': 67371008.0, 'aggBuildMs': 0.0}
+  --- Stage 3  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1931.9, 'deser': 24.1, 'gc': 37.9, 'bytesIn': 32990800.4, 'shWrite': 31705733.3, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 280950.6, 'shWriteAcc': 31.7}
+    host=192.168.50.198  n=4  {'run': 11497.8, 'deser': 128.0, 'gc': 481.5, 'bytesIn': 33619968.0, 'shWrite': 131219869.8, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 286372.5, 'shWriteAcc': 131.2}
+  --- Stage 4  (total tasks=6) ---
+    host=192.168.50.197  n=6  {'run': 231.8, 'deser': 47.7, 'gc': 4.5, 'bytesIn': 4112304.0, 'shWrite': 0.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 10047.3}
+  --- Stage 5  (total tasks=8) ---
+    host=192.168.50.197  n=8  {'run': 1189.0, 'deser': 32.4, 'gc': 53.1, 'bytesIn': 21552928.6, 'shWrite': 19263072.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 200217.0, 'shWriteAcc': 19.3}
+  --- Stage 7  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 170.0, 'deser': 17.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 1620334.0, 'fetchWaitTM': 7.0, 'localBytes': 1620334.0, 'fetchWaitMs': 7.0}
+  --- Stage 9  (total tasks=9) ---
+    host=192.168.50.197  n=9  {'run': 1091.6, 'deser': 299.2, 'gc': 231.1, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 4529499.4, 'fetchWaitTM': 46.2, 'remoteBytes': 798907.1, 'localBytes': 3730592.3, 'fetchWaitMs': 46.2, 'outRows': 5973.2, 'peakMem': 134742016.0, 'aggBuildMs': 0.0}
+  --- Stage 10  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1982.7, 'deser': 20.0, 'gc': 91.8, 'bytesIn': 32990800.4, 'shWrite': 29241699.9, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 280950.6, 'shWriteAcc': 29.2}
+    host=192.168.50.198  n=4  {'run': 8905.0, 'deser': 136.5, 'gc': 794.0, 'bytesIn': 33619968.0, 'shWrite': 205947669.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 286372.5, 'shWriteAcc': 205.9}
+  --- Stage 11  (total tasks=6) ---
+    host=192.168.50.197  n=6  {'run': 104.5, 'deser': 12.8, 'gc': 2.5, 'bytesIn': 4112304.0, 'shWrite': 0.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 10047.3}
+  --- Stage 12  (total tasks=8) ---
+    host=192.168.50.197  n=8  {'run': 914.6, 'deser': 27.5, 'gc': 31.6, 'bytesIn': 21552928.6, 'shWrite': 13621890.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 200217.0, 'shWriteAcc': 13.6}
+  --- Stage 14  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 73.0, 'deser': 11.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 1620334.0, 'fetchWaitTM': 1.0, 'localBytes': 1620334.0, 'fetchWaitMs': 1.0}
+  --- Stage 16  (total tasks=9) ---
+    host=192.168.50.197  n=9  {'run': 557.1, 'deser': 72.3, 'gc': 95.1, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 4529499.4, 'fetchWaitTM': 20.2, 'remoteBytes': 798907.1, 'localBytes': 3730592.3, 'fetchWaitMs': 20.2, 'outRows': 5973.2, 'peakMem': 134742016.0, 'aggBuildMs': 0.0}
+  --- Stage 17  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1845.4, 'deser': 12.2, 'gc': 59.1, 'bytesIn': 32990800.4, 'shWrite': 26717581.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 280950.3, 'shWriteAcc': 26.7}
+    host=192.168.50.198  n=4  {'run': 8530.0, 'deser': 114.5, 'gc': 700.0, 'bytesIn': 33619968.0, 'shWrite': 83295906.8, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 286374.0, 'shWriteAcc': 83.3}
+  --- Stage 18  (total tasks=6) ---
+    host=192.168.50.197  n=6  {'run': 121.0, 'deser': 9.8, 'gc': 1.2, 'bytesIn': 4112304.0, 'shWrite': 0.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 10047.3}
+  --- Stage 19  (total tasks=8) ---
+    host=192.168.50.197  n=8  {'run': 961.4, 'deser': 29.2, 'gc': 22.0, 'bytesIn': 21552928.6, 'shWrite': 8586304.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 200217.0, 'shWriteAcc': 8.6}
+  --- Stage 21  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 84.0, 'deser': 10.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 1620334.0, 'fetchWaitTM': 1.0, 'localBytes': 1620334.0, 'fetchWaitMs': 1.0}
+  --- Stage 23  (total tasks=9) ---
+    host=192.168.50.197  n=9  {'run': 396.8, 'deser': 57.7, 'gc': 54.6, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 4529499.4, 'fetchWaitTM': 9.6, 'remoteBytes': 801545.2, 'localBytes': 3727954.2, 'fetchWaitMs': 9.6, 'outRows': 5973.2, 'peakMem': 134742016.0, 'aggBuildMs': 0.0}
+  --- Stage 24  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1725.1, 'deser': 12.3, 'gc': 41.4, 'bytesIn': 32990800.4, 'shWrite': 21847997.1, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 280944.7, 'shWriteAcc': 21.8}
+    host=192.168.50.198  n=4  {'run': 8054.8, 'deser': 106.8, 'gc': 375.0, 'bytesIn': 33619968.0, 'shWrite': 76046950.2, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 286400.5, 'shWriteAcc': 76.0}
+  --- Stage 25  (total tasks=6) ---
+    host=192.168.50.197  n=6  {'run': 115.0, 'deser': 11.5, 'gc': 2.0, 'bytesIn': 4112304.0, 'shWrite': 0.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 10047.3}
+  --- Stage 26  (total tasks=8) ---
+    host=192.168.50.197  n=8  {'run': 822.0, 'deser': 20.6, 'gc': 26.5, 'bytesIn': 21552928.6, 'shWrite': 8893615.5, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 200217.0, 'shWriteAcc': 8.9}
+  --- Stage 28  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 48.0, 'deser': 9.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 1620334.0, 'fetchWaitTM': 1.0, 'localBytes': 1620334.0, 'fetchWaitMs': 1.0}
+  --- Stage 30  (total tasks=9) ---
+    host=192.168.50.197  n=9  {'run': 552.7, 'deser': 61.1, 'gc': 174.4, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 4529499.4, 'fetchWaitTM': 12.3, 'remoteBytes': 802048.1, 'localBytes': 3727451.3, 'fetchWaitMs': 12.3, 'outRows': 5973.2, 'peakMem': 134742016.0, 'aggBuildMs': 0.0}
+  --- Stage 31  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1715.8, 'deser': 11.8, 'gc': 36.4, 'bytesIn': 32990800.4, 'shWrite': 20179178.8, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 280950.3, 'shWriteAcc': 20.2}
+    host=192.168.50.198  n=4  {'run': 8326.5, 'deser': 84.8, 'gc': 805.8, 'bytesIn': 33619968.0, 'shWrite': 58111654.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 286374.0, 'shWriteAcc': 58.1}
+  --- Stage 32  (total tasks=6) ---
+    host=192.168.50.197  n=6  {'run': 103.0, 'deser': 8.7, 'gc': 0.0, 'bytesIn': 4112304.0, 'shWrite': 0.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 10047.3}
+  --- Stage 33  (total tasks=8) ---
+    host=192.168.50.197  n=8  {'run': 771.9, 'deser': 16.9, 'gc': 12.6, 'bytesIn': 21552928.6, 'shWrite': 7185303.4, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 200217.0, 'shWriteAcc': 7.2}
+  --- Stage 35  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 65.0, 'deser': 12.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 1620334.0, 'fetchWaitTM': 1.0, 'localBytes': 1620334.0, 'fetchWaitMs': 1.0}
+  --- Stage 37  (total tasks=9) ---
+    host=192.168.50.197  n=9  {'run': 316.3, 'deser': 43.8, 'gc': 12.3, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 4529499.4, 'fetchWaitTM': 10.6, 'remoteBytes': 801545.2, 'localBytes': 3727954.2, 'fetchWaitMs': 10.6, 'outRows': 5973.2, 'peakMem': 134742016.0, 'aggBuildMs': 0.0}
+  --- Stage 38  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1670.0, 'deser': 9.3, 'gc': 31.1, 'bytesIn': 32990800.4, 'shWrite': 20335488.9, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 280950.6, 'shWriteAcc': 20.3}
+    host=192.168.50.198  n=4  {'run': 7786.0, 'deser': 83.2, 'gc': 361.0, 'bytesIn': 33619968.0, 'shWrite': 77237969.5, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 286372.5, 'shWriteAcc': 77.2}
+  --- Stage 39  (total tasks=6) ---
+    host=192.168.50.197  n=6  {'run': 98.5, 'deser': 10.2, 'gc': 1.8, 'bytesIn': 4112304.0, 'shWrite': 0.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 10047.3}
+  --- Stage 40  (total tasks=8) ---
+    host=192.168.50.197  n=8  {'run': 772.2, 'deser': 14.6, 'gc': 21.6, 'bytesIn': 21552928.6, 'shWrite': 8111877.2, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 200217.0, 'shWriteAcc': 8.1}
+  --- Stage 42  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 64.0, 'deser': 10.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 1620334.0, 'fetchWaitTM': 1.0, 'localBytes': 1620334.0, 'fetchWaitMs': 1.0}
+  --- Stage 44  (total tasks=9) ---
+    host=192.168.50.197  n=9  {'run': 477.2, 'deser': 40.3, 'gc': 149.4, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 4529499.4, 'fetchWaitTM': 8.4, 'remoteBytes': 798907.1, 'localBytes': 3730592.3, 'fetchWaitMs': 8.4, 'outRows': 5973.2, 'peakMem': 134742016.0, 'aggBuildMs': 0.0}
+  --- Stage 45  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1660.7, 'deser': 8.9, 'gc': 34.9, 'bytesIn': 32990800.4, 'shWrite': 19523299.8, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 280950.6, 'shWriteAcc': 19.5}
+    host=192.168.50.198  n=4  {'run': 8300.8, 'deser': 68.0, 'gc': 704.8, 'bytesIn': 33619968.0, 'shWrite': 67704447.5, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 286372.5, 'shWriteAcc': 67.7}
+  --- Stage 46  (total tasks=6) ---
+    host=192.168.50.197  n=6  {'run': 112.0, 'deser': 9.7, 'gc': 1.8, 'bytesIn': 4112304.0, 'shWrite': 0.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 10047.3}
+  --- Stage 47  (total tasks=8) ---
+    host=192.168.50.197  n=8  {'run': 768.0, 'deser': 13.0, 'gc': 10.6, 'bytesIn': 21552928.6, 'shWrite': 6995516.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 200217.0, 'shWriteAcc': 7.0}
+  --- Stage 49  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 63.0, 'deser': 7.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 1620334.0, 'fetchWaitTM': 0.0, 'localBytes': 1620334.0, 'fetchWaitMs': 0.0}
+  --- Stage 51  (total tasks=9) ---
+    host=192.168.50.197  n=9  {'run': 323.0, 'deser': 38.2, 'gc': 9.7, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 4529499.4, 'fetchWaitTM': 5.1, 'remoteBytes': 798907.1, 'localBytes': 3730592.3, 'fetchWaitMs': 5.1, 'outRows': 5973.2, 'peakMem': 134742016.0, 'aggBuildMs': 0.0}
+  --- Stage 52  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1677.7, 'deser': 10.4, 'gc': 35.1, 'bytesIn': 32990800.4, 'shWrite': 18282144.4, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 280911.4, 'shWriteAcc': 18.3}
+    host=192.168.50.198  n=4  {'run': 8107.0, 'deser': 87.8, 'gc': 346.2, 'bytesIn': 33619968.0, 'shWrite': 55017043.2, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 286559.0, 'shWriteAcc': 55.0}
+  --- Stage 53  (total tasks=6) ---
+    host=192.168.50.197  n=6  {'run': 87.8, 'deser': 7.7, 'gc': 0.0, 'bytesIn': 4112304.0, 'shWrite': 0.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 10047.3}
+  --- Stage 54  (total tasks=8) ---
+    host=192.168.50.197  n=8  {'run': 830.8, 'deser': 43.4, 'gc': 53.4, 'bytesIn': 21552928.6, 'shWrite': 7382475.4, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 200217.0, 'shWriteAcc': 7.4}
+  --- Stage 56  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 46.0, 'deser': 8.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 1620334.0, 'fetchWaitTM': 0.0, 'localBytes': 1620334.0, 'fetchWaitMs': 0.0}
+  --- Stage 58  (total tasks=9) ---
+    host=192.168.50.197  n=9  {'run': 467.7, 'deser': 41.0, 'gc': 147.1, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 4529499.4, 'fetchWaitTM': 8.7, 'remoteBytes': 801682.4, 'localBytes': 3727817.0, 'fetchWaitMs': 8.7, 'outRows': 5973.2, 'peakMem': 134742016.0, 'aggBuildMs': 0.0}
+======================================================================
+CONFIG: q3-x8-sf1-mem512-3-1:1-200part-partbytes128m
+  --- Stage 0  (total tasks=6) ---
+    host=192.168.50.197  n=4  {'run': 28151.5, 'deser': 2879.0, 'gc': 803.5, 'bytesIn': 134283264.0, 'shWrite': 43130542.8, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 2091299.0, 'shWriteAcc': 43.1, 'peakMem': 67371008.0, 'aggBuildMs': 0.0}
+    host=192.168.50.198  n=2  {'run': 59266.5, 'deser': 5884.0, 'gc': 2757.5, 'bytesIn': 111528955.5, 'shWrite': 143425730.5, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 1734005.0, 'shWriteAcc': 143.4, 'peakMem': 1310720.0, 'aggBuildMs': 0.1}
+  --- Stage 2  (total tasks=1) ---
+    host=192.168.50.198  n=1  {'run': 1550.0, 'deser': 1190.0, 'gc': 23.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 5024.0, 'fetchWaitTM': 81.0, 'remoteBytes': 3359.0, 'localBytes': 1665.0, 'fetchWaitMs': 81.0, 'outRows': 4.0, 'peakMem': 1310720.0, 'aggBuildMs': 0.0}
+  --- Stage 3  (total tasks=8) ---
+    host=192.168.50.197  n=4  {'run': 5717.8, 'deser': 89.5, 'gc': 119.0, 'bytesIn': 95617024.0, 'shWrite': 110630395.5, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 815603.0, 'shWriteAcc': 110.6}
+    host=192.168.50.198  n=4  {'run': 30216.8, 'deser': 127.8, 'gc': 1774.0, 'bytesIn': 94540993.2, 'shWrite': 514509543.8, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 805285.0, 'shWriteAcc': 514.5}
+  --- Stage 4  (total tasks=6) ---
+    host=192.168.50.197  n=6  {'run': 360.5, 'deser': 115.5, 'gc': 6.5, 'bytesIn': 4112304.0, 'shWrite': 0.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 10047.3}
+  --- Stage 5  (total tasks=8) ---
+    host=192.168.50.197  n=8  {'run': 1440.4, 'deser': 40.8, 'gc': 181.4, 'bytesIn': 21552928.6, 'shWrite': 55813260.8, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 200217.0, 'shWriteAcc': 55.8}
+  --- Stage 7  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 182.0, 'deser': 18.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 1768493.0, 'fetchWaitTM': 6.0, 'localBytes': 1768493.0, 'fetchWaitMs': 6.0}
+  --- Stage 9  (total tasks=8) ---
+    host=192.168.50.198  n=8  {'run': 2209.4, 'deser': 500.8, 'gc': 53.9, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 5126463.4, 'fetchWaitTM': 27.0, 'remoteBytes': 2585107.4, 'localBytes': 2541356.0, 'fetchWaitMs': 27.0, 'outRows': 6719.9, 'peakMem': 2621440.0, 'aggBuildMs': 0.0}
+  --- Stage 10  (total tasks=8) ---
+    host=192.168.50.197  n=4  {'run': 5146.2, 'deser': 41.0, 'gc': 120.8, 'bytesIn': 95617024.0, 'shWrite': 93033086.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 816113.0, 'shWriteAcc': 93.0}
+    host=192.168.50.198  n=4  {'run': 28038.5, 'deser': 82.0, 'gc': 1157.0, 'bytesIn': 94540993.2, 'shWrite': 199335603.2, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 804775.0, 'shWriteAcc': 199.3}
+  --- Stage 11  (total tasks=6) ---
+    host=192.168.50.197  n=6  {'run': 175.8, 'deser': 38.2, 'gc': 0.7, 'bytesIn': 4112304.0, 'shWrite': 0.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 10047.3}
+  --- Stage 12  (total tasks=8) ---
+    host=192.168.50.197  n=8  {'run': 1002.0, 'deser': 29.5, 'gc': 174.0, 'bytesIn': 21552928.6, 'shWrite': 30336904.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 200217.0, 'shWriteAcc': 30.3}
+  --- Stage 14  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 197.0, 'deser': 14.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 1768493.0, 'fetchWaitTM': 12.0, 'localBytes': 1768493.0, 'fetchWaitMs': 12.0}
+  --- Stage 16  (total tasks=8) ---
+    host=192.168.50.198  n=8  {'run': 1550.8, 'deser': 306.0, 'gc': 293.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 5126463.4, 'fetchWaitTM': 31.2, 'remoteBytes': 2587013.9, 'localBytes': 2539449.5, 'fetchWaitMs': 31.2, 'outRows': 6719.9, 'peakMem': 2621440.0, 'aggBuildMs': 0.0}
+  --- Stage 17  (total tasks=8) ---
+    host=192.168.50.197  n=4  {'run': 4629.2, 'deser': 33.8, 'gc': 94.2, 'bytesIn': 95617024.0, 'shWrite': 65350453.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 816325.5, 'shWriteAcc': 65.4}
+    host=192.168.50.198  n=4  {'run': 27986.2, 'deser': 88.8, 'gc': 1067.8, 'bytesIn': 94540993.2, 'shWrite': 199898415.5, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 804562.5, 'shWriteAcc': 199.9}
+  --- Stage 18  (total tasks=6) ---
+    host=192.168.50.197  n=6  {'run': 155.3, 'deser': 28.8, 'gc': 2.0, 'bytesIn': 4112304.0, 'shWrite': 0.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 10047.3}
+  --- Stage 19  (total tasks=8) ---
+    host=192.168.50.197  n=8  {'run': 983.6, 'deser': 25.9, 'gc': 164.6, 'bytesIn': 21552928.6, 'shWrite': 28970934.5, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 200217.0, 'shWriteAcc': 29.0}
+  --- Stage 21  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 186.0, 'deser': 14.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 1768493.0, 'fetchWaitTM': 5.0, 'localBytes': 1768493.0, 'fetchWaitMs': 5.0}
+  --- Stage 23  (total tasks=8) ---
+    host=192.168.50.198  n=8  {'run': 1273.0, 'deser': 232.8, 'gc': 44.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 5126463.4, 'fetchWaitTM': 19.2, 'remoteBytes': 2587163.5, 'localBytes': 2539299.9, 'fetchWaitMs': 19.2, 'outRows': 6719.9, 'peakMem': 2621440.0, 'aggBuildMs': 0.0}
+  --- Stage 24  (total tasks=8) ---
+    host=192.168.50.197  n=4  {'run': 4365.2, 'deser': 43.0, 'gc': 68.8, 'bytesIn': 95617024.0, 'shWrite': 49859591.5, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 816325.5, 'shWriteAcc': 49.9}
+    host=192.168.50.198  n=4  {'run': 28011.8, 'deser': 74.2, 'gc': 1210.8, 'bytesIn': 94540993.2, 'shWrite': 247290275.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 804562.5, 'shWriteAcc': 247.3}
+  --- Stage 25  (total tasks=6) ---
+    host=192.168.50.197  n=6  {'run': 113.5, 'deser': 25.2, 'gc': 0.0, 'bytesIn': 4112304.0, 'shWrite': 0.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 10047.3}
+  --- Stage 26  (total tasks=8) ---
+    host=192.168.50.197  n=8  {'run': 907.5, 'deser': 22.6, 'gc': 168.1, 'bytesIn': 21552928.6, 'shWrite': 30787934.6, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 200217.0, 'shWriteAcc': 30.8}
+  --- Stage 28  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 89.0, 'deser': 9.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 1768493.0, 'fetchWaitTM': 2.0, 'localBytes': 1768493.0, 'fetchWaitMs': 2.0}
+  --- Stage 30  (total tasks=8) ---
+    host=192.168.50.198  n=8  {'run': 1284.5, 'deser': 195.8, 'gc': 25.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 5126463.4, 'fetchWaitTM': 20.2, 'remoteBytes': 2587163.5, 'localBytes': 2539299.9, 'fetchWaitMs': 20.2, 'outRows': 6719.9, 'peakMem': 2621440.0, 'aggBuildMs': 0.0}
+  --- Stage 31  (total tasks=8) ---
+    host=192.168.50.197  n=4  {'run': 4359.2, 'deser': 28.5, 'gc': 72.5, 'bytesIn': 95617024.0, 'shWrite': 68144913.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 814515.5, 'shWriteAcc': 68.1}
+    host=192.168.50.198  n=4  {'run': 28983.0, 'deser': 64.2, 'gc': 1153.8, 'bytesIn': 94540993.2, 'shWrite': 205094701.5, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 806372.5, 'shWriteAcc': 205.1}
+  --- Stage 32  (total tasks=6) ---
+    host=192.168.50.197  n=6  {'run': 104.8, 'deser': 22.7, 'gc': 0.7, 'bytesIn': 4112304.0, 'shWrite': 0.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 10047.3}
+  --- Stage 33  (total tasks=8) ---
+    host=192.168.50.197  n=8  {'run': 946.9, 'deser': 26.2, 'gc': 169.2, 'bytesIn': 21552928.6, 'shWrite': 36233256.4, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 200217.0, 'shWriteAcc': 36.2}
+  --- Stage 35  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 68.0, 'deser': 14.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 1768493.0, 'fetchWaitTM': 2.0, 'localBytes': 1768493.0, 'fetchWaitMs': 2.0}
+  --- Stage 37  (total tasks=8) ---
+    host=192.168.50.198  n=8  {'run': 1289.6, 'deser': 146.2, 'gc': 29.5, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 5126463.4, 'fetchWaitTM': 17.1, 'remoteBytes': 2571204.4, 'localBytes': 2555259.0, 'fetchWaitMs': 17.1, 'outRows': 6719.9, 'peakMem': 2621440.0, 'aggBuildMs': 0.0}
+  --- Stage 38  (total tasks=8) ---
+    host=192.168.50.197  n=4  {'run': 4340.5, 'deser': 31.8, 'gc': 65.8, 'bytesIn': 95617024.0, 'shWrite': 55308694.8, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 815603.0, 'shWriteAcc': 55.3}
+    host=192.168.50.198  n=4  {'run': 28850.0, 'deser': 75.5, 'gc': 1128.2, 'bytesIn': 94540993.2, 'shWrite': 173824784.2, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 805285.0, 'shWriteAcc': 173.8}
+  --- Stage 39  (total tasks=6) ---
+    host=192.168.50.197  n=6  {'run': 105.0, 'deser': 25.8, 'gc': 0.7, 'bytesIn': 4112304.0, 'shWrite': 0.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 10047.3}
+  --- Stage 40  (total tasks=8) ---
+    host=192.168.50.197  n=8  {'run': 907.5, 'deser': 21.5, 'gc': 166.5, 'bytesIn': 21552928.6, 'shWrite': 23050588.8, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 200217.0, 'shWriteAcc': 23.1}
+  --- Stage 42  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 158.0, 'deser': 26.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 1768493.0, 'fetchWaitTM': 9.0, 'localBytes': 1768493.0, 'fetchWaitMs': 9.0}
+  --- Stage 44  (total tasks=8) ---
+    host=192.168.50.198  n=8  {'run': 1257.2, 'deser': 126.2, 'gc': 30.9, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 5126463.4, 'fetchWaitTM': 26.9, 'remoteBytes': 2585107.4, 'localBytes': 2541356.0, 'fetchWaitMs': 26.9, 'outRows': 6719.9, 'peakMem': 2621440.0, 'aggBuildMs': 0.0}
+  --- Stage 45  (total tasks=8) ---
+    host=192.168.50.197  n=4  {'run': 4345.2, 'deser': 40.8, 'gc': 62.0, 'bytesIn': 95617024.0, 'shWrite': 46046813.8, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 814515.5, 'shWriteAcc': 46.0}
+    host=192.168.50.198  n=4  {'run': 28968.0, 'deser': 46.8, 'gc': 1074.5, 'bytesIn': 94540993.2, 'shWrite': 196420674.5, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 806372.5, 'shWriteAcc': 196.4}
+  --- Stage 46  (total tasks=6) ---
+    host=192.168.50.197  n=6  {'run': 102.7, 'deser': 16.0, 'gc': 0.0, 'bytesIn': 4112304.0, 'shWrite': 0.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 10047.3}
+  --- Stage 47  (total tasks=8) ---
+    host=192.168.50.197  n=8  {'run': 920.8, 'deser': 19.5, 'gc': 153.0, 'bytesIn': 21552928.6, 'shWrite': 25222809.5, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 200217.0, 'shWriteAcc': 25.2}
+  --- Stage 49  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 54.0, 'deser': 9.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 1768493.0, 'fetchWaitTM': 2.0, 'localBytes': 1768493.0, 'fetchWaitMs': 2.0}
+  --- Stage 51  (total tasks=8) ---
+    host=192.168.50.198  n=8  {'run': 1233.6, 'deser': 146.5, 'gc': 17.4, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 5126463.4, 'fetchWaitTM': 19.8, 'remoteBytes': 2571204.4, 'localBytes': 2555259.0, 'fetchWaitMs': 19.8, 'outRows': 6719.9, 'peakMem': 2621440.0, 'aggBuildMs': 0.0}
+  --- Stage 52  (total tasks=8) ---
+    host=192.168.50.197  n=4  {'run': 4296.0, 'deser': 32.8, 'gc': 62.8, 'bytesIn': 95617024.0, 'shWrite': 42833456.2, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 816325.5, 'shWriteAcc': 42.8}
+    host=192.168.50.198  n=4  {'run': 29249.8, 'deser': 49.8, 'gc': 1087.0, 'bytesIn': 94540993.2, 'shWrite': 190668081.5, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 804562.5, 'shWriteAcc': 190.7}
+  --- Stage 53  (total tasks=6) ---
+    host=192.168.50.197  n=6  {'run': 113.8, 'deser': 17.2, 'gc': 1.2, 'bytesIn': 4112304.0, 'shWrite': 0.0, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 10047.3}
+  --- Stage 54  (total tasks=8) ---
+    host=192.168.50.197  n=8  {'run': 889.1, 'deser': 21.0, 'gc': 148.8, 'bytesIn': 21552928.6, 'shWrite': 20827008.9, 'shReadBytes': 0.0, 'fetchWaitTM': 0.0, 'outRows': 200217.0, 'shWriteAcc': 20.8}
+  --- Stage 56  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 84.0, 'deser': 7.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 1768493.0, 'fetchWaitTM': 3.0, 'localBytes': 1768493.0, 'fetchWaitMs': 3.0}
+  --- Stage 58  (total tasks=8) ---
+    host=192.168.50.198  n=8  {'run': 1198.8, 'deser': 139.8, 'gc': 28.0, 'bytesIn': 0.0, 'shWrite': 0.0, 'shReadBytes': 5126463.4, 'fetchWaitTM': 19.2, 'remoteBytes': 2587163.5, 'localBytes': 2539299.9, 'fetchWaitMs': 19.2, 'outRows': 6719.9, 'peakMem': 2621440.0, 'aggBuildMs': 0.0}

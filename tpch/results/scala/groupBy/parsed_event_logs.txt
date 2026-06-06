@@ -1,0 +1,432 @@
+======================================================================
+CONFIG: groupBy-x6-sf1-mem512-3-1:1-4part-partbytes32m
+  --- Stage 0  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 6741.5, 'deser': 604.9, 'gc': 234.5, 'bytesIn': 32990800.4, 'shWrite': 9567854.1}
+    host=192.168.50.198  n=4  {'run': 45936.0, 'deser': 7394.0, 'gc': 2153.0, 'bytesIn': 33619968.0, 'shWrite': 34268996.2}
+  --- Stage 2  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 348.0, 'deser': 352.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 3  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1503.7, 'deser': 36.3, 'gc': 38.3, 'bytesIn': 32990800.4, 'shWrite': 10248538.5}
+    host=192.168.50.198  n=4  {'run': 12292.8, 'deser': 272.0, 'gc': 982.0, 'bytesIn': 33619968.0, 'shWrite': 48311560.8}
+  --- Stage 4  (total tasks=4) ---
+    host=192.168.50.197  n=4  {'run': 1568.8, 'deser': 120.0, 'gc': 53.0, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 5  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1263.2, 'deser': 31.6, 'gc': 35.3, 'bytesIn': 32990800.4, 'shWrite': 6962477.8}
+    host=192.168.50.198  n=4  {'run': 7406.0, 'deser': 132.8, 'gc': 277.8, 'bytesIn': 33619968.0, 'shWrite': 20879050.2}
+  --- Stage 6  (total tasks=4) ---
+    host=192.168.50.197  n=4  {'run': 935.8, 'deser': 54.2, 'gc': 22.0, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 7  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1280.8, 'deser': 20.2, 'gc': 35.1, 'bytesIn': 32990800.4, 'shWrite': 6673350.6}
+    host=192.168.50.198  n=4  {'run': 6863.2, 'deser': 147.0, 'gc': 241.2, 'bytesIn': 33619968.0, 'shWrite': 18763631.2}
+  --- Stage 8  (total tasks=4) ---
+    host=192.168.50.197  n=4  {'run': 823.2, 'deser': 42.2, 'gc': 16.2, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 9  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1400.3, 'deser': 20.2, 'gc': 84.8, 'bytesIn': 32990800.4, 'shWrite': 6367323.1}
+    host=192.168.50.198  n=4  {'run': 6684.5, 'deser': 141.2, 'gc': 278.8, 'bytesIn': 33619968.0, 'shWrite': 19117746.0}
+  --- Stage 10  (total tasks=4) ---
+    host=192.168.50.197  n=4  {'run': 909.8, 'deser': 34.5, 'gc': 36.0, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 11  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1290.1, 'deser': 17.2, 'gc': 36.5, 'bytesIn': 32990800.4, 'shWrite': 6842227.8}
+    host=192.168.50.198  n=4  {'run': 7360.2, 'deser': 108.5, 'gc': 777.0, 'bytesIn': 33619968.0, 'shWrite': 16323710.2}
+  --- Stage 12  (total tasks=4) ---
+    host=192.168.50.197  n=4  {'run': 769.2, 'deser': 30.2, 'gc': 20.8, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 13  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1252.0, 'deser': 15.9, 'gc': 35.6, 'bytesIn': 32990800.4, 'shWrite': 6632270.4}
+    host=192.168.50.198  n=4  {'run': 6962.2, 'deser': 117.8, 'gc': 250.2, 'bytesIn': 33619968.0, 'shWrite': 16484778.2}
+  --- Stage 14  (total tasks=4) ---
+    host=192.168.50.197  n=4  {'run': 803.0, 'deser': 32.0, 'gc': 17.0, 'bytesIn': 0.0, 'shWrite': 0.0}
+======================================================================
+CONFIG: groupBy-x6-sf1-mem512-3-1:0-4part-partbytes32m
+  --- Stage 0  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 6567.5, 'deser': 571.5, 'gc': 212.0, 'bytesIn': 33100220.8, 'shWrite': 7865299.5}
+  --- Stage 2  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 341.0, 'deser': 251.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 3  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 1673.1, 'deser': 33.7, 'gc': 34.4, 'bytesIn': 33100220.8, 'shWrite': 9747753.7}
+  --- Stage 4  (total tasks=4) ---
+    host=192.168.50.197  n=4  {'run': 2041.2, 'deser': 152.5, 'gc': 71.8, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 5  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 1417.5, 'deser': 25.7, 'gc': 33.7, 'bytesIn': 33100220.8, 'shWrite': 6947720.0}
+  --- Stage 6  (total tasks=4) ---
+    host=192.168.50.197  n=4  {'run': 990.5, 'deser': 48.8, 'gc': 17.5, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 7  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 1415.9, 'deser': 22.3, 'gc': 52.0, 'bytesIn': 33100220.8, 'shWrite': 6437345.4}
+  --- Stage 8  (total tasks=4) ---
+    host=192.168.50.197  n=4  {'run': 840.8, 'deser': 49.8, 'gc': 25.0, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 9  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 1476.1, 'deser': 15.4, 'gc': 45.0, 'bytesIn': 33100220.8, 'shWrite': 6161085.6}
+  --- Stage 10  (total tasks=4) ---
+    host=192.168.50.197  n=4  {'run': 929.8, 'deser': 53.2, 'gc': 20.2, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 11  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 1372.8, 'deser': 15.1, 'gc': 33.4, 'bytesIn': 33100220.8, 'shWrite': 6420739.7}
+  --- Stage 12  (total tasks=4) ---
+    host=192.168.50.197  n=4  {'run': 825.2, 'deser': 38.5, 'gc': 15.5, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 13  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 1309.6, 'deser': 12.8, 'gc': 33.6, 'bytesIn': 33100220.8, 'shWrite': 6871233.0}
+  --- Stage 14  (total tasks=4) ---
+    host=192.168.50.197  n=4  {'run': 761.5, 'deser': 39.5, 'gc': 17.0, 'bytesIn': 0.0, 'shWrite': 0.0}
+======================================================================
+CONFIG: groupBy-x6-sf1-mem512-3-1:1-8part-partbytes32m
+  --- Stage 0  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 7148.8, 'deser': 721.6, 'gc': 256.8, 'bytesIn': 32990800.4, 'shWrite': 11262331.9}
+    host=192.168.50.198  n=4  {'run': 38879.5, 'deser': 6312.8, 'gc': 1989.0, 'bytesIn': 33619968.0, 'shWrite': 51953724.2}
+  --- Stage 2  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 261.0, 'deser': 196.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 3  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1683.1, 'deser': 39.7, 'gc': 37.7, 'bytesIn': 32990800.4, 'shWrite': 16024723.3}
+    host=192.168.50.198  n=4  {'run': 9991.2, 'deser': 193.0, 'gc': 898.0, 'bytesIn': 33619968.0, 'shWrite': 53400104.5}
+  --- Stage 4  (total tasks=8) ---
+    host=192.168.50.197  n=4  {'run': 1611.0, 'deser': 144.8, 'gc': 29.2, 'bytesIn': 0.0, 'shWrite': 0.0}
+    host=192.168.50.198  n=4  {'run': 12242.0, 'deser': 434.5, 'gc': 853.0, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 5  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1322.0, 'deser': 30.3, 'gc': 37.3, 'bytesIn': 32990800.4, 'shWrite': 8699668.8}
+    host=192.168.50.198  n=4  {'run': 7410.8, 'deser': 141.8, 'gc': 336.0, 'bytesIn': 33619968.0, 'shWrite': 35151558.5}
+  --- Stage 6  (total tasks=8) ---
+    host=192.168.50.197  n=4  {'run': 654.8, 'deser': 40.2, 'gc': 15.0, 'bytesIn': 0.0, 'shWrite': 0.0}
+    host=192.168.50.198  n=4  {'run': 4499.8, 'deser': 170.8, 'gc': 743.8, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 7  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1264.6, 'deser': 20.4, 'gc': 35.6, 'bytesIn': 32990800.4, 'shWrite': 8487098.6}
+    host=192.168.50.198  n=4  {'run': 6731.8, 'deser': 114.2, 'gc': 240.2, 'bytesIn': 33619968.0, 'shWrite': 30855068.0}
+  --- Stage 8  (total tasks=8) ---
+    host=192.168.50.197  n=4  {'run': 543.0, 'deser': 49.0, 'gc': 9.8, 'bytesIn': 0.0, 'shWrite': 0.0}
+    host=192.168.50.198  n=4  {'run': 3884.2, 'deser': 182.8, 'gc': 604.8, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 9  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1366.7, 'deser': 18.8, 'gc': 35.5, 'bytesIn': 32990800.4, 'shWrite': 7436408.7}
+    host=192.168.50.198  n=4  {'run': 6939.5, 'deser': 112.8, 'gc': 268.0, 'bytesIn': 33619968.0, 'shWrite': 25549756.8}
+  --- Stage 10  (total tasks=8) ---
+    host=192.168.50.197  n=4  {'run': 528.5, 'deser': 37.0, 'gc': 10.0, 'bytesIn': 0.0, 'shWrite': 0.0}
+    host=192.168.50.198  n=4  {'run': 3875.0, 'deser': 174.8, 'gc': 623.8, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 11  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1389.1, 'deser': 17.6, 'gc': 58.2, 'bytesIn': 32990800.4, 'shWrite': 8652245.8}
+    host=192.168.50.198  n=4  {'run': 7037.8, 'deser': 84.5, 'gc': 307.2, 'bytesIn': 33619968.0, 'shWrite': 20757823.8}
+  --- Stage 12  (total tasks=8) ---
+    host=192.168.50.197  n=4  {'run': 494.2, 'deser': 31.0, 'gc': 8.0, 'bytesIn': 0.0, 'shWrite': 0.0}
+    host=192.168.50.198  n=4  {'run': 3754.5, 'deser': 143.5, 'gc': 607.0, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 13  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1250.1, 'deser': 17.1, 'gc': 33.5, 'bytesIn': 32990800.4, 'shWrite': 7256741.9}
+    host=192.168.50.198  n=4  {'run': 7090.8, 'deser': 74.8, 'gc': 315.2, 'bytesIn': 33619968.0, 'shWrite': 18180912.2}
+  --- Stage 14  (total tasks=8) ---
+    host=192.168.50.197  n=4  {'run': 497.2, 'deser': 32.8, 'gc': 14.2, 'bytesIn': 0.0, 'shWrite': 0.0}
+    host=192.168.50.198  n=4  {'run': 3657.0, 'deser': 129.2, 'gc': 658.5, 'bytesIn': 0.0, 'shWrite': 0.0}
+======================================================================
+CONFIG: groupBy-x6-sf1-mem512-3-1:0-8part-partbytes32m
+  --- Stage 0  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 6631.8, 'deser': 575.5, 'gc': 213.0, 'bytesIn': 33100220.8, 'shWrite': 11459673.4}
+  --- Stage 2  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 281.0, 'deser': 223.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 3  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 1688.7, 'deser': 31.2, 'gc': 35.8, 'bytesIn': 33100220.8, 'shWrite': 13282740.2}
+  --- Stage 4  (total tasks=8) ---
+    host=192.168.50.197  n=8  {'run': 1016.4, 'deser': 96.1, 'gc': 22.0, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 5  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 1439.2, 'deser': 22.8, 'gc': 33.5, 'bytesIn': 33100220.8, 'shWrite': 8912132.3}
+  --- Stage 6  (total tasks=8) ---
+    host=192.168.50.197  n=8  {'run': 503.9, 'deser': 35.8, 'gc': 12.6, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 7  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 1420.7, 'deser': 19.1, 'gc': 36.2, 'bytesIn': 33100220.8, 'shWrite': 8168556.6}
+  --- Stage 8  (total tasks=8) ---
+    host=192.168.50.197  n=8  {'run': 514.6, 'deser': 32.8, 'gc': 11.9, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 9  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 1426.2, 'deser': 18.5, 'gc': 54.2, 'bytesIn': 33100220.8, 'shWrite': 7193907.0}
+  --- Stage 10  (total tasks=8) ---
+    host=192.168.50.197  n=8  {'run': 464.1, 'deser': 30.1, 'gc': 11.1, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 11  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 1407.4, 'deser': 14.3, 'gc': 54.5, 'bytesIn': 33100220.8, 'shWrite': 7458635.7}
+  --- Stage 12  (total tasks=8) ---
+    host=192.168.50.197  n=8  {'run': 415.1, 'deser': 29.1, 'gc': 10.0, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 13  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 1316.1, 'deser': 12.7, 'gc': 35.7, 'bytesIn': 33100220.8, 'shWrite': 6878372.9}
+  --- Stage 14  (total tasks=8) ---
+    host=192.168.50.197  n=8  {'run': 426.2, 'deser': 23.2, 'gc': 12.5, 'bytesIn': 0.0, 'shWrite': 0.0}
+======================================================================
+CONFIG: groupBy-x6-sf1-mem512-3-1:1-12part-partbytes32m
+  --- Stage 0  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 7191.0, 'deser': 682.9, 'gc': 230.7, 'bytesIn': 32990800.4, 'shWrite': 13844058.0}
+    host=192.168.50.198  n=4  {'run': 38178.2, 'deser': 7167.8, 'gc': 2007.5, 'bytesIn': 33619968.0, 'shWrite': 60448670.2}
+  --- Stage 2  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 272.0, 'deser': 252.0, 'gc': 2.0, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 3  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1708.5, 'deser': 37.5, 'gc': 37.6, 'bytesIn': 32990800.4, 'shWrite': 16877628.6}
+    host=192.168.50.198  n=4  {'run': 11030.5, 'deser': 215.5, 'gc': 904.0, 'bytesIn': 33619968.0, 'shWrite': 51171234.8}
+  --- Stage 4  (total tasks=12) ---
+    host=192.168.50.197  n=8  {'run': 863.0, 'deser': 89.2, 'gc': 15.2, 'bytesIn': 0.0, 'shWrite': 0.0}
+    host=192.168.50.198  n=4  {'run': 4160.8, 'deser': 455.8, 'gc': 203.5, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 5  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1369.2, 'deser': 25.5, 'gc': 36.0, 'bytesIn': 32990800.4, 'shWrite': 10465538.4}
+    host=192.168.50.198  n=4  {'run': 6928.2, 'deser': 156.0, 'gc': 230.0, 'bytesIn': 33619968.0, 'shWrite': 30980376.0}
+  --- Stage 6  (total tasks=12) ---
+    host=192.168.50.197  n=8  {'run': 386.6, 'deser': 36.8, 'gc': 7.2, 'bytesIn': 0.0, 'shWrite': 0.0}
+    host=192.168.50.198  n=4  {'run': 1759.8, 'deser': 185.0, 'gc': 76.5, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 7  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1342.4, 'deser': 22.9, 'gc': 33.8, 'bytesIn': 32990800.4, 'shWrite': 8773805.8}
+    host=192.168.50.198  n=4  {'run': 7230.0, 'deser': 138.0, 'gc': 802.5, 'bytesIn': 33619968.0, 'shWrite': 29549736.5}
+  --- Stage 8  (total tasks=12) ---
+    host=192.168.50.197  n=8  {'run': 351.6, 'deser': 28.0, 'gc': 5.9, 'bytesIn': 0.0, 'shWrite': 0.0}
+    host=192.168.50.198  n=4  {'run': 1602.5, 'deser': 169.2, 'gc': 112.2, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 9  (total tasks=23) ---
+    host=192.168.50.197  n=18  {'run': 1552.6, 'deser': 18.0, 'gc': 40.4, 'bytesIn': 32955846.6, 'shWrite': 9194563.7}
+    host=192.168.50.198  n=5  {'run': 6291.0, 'deser': 110.4, 'gc': 212.4, 'bytesIn': 33619968.0, 'shWrite': 33833222.0}
+  --- Stage 10  (total tasks=12) ---
+    host=192.168.50.197  n=8  {'run': 335.8, 'deser': 24.9, 'gc': 9.8, 'bytesIn': 0.0, 'shWrite': 0.0}
+    host=192.168.50.198  n=4  {'run': 1855.2, 'deser': 151.5, 'gc': 501.0, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 11  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1381.3, 'deser': 17.1, 'gc': 71.1, 'bytesIn': 32990800.4, 'shWrite': 7488410.9}
+    host=192.168.50.198  n=4  {'run': 6323.8, 'deser': 97.5, 'gc': 268.0, 'bytesIn': 33619968.0, 'shWrite': 22938048.5}
+  --- Stage 12  (total tasks=12) ---
+    host=192.168.50.197  n=8  {'run': 354.5, 'deser': 23.1, 'gc': 6.0, 'bytesIn': 0.0, 'shWrite': 0.0}
+    host=192.168.50.198  n=4  {'run': 1459.8, 'deser': 135.2, 'gc': 67.8, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 13  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1285.8, 'deser': 14.9, 'gc': 46.3, 'bytesIn': 32990800.4, 'shWrite': 8285493.6}
+    host=192.168.50.198  n=4  {'run': 7089.2, 'deser': 73.0, 'gc': 244.5, 'bytesIn': 33619968.0, 'shWrite': 30147641.8}
+  --- Stage 14  (total tasks=12) ---
+    host=192.168.50.197  n=8  {'run': 324.5, 'deser': 21.5, 'gc': 5.2, 'bytesIn': 0.0, 'shWrite': 0.0}
+    host=192.168.50.198  n=4  {'run': 1547.5, 'deser': 120.0, 'gc': 73.5, 'bytesIn': 0.0, 'shWrite': 0.0}
+======================================================================
+CONFIG: groupBy-x6-sf1-mem512-3-1:0-12part-partbytes32m
+  --- Stage 0  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 6657.1, 'deser': 600.4, 'gc': 207.7, 'bytesIn': 33100220.8, 'shWrite': 12047275.4}
+  --- Stage 2  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 430.0, 'deser': 230.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 3  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 1733.3, 'deser': 32.0, 'gc': 38.7, 'bytesIn': 33100220.8, 'shWrite': 18410047.0}
+  --- Stage 4  (total tasks=12) ---
+    host=192.168.50.197  n=12  {'run': 859.3, 'deser': 75.2, 'gc': 16.6, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 5  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 1435.7, 'deser': 21.6, 'gc': 36.3, 'bytesIn': 33100220.8, 'shWrite': 11607970.4}
+  --- Stage 6  (total tasks=12) ---
+    host=192.168.50.197  n=12  {'run': 348.0, 'deser': 30.1, 'gc': 6.2, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 7  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 1432.2, 'deser': 20.6, 'gc': 35.4, 'bytesIn': 33100220.8, 'shWrite': 9434317.3}
+  --- Stage 8  (total tasks=12) ---
+    host=192.168.50.197  n=12  {'run': 432.8, 'deser': 25.0, 'gc': 7.4, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 9  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 1492.3, 'deser': 14.8, 'gc': 77.8, 'bytesIn': 33100220.8, 'shWrite': 8525303.3}
+  --- Stage 10  (total tasks=12) ---
+    host=192.168.50.197  n=12  {'run': 321.9, 'deser': 19.4, 'gc': 4.5, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 11  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 1346.8, 'deser': 13.4, 'gc': 34.9, 'bytesIn': 33100220.8, 'shWrite': 8531525.7}
+  --- Stage 12  (total tasks=12) ---
+    host=192.168.50.197  n=12  {'run': 300.2, 'deser': 19.8, 'gc': 5.5, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 13  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 1308.7, 'deser': 12.0, 'gc': 34.3, 'bytesIn': 33100220.8, 'shWrite': 9171162.9}
+  --- Stage 14  (total tasks=12) ---
+    host=192.168.50.197  n=12  {'run': 287.3, 'deser': 18.1, 'gc': 5.8, 'bytesIn': 0.0, 'shWrite': 0.0}
+======================================================================
+CONFIG: groupBy-x6-sf1-mem512-3-1:1-16part-partbytes32m
+  --- Stage 0  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 7234.4, 'deser': 757.7, 'gc': 246.4, 'bytesIn': 32990800.4, 'shWrite': 11917681.3}
+    host=192.168.50.198  n=4  {'run': 40540.2, 'deser': 7044.2, 'gc': 2036.2, 'bytesIn': 33619968.0, 'shWrite': 56938229.8}
+  --- Stage 2  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 302.0, 'deser': 208.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 3  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1682.3, 'deser': 35.6, 'gc': 39.0, 'bytesIn': 32990800.4, 'shWrite': 18057403.1}
+    host=192.168.50.198  n=4  {'run': 10436.5, 'deser': 202.8, 'gc': 923.0, 'bytesIn': 33619968.0, 'shWrite': 59612607.8}
+  --- Stage 4  (total tasks=16) ---
+    host=192.168.50.197  n=12  {'run': 672.6, 'deser': 70.6, 'gc': 11.8, 'bytesIn': 0.0, 'shWrite': 0.0}
+    host=192.168.50.198  n=4  {'run': 3327.5, 'deser': 467.0, 'gc': 117.2, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 5  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1410.0, 'deser': 23.6, 'gc': 32.6, 'bytesIn': 32990800.4, 'shWrite': 11718190.3}
+    host=192.168.50.198  n=4  {'run': 6832.5, 'deser': 150.8, 'gc': 246.0, 'bytesIn': 33619968.0, 'shWrite': 42883434.5}
+  --- Stage 6  (total tasks=16) ---
+    host=192.168.50.197  n=12  {'run': 306.6, 'deser': 32.8, 'gc': 5.1, 'bytesIn': 0.0, 'shWrite': 0.0}
+    host=192.168.50.198  n=4  {'run': 1346.8, 'deser': 179.5, 'gc': 54.0, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 7  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1420.7, 'deser': 20.4, 'gc': 33.8, 'bytesIn': 32990800.4, 'shWrite': 10928357.4}
+    host=192.168.50.198  n=4  {'run': 6740.8, 'deser': 127.2, 'gc': 230.0, 'bytesIn': 33619968.0, 'shWrite': 50407221.2}
+  --- Stage 8  (total tasks=16) ---
+    host=192.168.50.197  n=12  {'run': 363.1, 'deser': 29.4, 'gc': 5.8, 'bytesIn': 0.0, 'shWrite': 0.0}
+    host=192.168.50.198  n=4  {'run': 1494.8, 'deser': 170.8, 'gc': 63.8, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 9  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1480.1, 'deser': 18.7, 'gc': 34.9, 'bytesIn': 32990800.4, 'shWrite': 10567348.6}
+    host=192.168.50.198  n=4  {'run': 6571.2, 'deser': 92.2, 'gc': 253.5, 'bytesIn': 33619968.0, 'shWrite': 35496693.2}
+  --- Stage 10  (total tasks=16) ---
+    host=192.168.50.197  n=12  {'run': 302.2, 'deser': 21.9, 'gc': 5.1, 'bytesIn': 0.0, 'shWrite': 0.0}
+    host=192.168.50.198  n=4  {'run': 1731.8, 'deser': 145.5, 'gc': 536.0, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 11  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1384.9, 'deser': 15.9, 'gc': 81.1, 'bytesIn': 32990800.4, 'shWrite': 10931204.7}
+    host=192.168.50.198  n=4  {'run': 6541.8, 'deser': 91.2, 'gc': 255.8, 'bytesIn': 33619968.0, 'shWrite': 26370196.0}
+  --- Stage 12  (total tasks=16) ---
+    host=192.168.50.197  n=12  {'run': 277.3, 'deser': 21.7, 'gc': 4.2, 'bytesIn': 0.0, 'shWrite': 0.0}
+    host=192.168.50.198  n=4  {'run': 1304.5, 'deser': 133.0, 'gc': 57.5, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 13  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1323.3, 'deser': 13.3, 'gc': 33.6, 'bytesIn': 32990800.4, 'shWrite': 8206998.8}
+    host=192.168.50.198  n=4  {'run': 6656.0, 'deser': 77.0, 'gc': 224.0, 'bytesIn': 33619968.0, 'shWrite': 33690002.8}
+  --- Stage 14  (total tasks=16) ---
+    host=192.168.50.197  n=12  {'run': 252.0, 'deser': 20.5, 'gc': 4.4, 'bytesIn': 0.0, 'shWrite': 0.0}
+    host=192.168.50.198  n=4  {'run': 1327.2, 'deser': 127.5, 'gc': 67.0, 'bytesIn': 0.0, 'shWrite': 0.0}
+======================================================================
+CONFIG: groupBy-x6-sf1-mem512-3-1:0-16part-partbytes32m
+  --- Stage 0  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 6570.0, 'deser': 592.6, 'gc': 224.0, 'bytesIn': 33100220.8, 'shWrite': 12497667.6}
+  --- Stage 2  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 384.0, 'deser': 224.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 3  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 1784.5, 'deser': 34.6, 'gc': 39.8, 'bytesIn': 33100220.8, 'shWrite': 16568332.0}
+  --- Stage 4  (total tasks=16) ---
+    host=192.168.50.197  n=16  {'run': 597.4, 'deser': 60.5, 'gc': 10.7, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 5  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 1467.9, 'deser': 20.5, 'gc': 35.4, 'bytesIn': 33100220.8, 'shWrite': 11389103.7}
+  --- Stage 6  (total tasks=16) ---
+    host=192.168.50.197  n=16  {'run': 277.3, 'deser': 28.1, 'gc': 4.8, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 7  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 1457.2, 'deser': 17.5, 'gc': 35.9, 'bytesIn': 33100220.8, 'shWrite': 10659927.4}
+  --- Stage 8  (total tasks=16) ---
+    host=192.168.50.197  n=16  {'run': 321.2, 'deser': 24.1, 'gc': 5.1, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 9  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 1465.2, 'deser': 14.9, 'gc': 72.6, 'bytesIn': 33100220.8, 'shWrite': 10319376.5}
+  --- Stage 10  (total tasks=16) ---
+    host=192.168.50.197  n=16  {'run': 240.9, 'deser': 16.6, 'gc': 3.3, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 11  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 1367.3, 'deser': 13.0, 'gc': 35.7, 'bytesIn': 33100220.8, 'shWrite': 9873405.8}
+  --- Stage 12  (total tasks=16) ---
+    host=192.168.50.197  n=16  {'run': 219.8, 'deser': 16.6, 'gc': 3.8, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 13  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 1333.2, 'deser': 11.7, 'gc': 33.7, 'bytesIn': 33100220.8, 'shWrite': 7749862.5}
+  --- Stage 14  (total tasks=16) ---
+    host=192.168.50.197  n=16  {'run': 224.6, 'deser': 17.8, 'gc': 4.2, 'bytesIn': 0.0, 'shWrite': 0.0}
+======================================================================
+CONFIG: groupBy-x6-sf1-mem512-3-1:1-24part-partbytes32m
+  --- Stage 0  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 7118.5, 'deser': 708.3, 'gc': 236.8, 'bytesIn': 32990800.4, 'shWrite': 18535090.6}
+    host=192.168.50.198  n=4  {'run': 37509.8, 'deser': 6064.2, 'gc': 1961.0, 'bytesIn': 33619968.0, 'shWrite': 80462435.5}
+  --- Stage 2  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 334.0, 'deser': 201.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 3  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1744.8, 'deser': 34.6, 'gc': 37.8, 'bytesIn': 32990800.4, 'shWrite': 22823043.3}
+    host=192.168.50.198  n=4  {'run': 11149.2, 'deser': 245.2, 'gc': 931.0, 'bytesIn': 33619968.0, 'shWrite': 121674008.2}
+  --- Stage 4  (total tasks=24) ---
+    host=192.168.50.197  n=20  {'run': 451.2, 'deser': 53.9, 'gc': 6.2, 'bytesIn': 0.0, 'shWrite': 0.0}
+    host=192.168.50.198  n=4  {'run': 2725.0, 'deser': 418.8, 'gc': 74.0, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 5  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1430.7, 'deser': 23.2, 'gc': 38.8, 'bytesIn': 32990800.4, 'shWrite': 13649657.1}
+    host=192.168.50.198  n=4  {'run': 7156.8, 'deser': 166.5, 'gc': 274.0, 'bytesIn': 33619968.0, 'shWrite': 43632807.5}
+  --- Stage 6  (total tasks=24) ---
+    host=192.168.50.197  n=20  {'run': 243.2, 'deser': 26.6, 'gc': 2.5, 'bytesIn': 0.0, 'shWrite': 0.0}
+    host=192.168.50.198  n=4  {'run': 1273.5, 'deser': 155.8, 'gc': 51.5, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 7  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1494.1, 'deser': 17.8, 'gc': 35.9, 'bytesIn': 32990800.4, 'shWrite': 13566443.4}
+    host=192.168.50.198  n=4  {'run': 6816.0, 'deser': 127.0, 'gc': 295.0, 'bytesIn': 33619968.0, 'shWrite': 68821532.8}
+  --- Stage 8  (total tasks=24) ---
+    host=192.168.50.197  n=20  {'run': 259.4, 'deser': 23.2, 'gc': 3.4, 'bytesIn': 0.0, 'shWrite': 0.0}
+    host=192.168.50.198  n=4  {'run': 1321.5, 'deser': 176.0, 'gc': 53.0, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 9  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1461.6, 'deser': 14.6, 'gc': 38.1, 'bytesIn': 32990800.4, 'shWrite': 12175098.2}
+    host=192.168.50.198  n=4  {'run': 6949.2, 'deser': 107.8, 'gc': 769.2, 'bytesIn': 33619968.0, 'shWrite': 41502363.8}
+  --- Stage 10  (total tasks=24) ---
+    host=192.168.50.197  n=19  {'run': 225.8, 'deser': 18.8, 'gc': 3.1, 'bytesIn': 0.0, 'shWrite': 0.0}
+    host=192.168.50.198  n=5  {'run': 989.2, 'deser': 113.2, 'gc': 32.2, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 11  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1436.7, 'deser': 15.2, 'gc': 72.4, 'bytesIn': 32990800.4, 'shWrite': 11153039.8}
+    host=192.168.50.198  n=4  {'run': 6771.8, 'deser': 94.0, 'gc': 223.5, 'bytesIn': 33619968.0, 'shWrite': 35402182.5}
+  --- Stage 12  (total tasks=24) ---
+    host=192.168.50.197  n=20  {'run': 175.6, 'deser': 17.5, 'gc': 2.2, 'bytesIn': 0.0, 'shWrite': 0.0}
+    host=192.168.50.198  n=4  {'run': 930.0, 'deser': 121.2, 'gc': 35.5, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 13  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1339.5, 'deser': 12.3, 'gc': 47.2, 'bytesIn': 32990800.4, 'shWrite': 9626221.2}
+    host=192.168.50.198  n=4  {'run': 6593.5, 'deser': 82.5, 'gc': 236.5, 'bytesIn': 33619968.0, 'shWrite': 29864853.8}
+  --- Stage 14  (total tasks=24) ---
+    host=192.168.50.197  n=19  {'run': 178.0, 'deser': 15.6, 'gc': 2.5, 'bytesIn': 0.0, 'shWrite': 0.0}
+    host=192.168.50.198  n=5  {'run': 886.4, 'deser': 90.4, 'gc': 36.6, 'bytesIn': 0.0, 'shWrite': 0.0}
+======================================================================
+CONFIG: groupBy-x6-sf1-mem512-3-1:0-24part-partbytes32m
+  --- Stage 0  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 6624.2, 'deser': 574.3, 'gc': 202.9, 'bytesIn': 33100220.8, 'shWrite': 15577996.9}
+  --- Stage 2  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 384.0, 'deser': 273.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 3  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 1739.1, 'deser': 34.2, 'gc': 37.2, 'bytesIn': 33100220.8, 'shWrite': 22078609.9}
+  --- Stage 4  (total tasks=24) ---
+    host=192.168.50.197  n=24  {'run': 436.2, 'deser': 52.3, 'gc': 7.8, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 5  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 1462.0, 'deser': 22.3, 'gc': 38.0, 'bytesIn': 33100220.8, 'shWrite': 14309659.0}
+  --- Stage 6  (total tasks=24) ---
+    host=192.168.50.197  n=24  {'run': 238.0, 'deser': 24.8, 'gc': 2.6, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 7  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 1457.9, 'deser': 17.9, 'gc': 36.6, 'bytesIn': 33100220.8, 'shWrite': 12207882.7}
+  --- Stage 8  (total tasks=24) ---
+    host=192.168.50.197  n=24  {'run': 201.6, 'deser': 18.8, 'gc': 2.3, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 9  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 1431.3, 'deser': 15.2, 'gc': 66.1, 'bytesIn': 33100220.8, 'shWrite': 12448707.0}
+  --- Stage 10  (total tasks=24) ---
+    host=192.168.50.197  n=24  {'run': 176.4, 'deser': 15.9, 'gc': 2.8, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 11  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 1346.5, 'deser': 12.2, 'gc': 44.0, 'bytesIn': 33100220.8, 'shWrite': 9404314.3}
+  --- Stage 12  (total tasks=24) ---
+    host=192.168.50.197  n=24  {'run': 158.8, 'deser': 15.0, 'gc': 2.1, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 13  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 1347.4, 'deser': 11.6, 'gc': 35.0, 'bytesIn': 33100220.8, 'shWrite': 10552825.2}
+  --- Stage 14  (total tasks=24) ---
+    host=192.168.50.197  n=24  {'run': 175.2, 'deser': 15.5, 'gc': 2.3, 'bytesIn': 0.0, 'shWrite': 0.0}
+======================================================================
+CONFIG: groupBy-x6-sf1-mem512-3-1:1-32part-partbytes32m
+  --- Stage 0  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 7066.6, 'deser': 722.0, 'gc': 234.5, 'bytesIn': 32990800.4, 'shWrite': 18904519.1}
+    host=192.168.50.198  n=4  {'run': 37318.0, 'deser': 6467.2, 'gc': 1980.2, 'bytesIn': 33619968.0, 'shWrite': 80735209.5}
+  --- Stage 2  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 331.0, 'deser': 231.0, 'gc': 5.0, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 3  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1698.6, 'deser': 33.5, 'gc': 36.8, 'bytesIn': 32990800.4, 'shWrite': 21859207.3}
+    host=192.168.50.198  n=4  {'run': 10476.5, 'deser': 183.5, 'gc': 884.5, 'bytesIn': 33619968.0, 'shWrite': 71713009.2}
+  --- Stage 4  (total tasks=32) ---
+    host=192.168.50.197  n=25  {'run': 395.4, 'deser': 47.1, 'gc': 6.8, 'bytesIn': 0.0, 'shWrite': 0.0}
+    host=192.168.50.198  n=7  {'run': 1577.0, 'deser': 309.1, 'gc': 57.7, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 5  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1415.5, 'deser': 20.6, 'gc': 37.3, 'bytesIn': 32990800.4, 'shWrite': 17704441.9}
+    host=192.168.50.198  n=4  {'run': 7331.0, 'deser': 126.8, 'gc': 311.0, 'bytesIn': 33619968.0, 'shWrite': 60843868.8}
+  --- Stage 6  (total tasks=32) ---
+    host=192.168.50.197  n=24  {'run': 215.7, 'deser': 26.5, 'gc': 2.6, 'bytesIn': 0.0, 'shWrite': 0.0}
+    host=192.168.50.198  n=8  {'run': 961.9, 'deser': 143.5, 'gc': 26.5, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 7  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1400.8, 'deser': 16.4, 'gc': 38.7, 'bytesIn': 32990800.4, 'shWrite': 13913042.9}
+    host=192.168.50.198  n=4  {'run': 7423.0, 'deser': 92.8, 'gc': 765.0, 'bytesIn': 33619968.0, 'shWrite': 55632886.2}
+  --- Stage 8  (total tasks=32) ---
+    host=192.168.50.197  n=24  {'run': 203.1, 'deser': 22.4, 'gc': 2.4, 'bytesIn': 0.0, 'shWrite': 0.0}
+    host=192.168.50.198  n=8  {'run': 782.2, 'deser': 107.5, 'gc': 32.0, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 9  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1468.8, 'deser': 15.1, 'gc': 39.9, 'bytesIn': 32990800.4, 'shWrite': 12507177.9}
+    host=192.168.50.198  n=4  {'run': 6566.8, 'deser': 99.8, 'gc': 265.2, 'bytesIn': 33619968.0, 'shWrite': 42568855.2}
+  --- Stage 10  (total tasks=32) ---
+    host=192.168.50.197  n=25  {'run': 158.2, 'deser': 16.6, 'gc': 2.3, 'bytesIn': 0.0, 'shWrite': 0.0}
+    host=192.168.50.198  n=7  {'run': 733.3, 'deser': 121.7, 'gc': 21.4, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 11  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1377.3, 'deser': 12.6, 'gc': 69.8, 'bytesIn': 32990800.4, 'shWrite': 11022399.4}
+    host=192.168.50.198  n=4  {'run': 7102.5, 'deser': 98.8, 'gc': 285.0, 'bytesIn': 33619968.0, 'shWrite': 48163178.5}
+  --- Stage 12  (total tasks=32) ---
+    host=192.168.50.197  n=25  {'run': 149.0, 'deser': 13.6, 'gc': 2.2, 'bytesIn': 0.0, 'shWrite': 0.0}
+    host=192.168.50.198  n=7  {'run': 733.9, 'deser': 109.3, 'gc': 26.0, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 13  (total tasks=23) ---
+    host=192.168.50.197  n=19  {'run': 1315.0, 'deser': 12.7, 'gc': 47.6, 'bytesIn': 32990800.4, 'shWrite': 10556187.2}
+    host=192.168.50.198  n=4  {'run': 7366.0, 'deser': 79.5, 'gc': 734.0, 'bytesIn': 33619968.0, 'shWrite': 34697570.5}
+  --- Stage 14  (total tasks=32) ---
+    host=192.168.50.197  n=25  {'run': 141.5, 'deser': 13.6, 'gc': 1.7, 'bytesIn': 0.0, 'shWrite': 0.0}
+    host=192.168.50.198  n=7  {'run': 681.9, 'deser': 100.0, 'gc': 27.4, 'bytesIn': 0.0, 'shWrite': 0.0}
+======================================================================
+CONFIG: groupBy-x6-sf1-mem512-3-1:0-32part-partbytes32m
+  --- Stage 0  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 6604.7, 'deser': 586.6, 'gc': 209.8, 'bytesIn': 33100220.8, 'shWrite': 19367987.0}
+  --- Stage 2  (total tasks=1) ---
+    host=192.168.50.197  n=1  {'run': 386.0, 'deser': 262.0, 'gc': 0.0, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 3  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 1742.4, 'deser': 29.7, 'gc': 39.0, 'bytesIn': 33100220.8, 'shWrite': 26776837.1}
+  --- Stage 4  (total tasks=32) ---
+    host=192.168.50.197  n=32  {'run': 341.9, 'deser': 46.8, 'gc': 5.1, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 5  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 1464.1, 'deser': 20.8, 'gc': 36.9, 'bytesIn': 33100220.8, 'shWrite': 15847054.7}
+  --- Stage 6  (total tasks=32) ---
+    host=192.168.50.197  n=32  {'run': 208.0, 'deser': 23.7, 'gc': 2.6, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 7  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 1467.2, 'deser': 16.9, 'gc': 36.3, 'bytesIn': 33100220.8, 'shWrite': 14401279.0}
+  --- Stage 8  (total tasks=32) ---
+    host=192.168.50.197  n=32  {'run': 169.7, 'deser': 18.3, 'gc': 2.2, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 9  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 1398.9, 'deser': 12.3, 'gc': 59.6, 'bytesIn': 33100220.8, 'shWrite': 11144428.2}
+  --- Stage 10  (total tasks=32) ---
+    host=192.168.50.197  n=32  {'run': 130.3, 'deser': 14.0, 'gc': 1.9, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 11  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 1383.9, 'deser': 13.3, 'gc': 44.9, 'bytesIn': 33100220.8, 'shWrite': 10565338.6}
+  --- Stage 12  (total tasks=32) ---
+    host=192.168.50.197  n=32  {'run': 132.2, 'deser': 13.2, 'gc': 1.5, 'bytesIn': 0.0, 'shWrite': 0.0}
+  --- Stage 13  (total tasks=23) ---
+    host=192.168.50.197  n=23  {'run': 1319.8, 'deser': 11.7, 'gc': 34.6, 'bytesIn': 33100220.8, 'shWrite': 9996504.5}
+  --- Stage 14  (total tasks=32) ---
+    host=192.168.50.197  n=32  {'run': 127.2, 'deser': 14.7, 'gc': 1.5, 'bytesIn': 0.0, 'shWrite': 0.0}

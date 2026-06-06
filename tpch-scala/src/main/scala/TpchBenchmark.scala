@@ -97,7 +97,7 @@ object TpchBenchmark {
     ))
 
     // Config values
-    val executorMemory   = sys.env.getOrElse("EXECUTOR_MEMORY", "768m")
+    // val executorMemory   = sys.env.getOrElse("EXECUTOR_MEMORY", "768m")
     val masterUrl        = sys.env.getOrElse("SPARK_MASTER_URL", "spark://192.168.50.65:7077")
     // val dataPath         = sys.env.getOrElse("DATA_PATH", 
     //     "/home/dietpi/Documents/Repositories/RPi-Cluster-Spark/tpch/data/sf0.3")
@@ -106,57 +106,61 @@ object TpchBenchmark {
     val resultsDir       = sys.env.getOrElse("RESULTS_DIR",
         "/home/xuestella03/Documents/Repositories/RPi-Cluster-Spark/tpch/results/scala")
     val activeConfig     = sys.env.getOrElse("ACTIVE_CONFIG", "default")
-    val sf               = sys.env.getOrElse("SF", "0.3")
+    val sf               = sys.env.getOrElse("SF", "10")
 
     def main(args: Array[String]): Unit = {
+        val timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"))
+        val runDir = s"$resultsDir/${timestamp}-${activeConfig}"
+
+        new java.io.File(runDir).mkdirs()
 
         val spark = SparkSession.builder()
-        .appName("TPC-H Benchmark Scala")
-        .master(masterUrl)
-        .config("spark.executor.memory", executorMemory)
-        .config("spark.executor.cores", "4")
-        .config("spark.scheduler.minRegisteredResourcesRatio", "1.0")
-        .config("spark.dynamicAllocation.enabled", "false")
-        .config("spark.sql.shuffle.partitions", "4")
-        .config("spark.driver.memory", "2g")
-        .config("spark.memory.fraction", "0.45")
-        .config("spark.memory.storageFraction", "0.5")
-        .config("spark.task.maxFailures", "1") 
-        .config("spark.eventLog.enabled", "true")
-        .config("spark.eventLog.dir", "/home/xuestella03/Documents/Repositories/RPi-Cluster-Spark/tpch/event-logs")
-        .config("spark.eventLog.compress", "false")
-        .getOrCreate()
+            .appName("TPC-H Benchmark Scala")
+            .master(masterUrl)
+            .config("spark.scheduler.minRegisteredResourcesRatio", "1.0")
+            .config("spark.dynamicAllocation.enabled", "false")
+            .config("spark.driver.memory", "2g")
+            .config("spark.memory.fraction", "0.45")
+            .config("spark.memory.storageFraction", "0.5")
+            .config("spark.task.maxFailures", "1")
+            .config("spark.eventLog.enabled", "true")
+            .config("spark.eventLog.dir", runDir)
+            .config("spark.eventLog.compress", "false")
+            .getOrCreate()
 
         println(s"Spark UI: ${spark.sparkContext.uiWebUrl.getOrElse("unavailable")}")
+        println(s"*****DATA_PATH: ${dataPath}")
 
         loadTables(spark)
 
         // Warmup
+        // runQuery(spark, "refresh", refresh)
         println("Running warmup...")
-        runQuery(spark, "warmup", getQuery6)
+        runQuery(spark, "warmup", getQuery1)
         spark.catalog.clearCache()
         spark.sparkContext.getPersistentRDDs.foreach { case (_, rdd) => rdd.unpersist() }
         System.gc()
         Thread.sleep(5000)  
 
         // Results setup
-        val timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"))
-        val csvPath = s"$resultsDir/$timestamp-$activeConfig-sf$sf.csv"
+        
+        val csvPath = s"$resultsDir/$timestamp-$activeConfig.csv"
         new java.io.File(resultsDir).mkdirs()
 
         val writer = new PrintWriter(new FileWriter(csvPath, true))
-        writer.println("timestamp,query,elapsed_s,executor_memory,active_config")
+        writer.println("timestamp,query,elapsed_s,active_config")
 
         // Map query number -> function
         val queries: Map[Int, SparkSession => Unit] = Map(
-            1 -> getQuery1,
-            3 -> getQuery3,
+            // 1 -> getQuery1,
+            // 3 -> getQuery3,
             5 -> getQuery5,
-            6 -> getQuery6
+            // 6 -> getQuery6
+            // 106 -> broadcastJoin
         )
 
         // Run queries for x iterations
-        for (i <- 0 until 3) {
+        for (i <- 0 until 8) {
             println(s"\n=== Iteration $i ===")
 
             // Shuffle queries each iteration
@@ -169,7 +173,8 @@ object TpchBenchmark {
                 runQuery(spark, s"Q${qNum}-iter$i", qFunc)
                 val elapsed = (System.currentTimeMillis() - start) / 1000.0
 
-                writer.println(s"$timestamp,$qNum,$elapsed,$executorMemory,$activeConfig")
+                // writer.println(s"$timestamp,$qNum,$elapsed,$executorMemory,$activeConfig")
+                writer.println(s"$timestamp,$qNum,$elapsed,$activeConfig")
                 writer.flush()
 
                 spark.catalog.clearCache()
@@ -197,15 +202,15 @@ object TpchBenchmark {
         "supplier" -> supplierSchema
         )
 
-        for ((table, schema) <- tableSchemas) {
-        spark.read
-            .option("delimiter", "|")
-            .option("header", "false")
-            .schema(schema)
-            .csv(s"$dataPath/$table.tbl")
-            .createOrReplaceTempView(table)
+        for ((table, schema) <- tableSchemas) {    
+            spark.read
+                .option("delimiter", "|")
+                .option("header", "false")
+                .schema(schema)
+                .csv(s"$dataPath/$table.tbl")
+                .createOrReplaceTempView(table)
 
-        println(s"  Loaded $table")
+            println(s"  Loaded $table")
         }
     }
 
@@ -217,7 +222,90 @@ object TpchBenchmark {
         println(s"$label finished in ${elapsed}s")
     }
 
+    def refresh(spark: SparkSession): Unit = {
+        spark.sql("REFRESH TABLE lineitem")
+    }
+
+    def scan(spark: SparkSession): Unit = {
+        spark.sql("""SELECT l_orderkey, l_extendedprice
+            FROM lineitem
+            """).write.format("noop").mode("overwrite").save()
+    }
+
+    def scanFilter(spark: SparkSession): Unit = {
+        spark.sql("""SELECT l_orderkey, l_extendedprice
+            FROM lineitem
+            WHERE l_shipdate > date '1995-03-15'
+            """).write.format("noop").mode("overwrite").save()
+    }
+
+    def scanFilterAgg(spark: SparkSession): Unit = {
+        spark.sql("""SELECT sum(l_extendedprice)
+            FROM lineitem
+            WHERE l_shipdate > date '1995-03-15'
+            """).write.format("noop").mode("overwrite").save()
+    }
+
+    def groupBy(spark: SparkSession): Unit = {
+        spark.conf.set("spark.sql.adaptive.enabled", "false")
+        spark.sql("""SELECT l_orderkey, sum(l_extendedprice) AS rev
+            FROM lineitem
+            GROUP BY l_orderkey
+            """).write.format("noop").mode("overwrite").save()
+    }
+
+    def sortMergeJoin(spark: SparkSession): Unit = {
+        spark.conf.set("spark.sql.autoBroadcastJoinThreshold", "-1") 
+        spark.conf.set("spark.sql.adaptive.enabled", "false")
+        spark.sql("""
+            SELECT sum(l_extendedprice * (1 - l_discount))
+            FROM lineitem
+            JOIN orders ON l_orderkey = o_orderkey
+            """).write.format("noop").mode("overwrite").save()
+    }
+
+    def broadcastJoin(spark: SparkSession): Unit = {
+        spark.conf.set("spark.sql.adaptive.enabled", "false")
+        spark.sql("""
+            SELECT sum(l_extendedprice * (1 - l_discount))
+            FROM lineitem
+            JOIN orders ON l_orderkey = o_orderkey
+            """).write.format("noop").mode("overwrite").save()
+    }
+
+    def justSort(spark: SparkSession): Unit = {
+        spark.conf.set("spark.sql.adaptive.enabled", "false")
+        spark.sql("""
+            SELECT l_orderkey, l_extendedprice
+            FROM lineitem
+            ORDER BY l_orderkey
+            """).write.format("noop").mode("overwrite").save()
+    }
+
+
+    def joinBroadcast(spark: SparkSession): Unit = {
+        spark.sql("""SELECT sum(l_extendedprice)
+                    FROM lineitem
+                    JOIN orders ON l_orderkey = o_orderkey
+                    WHERE o_orderdate < date '1995-03-15'""")
+            .write.format("noop").mode("overwrite").save()
+    }
+
+    def joinShuffle(spark: SparkSession): Unit = {
+        // for this one set spark.sql.autoBroadcastJoinThreshold to -1
+        spark.conf.set("spark.sql.autoBroadcastJoinThreshold", "-1") 
+        spark.sql("""SELECT sum(l_extendedprice)
+                    FROM lineitem
+                    JOIN orders ON l_orderkey = o_orderkey
+                    WHERE o_orderdate < date '1995-03-15'""")
+            .write.format("noop").mode("overwrite").save()
+    }
+
+
+    // TPC-H 
+
     def getQuery1(spark: SparkSession): Unit = {
+        spark.conf.set("spark.sql.adaptive.enabled", "false")
         spark.sql("""SELECT
             l_returnflag,
             l_linestatus,
@@ -256,6 +344,7 @@ object TpchBenchmark {
     }
 
     def getQuery5(spark: SparkSession): Unit = {
+        // spark.conf.set("spark.sql.adaptive.enabled", "false")
         spark.sql("""
         SELECT n_name, SUM(l_extendedprice * (1 - l_discount)) AS revenue
         FROM customer
@@ -273,6 +362,7 @@ object TpchBenchmark {
     }
 
     def getQuery6(spark: SparkSession): Unit = {
+        spark.conf.set("spark.sql.adaptive.enabled", "false")
         def df = spark.sql("""
         SELECT
             SUM(l_extendedprice * l_discount) as revenue

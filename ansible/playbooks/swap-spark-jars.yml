@@ -1,0 +1,30 @@
+---
+- name: Swap core jar on workers
+  hosts: workers
+  become: yes
+  tasks:
+    # - name: Swap jar
+    #   copy:
+    #     src: "/opt/spark/jars/spark-core_2.13-4.2.0-SNAPSHOT.jar.v1"
+    #     dest: "/opt/spark/jars/spark-core_2.13-4.2.0-SNAPSHOT.jar"
+    #     remote_src: yes
+    - name: Swap jar using cp 
+      shell: |
+        cp -f \ 
+          /opt/spark/jars/spark-core_2.13-4.2.0-SNAPSHOT.jar.v9.3 \
+          /opt/spark/jars/spark-core_2.13-4.2.0-SNAPSHOT.jar
+
+- name: Swap core jar on driver
+  hosts: server
+  become: yes
+  tasks:
+    # - name: Swap jar
+    #   copy:
+    #     src: "/opt/spark/jars/spark-core_2.13-4.2.0-SNAPSHOT.jar.v1"
+    #     dest: "/opt/spark/jars/spark-core_2.13-4.2.0-SNAPSHOT.jar"
+    #     remote_src: yes
+    - name: Swap jar using cp 
+      shell: |
+        cp -f \ 
+          /opt/spark/jars/spark-core_2.13-4.2.0-SNAPSHOT.jar.v9.3 \
+          /opt/spark/jars/spark-core_2.13-4.2.0-SNAPSHOT.jar

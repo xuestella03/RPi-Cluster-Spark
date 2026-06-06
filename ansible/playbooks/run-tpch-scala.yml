@@ -6,7 +6,7 @@
   vars:
     results_dir: "/home/dietpi/Documents/Repositories/RPi-Cluster-Spark/tpch/results/pidstat"
     timestamp: "{{ lookup('pipe', 'date +%Y%m%d_%H%M%S') }}"
-    pidstat_filename: "{{ timestamp }}-scala-{{ active_config }}-mem{{ executor_memory }}"
+    pidstat_filename: "{{ timestamp }}-scala-{{ active_config }}"
   tasks:
     - name: Create results directory
       file:
@@ -33,10 +33,52 @@
     spark_home: "/opt/spark"
     results_dir: "{{ ansible_env.HOME }}/Documents/Repositories/RPi-Cluster-Spark/tpch/results/scala"
     # Override these with -e flag: ansible-playbook ... -e executor_memory=512m
-    executor_memory: "768m"
+    # executor_memory: "768m"
     active_config: "default"
     sf: "0.3"
     master_ip: "192.168.50.65"
+    experiment_configs:
+
+      # two warmups
+      - { stage_aware: false, operation_aware: false, shuffle_partitions: 48, exclude_slow: false, weight: 4, part_bytes: "64m" }
+      # - { stage_aware: false, operation_aware: false, shuffle_partitions: 48, exclude_slow: false, weight: 4, part_bytes: "64m" }
+      
+      # actual runs
+      # - { stage_aware: false, operation_aware: false, shuffle_partitions: 48, exclude_slow: false, weight: 1, part_bytes: "128m" }
+      # - { stage_aware: false, operation_aware: false,  shuffle_partitions: 48, exclude_slow: true, weight: 1, part_bytes: "128m" }
+      # - { stage_aware: false, operation_aware: false, shuffle_partitions: 48, exclude_slow: false, weight: 1, part_bytes: "96m" }
+      # - { stage_aware: false, operation_aware: false,  shuffle_partitions: 48, exclude_slow: true, weight: 1, part_bytes: "96m" }
+      # - { stage_aware: false, operation_aware: false, shuffle_partitions: 48, exclude_slow: false, weight: 1, part_bytes: "64m" }
+      # - { stage_aware: false, operation_aware: false,  shuffle_partitions: 48, exclude_slow: true, weight: 1, part_bytes: "64m" }
+      # - { stage_aware: false, operation_aware: false, shuffle_partitions: 48, exclude_slow: false, weight: 1, part_bytes: "48m" }
+      # - { stage_aware: false, operation_aware: false,  shuffle_partitions: 48, exclude_slow: true, weight: 1, part_bytes: "48m" }
+      # - { stage_aware: false, operation_aware: false, shuffle_partitions: 48, exclude_slow: false, weight: 1, part_bytes: "32m" }
+      # - { stage_aware: false, operation_aware: false,  shuffle_partitions: 48, exclude_slow: true, weight: 1, part_bytes: "32m" }
+      # - { stage_aware: false, operation_aware: false, shuffle_partitions: 48, exclude_slow: false, weight: 1, part_bytes: "24m" }
+      # - { stage_aware: false, operation_aware: false,  shuffle_partitions: 48, exclude_slow: true, weight: 1, part_bytes: "24m" }
+
+      # 
+      # - { stage_aware: false, operation_aware: false, shuffle_partitions: 4, exclude_slow: false, weight: 1, part_bytes: "32m" }
+      # - { stage_aware: false, operation_aware: false,  shuffle_partitions: 4, exclude_slow: true, weight: 1, part_bytes: "32m" }
+      # - { stage_aware: false, operation_aware: false, shuffle_partitions: 8, exclude_slow: false, weight: 1, part_bytes: "32m" }
+      # - { stage_aware: false, operation_aware: false,  shuffle_partitions: 8, exclude_slow: true, weight: 1, part_bytes: "32m" }
+      # - { stage_aware: false, operation_aware: false, shuffle_partitions: 12, exclude_slow: false, weight: 1, part_bytes: "32m" }
+      # - { stage_aware: false, operation_aware: false,  shuffle_partitions: 12, exclude_slow: true, weight: 1, part_bytes: "32m" }
+      # - { stage_aware: false, operation_aware: false, shuffle_partitions: 16, exclude_slow: false, weight: 1, part_bytes: "32m" }
+      # - { stage_aware: false, operation_aware: false,  shuffle_partitions: 16, exclude_slow: true, weight: 1, part_bytes: "32m" }
+      # - { stage_aware: false, operation_aware: false, shuffle_partitions: 24, exclude_slow: false, weight: 1, part_bytes: "32m" }
+      # - { stage_aware: false, operation_aware: false,  shuffle_partitions: 24, exclude_slow: true, weight: 1, part_bytes: "32m" }
+      # - { stage_aware: false, operation_aware: false, shuffle_partitions: 32, exclude_slow: false, weight: 1, part_bytes: "32m" }
+      # - { stage_aware: false, operation_aware: false,  shuffle_partitions: 32, exclude_slow: true, weight: 1, part_bytes: "32m" }
+      # - { stage_aware: false, operation_aware: false, shuffle_partitions: 48, exclude_slow: false, weight: 1, part_bytes: "32m" }
+      # - { stage_aware: false, operation_aware: false,  shuffle_partitions: 48, exclude_slow: true, weight: 1, part_bytes: "32m" }
+
+      #
+      - { stage_aware: false, operation_aware: false, shuffle_partitions: 48, exclude_slow: false, weight: 1, part_bytes: "32m" } # default with partition + shuffle
+      - { stage_aware: false, operation_aware: false,  shuffle_partitions: 48, exclude_slow: true, weight: 1, part_bytes: "32m" } # exclude 3b+
+      - { stage_aware: false, operation_aware: true,  shuffle_partitions: 48, exclude_slow: false, weight: 1, part_bytes: "32m" } # operation aware
+      # - { stage_aware: false, operation_aware: false,  shuffle_partitions: 200, exclude_slow: false, weight: 1, part_bytes: "128m" } # true default
+          # --conf spark.locality.wait=0s \
 
   tasks:
     - name: Create results directory
@@ -44,44 +86,54 @@
         path: "{{ results_dir }}"
         state: directory
 
-    - name: Submit Spark job
+    - name: Run experiments
       shell: |
+        RUN_NAME="{{ results_dir }}/{{ lookup('pipe', 'date +%Y%m%d_%H%M%S') }}_{{ active_config }}-{{ item.weight }}:{{ '0' if item.exclude_slow else '1' }}-{{ item.shuffle_partitions }}part-partbytes{{ item.part_bytes }}{% if item.stage_aware %}-stageAware{% endif %}{% if item.operation_aware %}-operationAware{% endif %}"
+        LOG="${RUN_NAME}.log"
+
         {{ spark_home }}/bin/spark-submit \
           --master spark://{{ master_ip }}:7077 \
           --conf spark.driver.port=7078 \
           --conf spark.blockManager.port=7079 \
           --conf spark.scheduler.minRegisteredResourcesRatio=1.0 \
-          --conf spark.scheduler.maxRegisteredResourcesWaitingTime=60s \
-          --num-executors 2 \
-          --executor-cores 4 \
-          --executor-memory {{ executor_memory }} \
+          --conf spark.scheduler.maxRegisteredResourcesWaitingTime=60s \      
+          --conf "spark.heterogeneous.executor.weights=192.168.50.198:{{ 0 if item.exclude_slow else 1 }},192.168.50.197:{{ item.weight }}" \
+          --conf "spark.heterogeneous.scheduling.stageAware={{ item.stage_aware | lower }}" \
+          --conf "spark.heterogeneous.scheduling.operationAware={{ item.operation_aware | lower }}" \
+          --conf "spark.heterogeneous.scheduling.slowHost=192.168.50.198" \
+          --conf spark.heterogeneous.scheduling.computeHeavyThreshold=12 \
+          --executor-memory 512m \
+          --conf "spark.heterogeneous.executor.memory=192.168.50.198:512m,192.168.50.197:3g" \
           --driver-memory 2g \
           --conf spark.dynamicAllocation.enabled=false \
-          --conf spark.sql.shuffle.partitions=4 \
-          --conf spark.executor.cores=4 \
+          --conf spark.sql.shuffle.partitions={{ item.shuffle_partitions }} \
+          --conf spark.sql.files.maxPartitionBytes={{ item.part_bytes }} \
           --conf spark.memory.fraction=0.45 \
           --conf spark.memory.storageFraction=0.5 \
           --conf spark.executor.extraJavaOptions="-XX:+UseSerialGC" \
           --conf spark.driver.extraJavaOptions="-XX:+UseSerialGC" \
-          {{ jar_path }}
+          {{ jar_path }} \
+          2>&1 | tee "$LOG"
       environment:
-        EXECUTOR_MEMORY: "{{ executor_memory }}"
         SPARK_MASTER_URL: "spark://{{ master_ip }}:7077"
-        # DATA_PATH: "/mnt/tpch/sf1"
-        DATA_PATH: "/home/dietpi/Documents/Repositories/RPi-Cluster-Spark/tpch/data/sf0.3"
+        DATA_PATH: "/home/dietpi/Documents/Repositories/RPi-Cluster-Spark/tpch/data/sf1"
         RESULTS_DIR: "{{ results_dir }}"
-        ACTIVE_CONFIG: "{{ active_config }}"
+        ACTIVE_CONFIG: >-
+          {{ active_config }}-{{ item.weight }}:{{ '0' if item.exclude_slow else '1' }}-{{ item.shuffle_partitions }}part-partbytes{{ item.part_bytes }}{% if item.stage_aware %}-stageAware{% endif %}{% if item.operation_aware %}-operationAware{% endif %}
         SF: "{{ sf }}"
-      register: spark_output
+      loop: "{{ experiment_configs }}"
+      register: spark_output # only the last one gets printed; doesn't even all fit in the terminal anyways...
 
     - name: Show output
       debug:
-        msg: "{{ spark_output.stdout_lines }}"
+        msg: "{{ item.stdout_lines }}"
+      loop: "{{ spark_output.results }}"
 
     - name: Show errors if any
       debug:
-        msg: "{{ spark_output.stderr_lines }}"
-      when: spark_output.stderr_lines | length > 0
+        msg: "{{ item.stderr_lines }}"
+      loop: "{{ spark_output.results }}"
+      when: item.stderr_lines | length > 0
 
 - name: Stop pidstat and collect logs
   hosts: workers

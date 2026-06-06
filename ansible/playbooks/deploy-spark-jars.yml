@@ -1,0 +1,52 @@
+---
+- name: Deploy changed Spark jars to workers
+  hosts: workers
+  gather_facts: true
+  become: yes
+  vars:
+    spark_install_dir: "/opt/spark"
+    spark_repo: "/home/xuestella03/Documents/Repositories/spark"
+
+  tasks:
+    - name: Stop Spark worker before replacing jars
+      shell: "{{ spark_install_dir }}/sbin/stop-worker.sh"
+      environment:
+        SPARK_HOME: "{{ spark_install_dir }}"
+      ignore_errors: yes
+
+    - name: Copy updated core jar to worker
+      copy:
+        src: "{{ spark_repo }}/core/target/spark-core_2.13-4.2.0-SNAPSHOT.jar"
+        dest: "{{ spark_install_dir }}/jars/spark-core_2.13-4.2.0-SNAPSHOT.jar.v9.3"
+        backup: yes  # keeps the old jar as .bak so you can roll back
+
+    - name: Restart Spark worker
+      shell: |
+        {{ spark_install_dir }}/sbin/start-worker.sh \
+          spark://192.168.50.65:7077
+      environment:
+        SPARK_HOME: "{{ spark_install_dir }}"
+        JAVA_HOME: /opt/liberica-jdk21
+
+    - name: Confirm jar timestamp on worker
+      shell: "ls -la {{ spark_install_dir }}/jars/spark-core_2.13-4.2.0-SNAPSHOT.jar.v9.3"
+      register: jar_check
+
+    - name: Show jar info
+      debug:
+        msg: "{{ jar_check.stdout }}"
+
+- name: Also update driver-side jar
+  hosts: server
+  become: yes
+  vars:
+    spark_install_dir: "/opt/spark"
+    spark_repo: "/home/xuestella03/Documents/Repositories/spark"
+
+  tasks:
+    - name: Copy updated core jar to driver spark install
+      copy:
+        src: "{{ spark_repo }}/core/target/spark-core_2.13-4.2.0-SNAPSHOT.jar"
+        dest: "{{ spark_install_dir }}/jars/spark-core_2.13-4.2.0-SNAPSHOT.jar.v9.3"
+        remote_src: yes
+        backup: yes

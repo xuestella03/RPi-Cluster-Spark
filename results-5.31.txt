@@ -1,0 +1,11 @@
+20260601_000349,1,46.634,1:1-just2-q1-x5-local-sf1-mem768-6-24partitions
+20260601_000349,1,48.204,1:1-just2-q1-x5-local-sf1-mem768-6-24partitions
+20260601_000349,1,49.245,1:1-just2-q1-x5-local-sf1-mem768-6-24partitions
+20260601_000349,1,50.753,1:1-just2-q1-x5-local-sf1-mem768-6-24partitions
+20260601_000349,1,52.341,1:1-just2-q1-x5-local-sf1-mem768-6-24partitions
+
+20260531_235745,1,44.186,4:1-just2-q1-x5-local-sf1-mem768-6-24partitions
+20260531_235745,1,41.792,4:1-just2-q1-x5-local-sf1-mem768-6-24partitions
+20260531_235745,1,41.271,4:1-just2-q1-x5-local-sf1-mem768-6-24partitions
+20260531_235745,1,42.123,4:1-just2-q1-x5-local-sf1-mem768-6-24partitions
+20260531_235745,1,43.787,4:1-just2-q1-x5-local-sf1-mem768-6-24partitions

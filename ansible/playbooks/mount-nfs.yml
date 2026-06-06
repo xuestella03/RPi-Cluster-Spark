@@ -1,0 +1,36 @@
+# ansible/mount-nfs.yml
+---
+- name: Mount NFS data on workers
+  hosts: workers
+  become: yes
+  vars:
+    server_ip: "192.168.50.65"
+    nfs_src: "/home/xuestella03/Documents/Repositories/RPi-Cluster-Spark/tpch/data/sf10"
+    nfs_dst: "/mnt/tpch/sf10"
+
+  tasks:
+    - name: Install NFS client
+      apt:
+        name: nfs-common
+        state: present
+
+    - name: Create mount point
+      file:
+        path: "{{ nfs_dst }}"
+        state: directory
+
+    - name: Mount NFS share
+      mount:
+        path: "{{ nfs_dst }}"
+        src: "{{ server_ip }}:{{ nfs_src }}"
+        fstype: nfs
+        opts: ro,hard,intr
+        state: mounted
+
+    - name: Verify mount
+      shell: ls {{ nfs_dst }} | head -5
+      register: mount_check
+
+    - name: Show mounted files
+      debug:
+        msg: "{{ mount_check.stdout_lines }}"

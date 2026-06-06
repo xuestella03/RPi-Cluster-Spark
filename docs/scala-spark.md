@@ -24,6 +24,10 @@ cd tpch-scala
 sbt package
 
 ```
+| Version | jar Name | Description|
+|---------|----------|------------|
+| v0.1 | v1 | No actual code changes, just naming |
+| v0.2 | v2 | Hardcoded weights | 
 
 ## Running
 ```bash
