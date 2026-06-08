@@ -1,0 +1,129 @@
+# ~/Documents/Repositories/RPi-Cluster-Spark/ansible/playbooks/find-r.yml
+#
+# Diagnostic: measure the per-operator-type slowdown ratio r = t_slow / t_fast for the
+# current (sf, shuffle.partitions, maxPartitionBytes) so you can set the scheduler's
+# scan/aggReduce/sortReduce/joinReduce slowdown conf values empirically.
+#
+# Runs four probe queries (scan, agg, sort, join) via tpch.RProbe, each into its own temp
+# event-log dir, with BOTH hosts included at equal weight so every heavy stage gets tasks on
+# both Pi3B+ and Pi5. Then runs compute_r.py to pick the right stage per probe and print r.
+#
+# Put compute_r.py next to this playbook (same dir as find-r.yml).
+#
+# Usage:
+#   ansible-playbook playbooks/find-r.yml
+#   # sweep a different config:
+#   ansible-playbook playbooks/find-r.yml -e sf=0.3 -e data_path=/.../tpch/data/sf0.3 \
+#       -e shuffle_partitions=200 -e part_bytes=128m
+#   # keep the raw event logs for inspection:
+#   ansible-playbook playbooks/find-r.yml -e keep_logs=true
+---
+- name: Measure per-operator r values
+  hosts: server
+  become: no
+  vars:
+    project_dir:        "{{ ansible_env.HOME }}/Documents/Repositories/RPi-Cluster-Spark/tpch-scala"
+    jar_path:           "{{ ansible_env.HOME }}/Documents/Repositories/RPi-Cluster-Spark/tpch-scala/target/scala-2.13/tpch-benchmark_2.13-0.1.0.jar"
+    probe_class:        "tpch.RProbe"
+    spark_home:         "/opt/spark"
+    master_ip:          "192.168.50.65"
+    data_path:          "/home/dietpi/Documents/Repositories/RPi-Cluster-Spark/tpch/data/sf{{ sf }}"
+    sf:                 "2"
+
+    # partitions and partition bytes
+    shuffle_partitions: 48
+    part_bytes:         "32m"
+
+    # cluster
+    slow_host:          "192.168.50.198"
+    fast_host:          "192.168.50.197"
+    slow_weight:        1            
+    fast_weight:        1
+    slow_mem:           "512m"
+    fast_mem:           "3g"
+    exec_mem:           "512m"
+
+    probe_iters:        5            # parser reads the last one
+    probes:             ["scan", "agg", "sort", "join"]
+
+    build_jar:          true
+    keep_logs:          false
+
+  tasks:
+    - name: Build benchmark jar (includes RProbe)
+      command: sbt package
+      args:
+        chdir: "{{ project_dir }}"
+      when: build_jar
+
+    - name: Timestamp for this diagnostic run
+      set_fact:
+        run_ts: "{{ lookup('pipe', 'date +%Y%m%d_%H%M%S') }}"
+
+    - name: Set temp event-log root
+      set_fact:
+        event_log_root: "/tmp/find-r-{{ run_ts }}"
+
+    - name: Create per-probe event-log dirs
+      file:
+        path: "{{ event_log_root }}/{{ item }}"
+        state: directory
+        mode: '0755'
+      loop: "{{ probes }}"
+
+    - name: Run probes
+      shell: |
+        {{ spark_home }}/bin/spark-submit \
+          --class {{ probe_class }} \
+          --master spark://{{ master_ip }}:7077 \
+          --conf spark.driver.port=7078 \
+          --conf spark.blockManager.port=7079 \
+          --conf spark.scheduler.minRegisteredResourcesRatio=1.0 \
+          --conf spark.scheduler.maxRegisteredResourcesWaitingTime=60s \
+          --conf "spark.heterogeneous.executor.weights={{ slow_host }}:{{ slow_weight }},{{ fast_host }}:{{ fast_weight }}" \
+          --conf "spark.heterogeneous.scheduling.stageAware=false" \
+          --conf "spark.heterogeneous.scheduling.operationAware=false" \
+          --conf "spark.heterogeneous.scheduling.slowHost={{ slow_host }}" \
+          --executor-memory {{ exec_mem }} \
+          --conf "spark.heterogeneous.executor.memory={{ slow_host }}:{{ slow_mem }},{{ fast_host }}:{{ fast_mem }}" \
+          --driver-memory 2g \
+          --conf spark.dynamicAllocation.enabled=false \
+          --conf spark.sql.shuffle.partitions={{ shuffle_partitions }} \
+          --conf spark.sql.files.maxPartitionBytes={{ part_bytes }} \
+          --conf spark.sql.adaptive.enabled=false \
+          --conf spark.locality.wait=0s \
+          --conf spark.memory.fraction=0.45 \
+          --conf spark.memory.storageFraction=0.5 \
+          --conf spark.executor.extraJavaOptions="-XX:+UseSerialGC" \
+          --conf spark.driver.extraJavaOptions="-XX:+UseSerialGC" \
+          --conf spark.eventLog.enabled=true \
+          --conf spark.eventLog.compress=false \
+          --conf spark.eventLog.dir={{ event_log_root }}/{{ item }} \
+          {{ jar_path }}
+      args:
+        executable: /bin/bash
+      environment:
+        SPARK_MASTER_URL: "spark://{{ master_ip }}:7077"
+        DATA_PATH:        "{{ data_path }}"
+        SF:               "{{ sf }}"
+        PROBE:            "{{ item }}"
+        PROBE_ITERS:      "{{ probe_iters }}"
+      loop: "{{ probes }}"
+
+    - name: Compute r values
+      command: >
+        python3 {{ playbook_dir }}/compute_r.py {{ event_log_root }}
+        --slow {{ slow_host }} --fast {{ fast_host }}
+        --probes {{ probes | join(',') }}
+        --shuffle-partitions {{ shuffle_partitions }}
+      register: r_output
+
+    - name: Show r values
+      debug:
+        msg: "{{ r_output.stdout_lines }}"
+
+    - name: Remove temp event logs
+      file:
+        path: "{{ event_log_root }}"
+        state: absent
+      when: not keep_logs

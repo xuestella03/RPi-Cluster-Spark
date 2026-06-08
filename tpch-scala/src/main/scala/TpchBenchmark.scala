@@ -152,15 +152,19 @@ object TpchBenchmark {
 
         // Map query number -> function
         val queries: Map[Int, SparkSession => Unit] = Map(
-            // 1 -> getQuery1,
-            // 3 -> getQuery3,
+            1 -> getQuery1,
+            3 -> getQuery3,
             5 -> getQuery5,
-            // 6 -> getQuery6
+            6 -> getQuery6,
+            // 4 -> getQuery4,
+            // 13 -> getQuery13,
+            // 14 -> getQuery14,
+            // 19 -> getQuery19,
             // 106 -> broadcastJoin
         )
 
         // Run queries for x iterations
-        for (i <- 0 until 8) {
+        for (i <- 0 until 10) {
             println(s"\n=== Iteration $i ===")
 
             // Shuffle queries each iteration
@@ -305,7 +309,7 @@ object TpchBenchmark {
     // TPC-H 
 
     def getQuery1(spark: SparkSession): Unit = {
-        spark.conf.set("spark.sql.adaptive.enabled", "false")
+        // spark.conf.set("spark.sql.adaptive.enabled", "false")
         spark.sql("""SELECT
             l_returnflag,
             l_linestatus,
@@ -362,7 +366,7 @@ object TpchBenchmark {
     }
 
     def getQuery6(spark: SparkSession): Unit = {
-        spark.conf.set("spark.sql.adaptive.enabled", "false")
+        // spark.conf.set("spark.sql.adaptive.enabled", "false")
         def df = spark.sql("""
         SELECT
             SUM(l_extendedprice * l_discount) as revenue
@@ -377,4 +381,122 @@ object TpchBenchmark {
         df.show(10)
 
     }
+
+    def getQuery4(spark: SparkSession): Unit = {
+        spark.sql("""
+        SELECT
+            o_orderpriority,
+            COUNT(*) AS order_count
+        FROM orders
+        WHERE o_orderdate >= date '1993-07-01'
+            AND o_orderdate < date '1993-10-01'
+            AND EXISTS (
+                SELECT *
+                FROM lineitem
+                WHERE l_orderkey = o_orderkey
+                    AND l_commitdate < l_receiptdate
+            )
+        GROUP BY o_orderpriority
+        ORDER BY o_orderpriority
+        """).show()
+    }
+
+
+    def getQuery13(spark: SparkSession): Unit = {
+        spark.sql("""
+        SELECT
+            c_count,
+            COUNT(*) AS custdist
+        FROM (
+            SELECT
+                c_custkey,
+                COUNT(o_orderkey) AS c_count
+            FROM customer
+            LEFT OUTER JOIN orders
+                ON c_custkey = o_custkey
+                AND o_comment NOT LIKE '%special%requests%'
+            GROUP BY c_custkey
+        ) c_orders
+        GROUP BY c_count
+        ORDER BY custdist DESC, c_count DESC
+        """).show()
+    }
+
+
+    def getQuery14(spark: SparkSession): Unit = {
+        spark.sql("""
+        SELECT
+            100.00 * SUM(
+                CASE
+                    WHEN p_type LIKE 'PROMO%'
+                    THEN l_extendedprice * (1 - l_discount)
+                    ELSE 0
+                END
+            ) / SUM(
+                l_extendedprice * (1 - l_discount)
+            ) AS promo_revenue
+        FROM lineitem
+        JOIN part
+            ON l_partkey = p_partkey
+        WHERE l_shipdate >= date '1995-09-01'
+            AND l_shipdate < date '1995-10-01'
+        """).show()
+    }
+
+
+    def getQuery19(spark: SparkSession): Unit = {
+        spark.sql("""
+        SELECT
+            SUM(
+                l_extendedprice * (1 - l_discount)
+            ) AS revenue
+        FROM lineitem
+        JOIN part
+            ON p_partkey = l_partkey
+        WHERE (
+            p_brand = 'Brand#12'
+            AND p_container IN (
+                'SM CASE',
+                'SM BOX',
+                'SM PACK',
+                'SM PKG'
+            )
+            AND l_quantity >= 1
+            AND l_quantity <= 11
+            AND p_size BETWEEN 1 AND 5
+            AND l_shipmode IN ('AIR', 'AIR REG')
+            AND l_shipinstruct = 'DELIVER IN PERSON'
+        )
+        OR (
+            p_brand = 'Brand#23'
+            AND p_container IN (
+                'MED BAG',
+                'MED BOX',
+                'MED PKG',
+                'MED PACK'
+            )
+            AND l_quantity >= 10
+            AND l_quantity <= 20
+            AND p_size BETWEEN 1 AND 10
+            AND l_shipmode IN ('AIR', 'AIR REG')
+            AND l_shipinstruct = 'DELIVER IN PERSON'
+        )
+        OR (
+            p_brand = 'Brand#34'
+            AND p_container IN (
+                'LG CASE',
+                'LG BOX',
+                'LG PACK',
+                'LG PKG'
+            )
+            AND l_quantity >= 20
+            AND l_quantity <= 30
+            AND p_size BETWEEN 1 AND 15
+            AND l_shipmode IN ('AIR', 'AIR REG')
+            AND l_shipinstruct = 'DELIVER IN PERSON'
+        )
+        """).show()
+    }
+
+
 }
