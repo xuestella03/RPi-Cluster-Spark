@@ -1,32 +1,14 @@
-// ~/Documents/Repositories/RPi-Cluster-Spark/tpch-scala/src/main/scala/RProbe.scala
-//
-// Diagnostic harness for measuring the per-operator-type slowdown ratio r = t_slow / t_fast.
-// Each invocation runs ONE probe query (selected by the PROBE env var) that isolates a single
-// operator class, several times (PROBE_ITERS, default 3) so the parser can read a warmed stage.
-//
-// It reuses TpchBenchmark.loadTables / schemas / DATA_PATH so the scan, parsing, and table setup
-// are byte-for-byte identical to the real TPC-H benchmark — only the query body differs.
-//
-// Run via find-r.yml, which sets PROBE, PROBE_ITERS, DATA_PATH and all the --conf flags.
-// Build with `sbt package` (produces the same jar as TpchBenchmark; launch with --class tpch.RProbe).
-
 package tpch
 
 import org.apache.spark.sql.SparkSession
 
 object RProbe {
 
-  // Each probe is written to force exactly one operator class onto the heavy stage:
-  //   scan  -> low-cardinality GROUP BY: the work is the lineitem file scan (map stage, no shuffle read)
-  //   agg   -> high-cardinality GROUP BY: real hash-aggregate work on the reduce side
-  //   sort  -> global ORDER BY: range-partitioned reduce that sorts within partition
-  //   join  -> sort-merge join (broadcast disabled): reduce reads both shuffles and merges
   private val queries: Map[String, String] = Map(
     "scan" ->
-      """SELECT l_returnflag, COUNT(*)
+      """SELECT l_returnflag
          FROM lineitem
-         WHERE l_shipdate <= DATE '1998-09-02'
-         GROUP BY l_returnflag""",
+         WHERE l_shipdate <= DATE '1998-09-02'""",
     "agg" ->
       """SELECT l_partkey, SUM(l_quantity)
          FROM lineitem

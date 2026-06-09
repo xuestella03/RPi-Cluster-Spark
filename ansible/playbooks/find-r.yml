@@ -1,18 +1,6 @@
-# ~/Documents/Repositories/RPi-Cluster-Spark/ansible/playbooks/find-r.yml
-#
-# Diagnostic: measure the per-operator-type slowdown ratio r = t_slow / t_fast for the
-# current (sf, shuffle.partitions, maxPartitionBytes) so you can set the scheduler's
-# scan/aggReduce/sortReduce/joinReduce slowdown conf values empirically.
-#
-# Runs four probe queries (scan, agg, sort, join) via tpch.RProbe, each into its own temp
-# event-log dir, with BOTH hosts included at equal weight so every heavy stage gets tasks on
-# both Pi3B+ and Pi5. Then runs compute_r.py to pick the right stage per probe and print r.
-#
-# Put compute_r.py next to this playbook (same dir as find-r.yml).
-#
 # Usage:
 #   ansible-playbook playbooks/find-r.yml
-#   # sweep a different config:
+#   # use different config:
 #   ansible-playbook playbooks/find-r.yml -e sf=0.3 -e data_path=/.../tpch/data/sf0.3 \
 #       -e shuffle_partitions=200 -e part_bytes=128m
 #   # keep the raw event logs for inspection:
